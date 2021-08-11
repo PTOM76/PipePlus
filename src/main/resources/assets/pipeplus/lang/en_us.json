@@ -1,0 +1,14 @@
+{
+    "itemGroup.pipeplus.all": "PipePlus",
+    "block.pipeplus.obsidian_pipe": "Obsidian Pipe",
+    "block.pipeplus.ender_pipe": "Ender Pipe",
+    "block.pipeplus.emerald_pipe": "Emerald Pipe",
+    "block.pipeplus.ruby_pipe": "Ruby Pipe",
+    "block.pipeplus.pipe_items_teleport": "Item Teleport Pipe",
+    "block.pipeplus.copper_pipe": "Copper Pipe",
+    "block.pipeplus.tin_pipe": "Tin Pipe",
+    "block.pipeplus.silver_pipe": "Silver Pipe",
+    "tooltip.pipeplus.auto_extract_pipe": "§eAutomatically extract items from the container",
+    "tooltip.pipeplus.obsidian_pipe": "§eCan insert items",
+    "tooltip.pipeplus.ender_pipe": "§eCan insert surrounding items"
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "id": "pipeplus",
+  "version": "${version}",
+  "name": "PipePlus",
+  "description": "SimpleBCPipes Addon",
+  "authors": [
+    "Pitan"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/pipeplus",
+    "sources": "https://github.com/PTOM76/PipePlus",
+    "issues": "https://github.com/PTOM76/PipePlus/issues"
+  },
+
+  "license": "MPL-2.0",
+  "icon": "assets/pipeplus/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "ml.pkom.pipeplus.PipePlus"
+    ],
+    "client": [
+      "ml.pkom.pipeplus.PipePlusClient"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "pipeplus.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+
+  "depends": {
+    "fabricloader": "*",
+    "simple_pipes": "*",
+    "fabric": "*",
+    "minecraft": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
