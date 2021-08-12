@@ -8,6 +8,11 @@
     "block.pipeplus.copper_pipe": "Copper Pipe",
     "block.pipeplus.tin_pipe": "Tin Pipe",
     "block.pipeplus.silver_pipe": "Silver Pipe",
+    "block.pipeplus.copper_fluid_pipe": "Copper Fluid Pipe",
+    "block.pipeplus.tin_fluid_pipe": "Tin Fluid Pipe",
+    "block.pipeplus.silver_fluid_pipe": "Silver Fluid Pipe",
+    "block.pipeplus.redstone_pipe": "RedStone Pipe",
+    "block.pipeplus.cobblestone_pipe": "CobbleStone Pipe",
     "tooltip.pipeplus.auto_extract_pipe": "§eAutomatically extract items from the container",
     "tooltip.pipeplus.obsidian_pipe": "§eCan insert items",
     "tooltip.pipeplus.ender_pipe": "§eCan insert surrounding items"

@@ -14,6 +14,11 @@ public class Blocks {
     public static PipeItemsTeleport PIPE_ITEMS_TELEPORT = PipeItemsTeleport.newBlock();
     public static EmeraldPipe EMERALD_PIPE = EmeraldPipe.newBlock();
     public static RubyPipe RUBY_PIPE = RubyPipe.newBlock();
+    public static RedStonePipe REDSTONE_PIPE = RedStonePipe.newBlock();
+    public static CobbleStonePipe COBBLESTONE_PIPE = CobbleStonePipe.newBlock();
+    public static CopperFluidPipe COPPER_FLUID_PIPE = CopperFluidPipe.newBlock();
+    public static TinFluidPipe TIN_FLUID_PIPE = TinFluidPipe.newBlock();
+    public static SilverFluidPipe SILVER_FLUID_PIPE = SilverFluidPipe.newBlock();
 
     public static void registerInit() {
         register(OBSIDIAN_PIPE, "obsidian_pipe");
@@ -24,6 +29,11 @@ public class Blocks {
         register(PIPE_ITEMS_TELEPORT, "pipe_items_teleport");
         register(EMERALD_PIPE, "emerald_pipe");
         register(RUBY_PIPE, "ruby_pipe");
+        register(REDSTONE_PIPE, "redstone_pipe");
+        register(COBBLESTONE_PIPE, "cobblestone_pipe");
+        register(COPPER_FLUID_PIPE, "copper_fluid_pipe");
+        register(TIN_FLUID_PIPE, "tin_fluid_pipe");
+        register(SILVER_FLUID_PIPE, "silver_fluid_pipe");
     }
 
     public static void register(Block block, String id) {

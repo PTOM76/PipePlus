@@ -16,6 +16,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class AddRegisterSpritesMixin {
 	@Inject(method = "registerSprites", at = @At("TAIL"), remap = false)
 	private void registerSprites(SpriteAtlasTexture atlasTexture, ClientSpriteRegistryCallback.Registry registry, CallbackInfo ci) {
+		registry.register(PipePlus.id("pipes/cobblestone_pipe"));
+		registry.register(PipePlus.id("pipes/redstone_pipe"));
+		registry.register(PipePlus.id("pipes/active_redstone_pipe"));
 		registry.register(PipePlus.id("pipes/emerald_pipe"));
 		registry.register(PipePlus.id("pipes/ruby_pipe"));
 		registry.register(PipePlus.id("pipes/pipe_items_teleport"));
@@ -27,5 +30,11 @@ public class AddRegisterSpritesMixin {
 		registry.register(PipePlus.id("pipes/tin_pipe_filled"));
 		registry.register(PipePlus.id("pipes/silver_pipe"));
 		registry.register(PipePlus.id("pipes/silver_pipe_filled"));
+		registry.register(PipePlus.id("pipes/copper_fluid_pipe"));
+		registry.register(PipePlus.id("pipes/copper_fluid_pipe_filled"));
+		registry.register(PipePlus.id("pipes/tin_fluid_pipe"));
+		registry.register(PipePlus.id("pipes/tin_fluid_pipe_filled"));
+		registry.register(PipePlus.id("pipes/silver_fluid_pipe"));
+		registry.register(PipePlus.id("pipes/silver_fluid_pipe_filled"));
 	}
 }

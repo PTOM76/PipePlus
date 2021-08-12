@@ -8,6 +8,11 @@
     "block.pipeplus.copper_pipe": "銅パイプ",
     "block.pipeplus.tin_pipe": "錫パイプ",
     "block.pipeplus.silver_pipe": "銀パイプ",
+    "block.pipeplus.copper_fluid_pipe": "銅パイプ(液体用)",
+    "block.pipeplus.tin_fluid_pipe": "錫パイプ(液体用)",
+    "block.pipeplus.silver_fluid_pipe": "銀パイプ(液体用)",
+    "block.pipeplus.redstone_pipe": "レッドストーンパイプ",
+    "block.pipeplus.cobblestone_pipe": "丸石パイプ",
     "tooltip.pipeplus.auto_extract_pipe": "§eコンテナからアイテムを自動的に抽出する",
     "tooltip.pipeplus.obsidian_pipe": "§eアイテムを挿入できる",
     "tooltip.pipeplus.ender_pipe": "§e周囲のアイテムを挿入できる"
