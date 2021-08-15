@@ -1,6 +1,7 @@
 package ml.pkom.pipeplus.guis;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
@@ -9,6 +10,7 @@ import net.fabricmc.fabric.api.client.screen.ContainerScreenFactory;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
@@ -90,7 +92,7 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
     private int posZ;
 
     public TeleportPipeSettingScreen(TeleportPipeSettingGui container) {
-        super(container, container.player.inventory, Blocks.PIPE_ITEMS_TELEPORT.getName());
+        super(container, container.player.getInventory(), Blocks.PIPE_ITEMS_TELEPORT.getName());
         //tile = (PipeItemsTeleportEntity) container.player.getEntityWorld().getBlockEntity(container.tile.getPos());
         //tile = container.tile;
         tile = PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(container.tile.getPos()));
@@ -126,8 +128,13 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
     }
 
     protected void drawBackground(MatrixStack matrices, float partialTicks, int mouseX, int mouseY) {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        MinecraftClient.getInstance().getTextureManager().bindTexture(GUI);
+        //GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.setShaderTexture(0, GUI);
+
+        //MinecraftClient.getInstance().getTextureManager().bindTexture(GUI);
         int x = (this.width - this.backgroundWidth) / 2;
         int y = (this.height - this.backgroundHeight) / 2;
         this.drawTexture(matrices, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
@@ -147,14 +154,23 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         numberAdd十10.y = 78 + y;
         numberAdd十100.x = 182 + x;
         numberAdd十100.y = 78 + y;
-        this.addButton(pipeMode);
-        this.addButton(openMode);
-        this.addButton(numberAddー100);
-        this.addButton(numberAddー10);
-        this.addButton(numberAddー1);
-        this.addButton(numberAdd十1);
-        this.addButton(numberAdd十10);
-        this.addButton(numberAdd十100);
+        this.addDrawable(pipeMode);
+        this.addDrawable(openMode);
+        this.addDrawable(numberAddー100);
+        this.addDrawable(numberAddー10);
+        this.addDrawable(numberAddー1);
+        this.addDrawable(numberAdd十1);
+        this.addDrawable(numberAdd十10);
+        this.addDrawable(numberAdd十100);
+
+        this.addSelectableChild(pipeMode);
+        this.addSelectableChild(openMode);
+        this.addSelectableChild(numberAddー100);
+        this.addSelectableChild(numberAddー10);
+        this.addSelectableChild(numberAddー1);
+        this.addSelectableChild(numberAdd十1);
+        this.addSelectableChild(numberAdd十10);
+        this.addSelectableChild(numberAdd十100);
     }
 
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {

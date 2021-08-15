@@ -1,14 +1,17 @@
 package ml.pkom.pipeplus.blockentities;
 
-import alexiil.mc.mod.pipes.blocks.PipeFlowItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
-import alexiil.mc.mod.pipes.blocks.TravellingItem;
+import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
+import alexiil.mc.mod.pipes.pipe.TravellingItem;
 import ml.pkom.pipeplus.blocks.Blocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 
@@ -19,8 +22,8 @@ public class EnderPipeEntity extends TilePipe {
     private static VoxelShape INPUT_AREA_SHAPE = Block.createCuboidShape(-48.0D, -48.0D, -48.0D, 64.0D, 64.0D, 64.0D);
     private static VoxelShape REDSTONE_SIGNAL_INPUT_AREA_SHAPE = Block.createCuboidShape(-80.0D, -80.0D, -80.0D, 96.0D, 96.0D, 96.0D);
 
-    public EnderPipeEntity() {
-        super(BlockEntities.ENDER_PIPE_ENTITY, Blocks.ENDER_PIPE, PipeFlowItem::new);
+    public EnderPipeEntity(BlockPos pos, BlockState state) {
+        super(BlockEntities.ENDER_PIPE_ENTITY, pos, state, Blocks.ENDER_PIPE, PipeSpFlowItem::new);
     }
 
     public double getX() {
@@ -48,16 +51,16 @@ public class EnderPipeEntity extends TilePipe {
             return false;
         if (entity.isNotConnected())
             return false;
-        CompoundTag nbt = new CompoundTag();
-        ListTag tagList = new ListTag();
+        NbtCompound nbt = new NbtCompound();
+        NbtList tagList = new NbtList();
         long tickNow = entity.getWorldTime();
         for (ItemEntity itemEntity : itemsList) {
             TravellingItem item = new TravellingItem(itemEntity.getStack());
             tagList.add(item.writeToNbt(tickNow));
-            itemEntity.remove();
+            itemEntity.remove(Entity.RemovalReason.KILLED);
         }
         nbt.put("items", tagList);
-        entity.flow.fromTag(nbt);
+        entity.getFlow().fromTag(nbt);
         return true;
     }
 

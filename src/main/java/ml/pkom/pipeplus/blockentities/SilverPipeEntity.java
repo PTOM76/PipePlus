@@ -3,21 +3,23 @@ package ml.pkom.pipeplus.blockentities;
 import alexiil.mc.lib.attributes.Simulation;
 import alexiil.mc.lib.attributes.item.ItemExtractable;
 import alexiil.mc.lib.attributes.item.impl.EmptyItemExtractable;
-import alexiil.mc.mod.pipes.blocks.PipeFlowItem;
 import alexiil.mc.mod.pipes.blocks.TilePipeSided;
+import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import ml.pkom.pipeplus.blocks.Blocks;
 import ml.pkom.pipeplus.pipeflow.CustomPipeFlow;
 import ml.pkom.pipeplus.pipeflow.SilverPipeFlow;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
 public class SilverPipeEntity extends TilePipeSided {
     private int needCooldown = 5;
     private int cooldown = needCooldown;
 
-    public SilverPipeEntity() {
-        super(BlockEntities.SILVER_PIPE_ENTITY, Blocks.SILVER_PIPE, SilverPipeFlow::new);
+    public SilverPipeEntity(BlockPos pos, BlockState state) {
+        super(BlockEntities.SILVER_PIPE_ENTITY, pos, state, Blocks.SILVER_PIPE, SilverPipeFlow::new);
     }
 
     @Override
@@ -48,7 +50,7 @@ public class SilverPipeEntity extends TilePipeSided {
         ItemExtractable extractable = this.getItemExtractable(dir);
         ItemStack stack = extractable.attemptAnyExtraction(pulses, Simulation.ACTION);
         if (!stack.isEmpty()) {
-            ((PipeFlowItem)this.flow).insertItemsForce(stack, dir, (DyeColor)null, 0.08D);
+            ((PipeSpFlowItem)this.getFlow()).insertItemsForce(stack, dir, (DyeColor)null, 0.08D);
         }
 
     }

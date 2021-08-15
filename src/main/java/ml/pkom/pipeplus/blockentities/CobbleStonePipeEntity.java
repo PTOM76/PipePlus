@@ -1,14 +1,17 @@
 package ml.pkom.pipeplus.blockentities;
 
 import alexiil.mc.mod.pipes.blocks.*;
+import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import ml.pkom.pipeplus.blocks.Blocks;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
 public class CobbleStonePipeEntity extends TilePipe {
 
-    public CobbleStonePipeEntity() {
-        super(BlockEntities.COBBLESTONE_PIPE_ENTITY, Blocks.COBBLESTONE_PIPE, PipeFlowItem::new);
+    public CobbleStonePipeEntity(BlockPos pos, BlockState state) {
+        super(BlockEntities.COBBLESTONE_PIPE_ENTITY, pos, state, Blocks.COBBLESTONE_PIPE, PipeSpFlowItem::new);
     }
 
     @Override
@@ -23,7 +26,7 @@ public class CobbleStonePipeEntity extends TilePipe {
                 this.disconnect(dir);
                 ((TilePipeItemStone) oTile).disconnect(dir.getOpposite());
             } else if (oTile instanceof TilePipe) {
-                if (this.flow instanceof PipeFlowItem == (((TilePipe)oTile).flow instanceof PipeFlowItem)) {
+                if (this.getFlow() instanceof PipeSpFlowItem == (((TilePipe)oTile).getFlow() instanceof PipeSpFlowItem)) {
                     this.connect(dir);
                 } else {
                     this.disconnect(dir);

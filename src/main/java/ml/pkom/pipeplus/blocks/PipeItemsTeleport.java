@@ -6,6 +6,7 @@ import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.classes.TeleportPipeType;
+import ml.pkom.pipeplus.parts.PipePlusParts;
 import ml.pkom.pipeplus.superClass.blocks.BlockPipeTeleport;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
@@ -22,7 +23,7 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeItem {
-    public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.SUPPORTED);
+    public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.DECORATION);
     public UUID owner;
 
     static {
@@ -33,7 +34,7 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
     }
 
     public PipeItemsTeleport(Settings settings) {
-        super(settings);
+        super(settings, PipePlusParts.TELEPORT_ITEM_PIPE);
     }
 
 
@@ -58,8 +59,8 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
     }
 
     @Override
-    public TilePipe createBlockEntity(BlockView view) {
-        return new PipeItemsTeleportEntity();
+    public TilePipe createBlockEntity(BlockPos pos, BlockState state) {
+        return new PipeItemsTeleportEntity(pos, state);
     }
 
     public static Settings getSettings() {
