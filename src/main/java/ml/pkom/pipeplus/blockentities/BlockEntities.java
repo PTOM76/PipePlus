@@ -2,7 +2,6 @@ package ml.pkom.pipeplus.blockentities;
 
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.blocks.Blocks;
-import ml.pkom.pipeplus.blocks.PipeItemsTeleport;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -27,6 +26,7 @@ public class BlockEntities {
     public static BlockEntityType<CopperFluidPipeEntity> COPPER_FLUID_PIPE_ENTITY;
     public static BlockEntityType<TinFluidPipeEntity> TIN_FLUID_PIPE_ENTITY;
     public static BlockEntityType<SilverFluidPipeEntity> SILVER_FLUID_PIPE_ENTITY;
+    public static BlockEntityType<VoidPipeEntity> VOID_ITEM_PIPE_TILE_ENTITY;
 
     public static void registerInit() {
         OBSIDIAN_PIPE_ENTITY = createTile(ObsidianPipeEntity::new, Blocks.OBSIDIAN_PIPE);
@@ -55,6 +55,8 @@ public class BlockEntities {
         registerTile(TIN_FLUID_PIPE_ENTITY, "tin_fluid_pipe");
         SILVER_FLUID_PIPE_ENTITY = createTile(SilverFluidPipeEntity::new, Blocks.SILVER_FLUID_PIPE);
         registerTile(SILVER_FLUID_PIPE_ENTITY, "silver_fluid_pipe");
+        VOID_ITEM_PIPE_TILE_ENTITY = createTile(VoidPipeEntity::new, Blocks.VOID_ITEM_PIPE);
+        registerTile(VOID_ITEM_PIPE_TILE_ENTITY, "void_item_pipe");
     }
 
     private static <T extends BlockEntity> BlockEntityType<T> createTile(Supplier<T> supplier, Block blocks) {

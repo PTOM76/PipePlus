@@ -1,17 +1,29 @@
 package ml.pkom.pipeplus.blocks;
 
-import alexiil.mc.mod.pipes.blocks.BlockPipe;
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
+import ml.pkom.pipeplus.PipePlus;
+import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
+import ml.pkom.pipeplus.classes.TeleportPipeType;
+import ml.pkom.pipeplus.superClass.blocks.BlockPipeTeleport;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
-public class PipeItemsTeleport extends BlockPipe implements BlockPipeItem {
+import java.util.UUID;
+
+public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeItem {
     public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.SUPPORTED);
+    public UUID owner;
 
     static {
         blockSettings.strength(0.5F, 1.0F);
@@ -22,6 +34,27 @@ public class PipeItemsTeleport extends BlockPipe implements BlockPipeItem {
 
     public PipeItemsTeleport(Settings settings) {
         super(settings);
+    }
+
+
+    @Override
+    public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack) {
+        super.onPlaced(world, pos, state, entity, stack);
+        if (entity instanceof PlayerEntity) {
+            owner = entity.getUuid();
+        }
+    }
+
+    @Override
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        super.onBreak(world, pos, state, player);
+        if (!PipeItemsTeleportEntity.tileMap.containsKey(PipePlus.pos2str(pos))) return;
+        if (PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(pos)).canPlayerModifyPipe(player)) {
+            TeleportManager.instance.remove(PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(pos)), PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(pos)).frequency);
+            PipeItemsTeleportEntity.tileMap.remove(PipePlus.pos2str(pos));
+            return;
+        }
+        world.setBlockState(pos, state);
     }
 
     @Override

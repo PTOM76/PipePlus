@@ -48,6 +48,8 @@ public class AddPipeMixin {
 			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/pipe_items_teleport"));
 		if (block == Blocks.COBBLESTONE_PIPE)
 			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/cobblestone_pipe"));
+		if (block == Blocks.VOID_ITEM_PIPE)
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/void_item"));
 	}
 
 	@Inject(method = "getSprite", at = @At("TAIL"), cancellable = true, remap = false)

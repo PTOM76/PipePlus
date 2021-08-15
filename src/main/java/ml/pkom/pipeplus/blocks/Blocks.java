@@ -6,6 +6,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class Blocks {
+    public static VoidItemPipe VOID_ITEM_PIPE = VoidItemPipe.newBlock();
     public static ObsidianPipe OBSIDIAN_PIPE = ObsidianPipe.newBlock();
     public static EnderPipe ENDER_PIPE = EnderPipe.newBlock();
     public static CopperPipe COPPER_PIPE = CopperPipe.newBlock();
@@ -21,6 +22,7 @@ public class Blocks {
     public static SilverFluidPipe SILVER_FLUID_PIPE = SilverFluidPipe.newBlock();
 
     public static void registerInit() {
+        register(VOID_ITEM_PIPE, "void_item_pipe");
         register(OBSIDIAN_PIPE, "obsidian_pipe");
         register(ENDER_PIPE, "ender_pipe");
         register(COPPER_PIPE, "copper_pipe");

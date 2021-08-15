@@ -21,7 +21,7 @@ public class SilverPipe extends Item {
 
     @Override
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(new TranslatableText("tooltip.pipeplus.auto_extract_pipe"));
+        tooltip.add(new TranslatableText("tip.pipeplus.auto_extract_pipe"));
     }
 
     public SilverPipe(Settings settings) {

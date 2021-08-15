@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X#Y"
+  ],
+  "key": {
+    "Y": {
+      "item": "minecraft:redstone"
+    },
+    "X": {
+      "item": "minecraft:black_dye"
+    },
+    "#": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "pipeplus:void_item_pipe",
+    "count": 8
+  }
+}

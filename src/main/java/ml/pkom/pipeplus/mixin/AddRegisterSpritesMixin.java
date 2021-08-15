@@ -36,5 +36,6 @@ public class AddRegisterSpritesMixin {
 		registry.register(PipePlus.id("pipes/tin_fluid_pipe_filled"));
 		registry.register(PipePlus.id("pipes/silver_fluid_pipe"));
 		registry.register(PipePlus.id("pipes/silver_fluid_pipe_filled"));
+		registry.register(PipePlus.id("pipes/void_item"));
 	}
 }

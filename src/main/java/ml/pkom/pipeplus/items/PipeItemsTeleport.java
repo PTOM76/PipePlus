@@ -16,7 +16,7 @@ public class PipeItemsTeleport extends Item {
     public static Settings itemSettings = new Settings();
 
     static {
-        //itemSettings.group(PipePlus.PIPEPLUS_GROUP);
+        itemSettings.group(PipePlus.PIPEPLUS_GROUP);
     }
 
     public PipeItemsTeleport(Settings settings) {

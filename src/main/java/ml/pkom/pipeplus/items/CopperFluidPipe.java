@@ -21,7 +21,7 @@ public class CopperFluidPipe extends Item {
 
     @Override
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(new TranslatableText("tooltip.pipeplus.auto_extract_fluid_pipe"));
+        tooltip.add(new TranslatableText("tip.pipeplus.auto_extract_fluid_pipe"));
     }
 
     public CopperFluidPipe(Settings settings) {

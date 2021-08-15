@@ -1,86 +1,143 @@
 package ml.pkom.pipeplus.blockentities;
 
-import alexiil.mc.mod.pipes.blocks.PipeFlowItem;
+import alexiil.mc.mod.pipes.blocks.PipeFlow;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
-import alexiil.mc.mod.pipes.blocks.TravellingItem;
+import ml.pkom.pipeplus.PipePlus;
+import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blocks.Blocks;
-import net.minecraft.block.Block;
-import net.minecraft.entity.ItemEntity;
+import ml.pkom.pipeplus.blocks.PipeItemsTeleport;
+import ml.pkom.pipeplus.classes.TeleportPipeType;
+import ml.pkom.pipeplus.pipeflow.TeleportPipeFlow;
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.predicate.entity.EntityPredicates;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
-public class PipeItemsTeleportEntity extends TilePipe {
-    private static VoxelShape INPUT_AREA_SHAPE = Block.createCuboidShape(-48.0D, -48.0D, -48.0D, 64.0D, 64.0D, 64.0D);
-    private static VoxelShape REDSTONE_SIGNAL_INPUT_AREA_SHAPE = Block.createCuboidShape(-80.0D, -80.0D, -80.0D, 96.0D, 96.0D, 96.0D);
+public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTileEntity {
+    public UUID owner = null;
+    public String ownerName = null;
+    public Boolean modeIsPublic = null;
+    public Integer pipeModeInt = null; // 0=Send Only, 1=Receive Only, 2=Send & Receive 3=Disabled
+    public Integer frequency = null;
+    public PipeFlow iFlow = null;
 
-    public PipeItemsTeleportEntity() {
-        super(BlockEntities.PIPE_ITEMS_TELEPORT_ENTITY, Blocks.PIPE_ITEMS_TELEPORT, PipeFlowItem::new);
+    @Override
+    public boolean isPublic() {
+        return modeIsPublic;
     }
 
-    public double getX() {
-        return (double)this.pos.getX() + 0.5D;
+    @Override
+    public UUID getOwnerUUID() {
+        return owner;
     }
 
-    public double getY() {
-        return (double)this.pos.getY() + 0.5D;
+    public boolean canReceive()
+    {
+        if (pipeModeInt == 0 || pipeModeInt == 3) {
+            return false;
+        }
+        return true;
     }
 
-    public double getZ() {
-        return (double)this.pos.getZ() + 0.5D;
+    public boolean canSend()
+    {
+        if (pipeModeInt == 1 || pipeModeInt == 3) {
+            return false;
+        }
+        return true;
     }
 
+    @Override
+    public Integer getFrequency() {
+        return frequency;
+    }
+
+    public boolean canPlayerModifyPipe(PlayerEntity player)
+    {
+        if (owner == null ) return true;
+        if(modeIsPublic || owner.equals(player.getUuid()) || player.abilities.creativeMode || owner.equals(UUID.fromString("00000000-0000-0000-0000-000000000000")))
+            return true;
+        return false;
+    }
+
+    public static Map<String, PipeItemsTeleportEntity> tileMap = new LinkedHashMap<>();
+
+    @Override
     public void tick() {
         super.tick();
-        if (world != null && !world.isClient) {
-            extract(this);
+    }
+
+    public PipeItemsTeleportEntity() {
+        super(BlockEntities.PIPE_ITEMS_TELEPORT_ENTITY, Blocks.PIPE_ITEMS_TELEPORT, TeleportPipeFlow::new);
+        iFlow = flow;
+        if (owner == null) owner = ((PipeItemsTeleport) pipeBlock).owner;
+
+        if (ownerName == null) {
+            try {
+                ownerName = getWorld().getPlayerByUuid(owner).getName().getString();
+            } catch (NullPointerException e) {
+            }
         }
+        if (modeIsPublic == null) modeIsPublic = false;
+        if (pipeModeInt == null) pipeModeInt = 0;
+        if (frequency == null) frequency = 0;
+        TeleportManager.instance.add(this, frequency);
     }
 
-    public static boolean extract(PipeItemsTeleportEntity entity) {
-        List<ItemEntity> itemsList = getInputItemEntities(entity);
-        if (itemsList.isEmpty())
-            return false;
-        if (entity.isNotConnected())
-            return false;
-        CompoundTag nbt = new CompoundTag();
-        ListTag tagList = new ListTag();
-        long tickNow = entity.getWorldTime();
-        for (ItemEntity itemEntity : itemsList) {
-            TravellingItem item = new TravellingItem(itemEntity.getStack());
-            tagList.add(item.writeToNbt(tickNow));
-            itemEntity.remove();
+    @Override
+    public void fromTag(BlockState state, CompoundTag tag) {
+        super.fromTag(state, tag);
+        //debug();
+        if (!tileMap.containsKey(PipePlus.pos2str(getPos()))) {
+            tileMap.put(PipePlus.pos2str(getPos()), this);
         }
-        nbt.put("items", tagList);
-        entity.flow.fromTag(nbt);
-        return true;
-    }
-
-    public boolean isNotConnected() {
-        if(this.isConnected(Direction.UP)) return false;
-        if(this.isConnected(Direction.DOWN)) return false;
-        if(this.isConnected(Direction.NORTH)) return false;
-        if(this.isConnected(Direction.SOUTH)) return false;
-        if(this.isConnected(Direction.EAST)) return false;
-        if(this.isConnected(Direction.WEST)) return false;
-        return true;
-    }
-
-    public static List<ItemEntity> getInputItemEntities(PipeItemsTeleportEntity entity) {
-        VoxelShape voxelShape;
-        if (entity.world.isReceivingRedstonePower(entity.getPos())) {
-            voxelShape = REDSTONE_SIGNAL_INPUT_AREA_SHAPE;
-        } else {
-            voxelShape = INPUT_AREA_SHAPE;
+        PipeItemsTeleportEntity tile = tileMap.get(PipePlus.pos2str(getPos()));
+        try {
+            tile.owner = tag.getUuid("owner");
+        } catch (NullPointerException e) {
+            tile.owner = UUID.fromString("00000000-0000-0000-0000-000000000000");
         }
-        return voxelShape.getBoundingBoxes().stream().flatMap((box) -> {
-            return entity.getWorld().getEntitiesByClass(ItemEntity.class, box.offset(entity.getX() - 0.5D, entity.getY() - 0.5D, entity.getZ() - 0.5D), EntityPredicates.VALID_ENTITY).stream();
-        }).collect(Collectors.toList());
+        try {
+            tile.ownerName = getWorld().getPlayerByUuid(tile.owner).getName().getString();
+        } catch (NullPointerException e) {
+            tile.ownerName = tag.getString("ownerName");
+        }
+        tile.modeIsPublic = tag.getBoolean("isPublic");
+        tile.pipeModeInt = tag.getInt("modeInt");
+        tile.frequency = tag.getInt("frequency");
+        TeleportManager.instance.add(tile, tile.frequency);
+
+        //debug();
     }
 
+    @Override
+    public CompoundTag toTag(CompoundTag tag) {
+        tag = super.toTag(tag);
+        PipeItemsTeleportEntity tile = tileMap.get(PipePlus.pos2str(getPos()));
+        try {
+            tag.putUuid("owner", tile.owner);
+        } catch (NullPointerException e) {
+            tag.putUuid("owner", UUID.fromString("00000000-0000-0000-0000-000000000000"));
+        }
+        if (tile.ownerName != null)
+            tag.putString("ownerName", tile.ownerName);
+        if (tile.modeIsPublic != null)
+            tag.putBoolean("isPublic", tile.modeIsPublic);
+        if (tile.pipeModeInt != null)
+            tag.putInt("modeInt", tile.pipeModeInt);
+        if (tile.frequency != null)
+            tag.putInt("frequency", tile.frequency);
+        //debug();
+        return tag;
+    }
+
+    public void debug() {
+        System.out.println("owner: " + owner + ", isPublic: " + modeIsPublic + ", modeInt: " + pipeModeInt + ", frequency: " + frequency);
+    }
+
+    @Override
+    public TeleportPipeType getPipeType() {
+        return TeleportPipeType.ITEMS;
+    }
 }

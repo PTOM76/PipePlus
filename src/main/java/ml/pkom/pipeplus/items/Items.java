@@ -1,6 +1,9 @@
 package ml.pkom.pipeplus.items;
 
 import ml.pkom.pipeplus.PipePlus;
+import ml.pkom.pipeplus.blocks.Blocks;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -19,6 +22,7 @@ public class Items {
     public static Item ENDER_PIPE = EnderPipe.newItem();
     public static Item REDSTONE_PIPE = RedStonePipe.newItem();
     public static Item PIPE_ITEMS_TELEPORT = PipeItemsTeleport.newItem();
+    public static Item VOID_ITEM_PIPE = new BlockItem(Blocks.VOID_ITEM_PIPE, new Item.Settings().group(PipePlus.PIPEPLUS_GROUP));
 
     public static void registerInit() {
         register(COPPER_PIPE, "copper_pipe");
@@ -33,6 +37,7 @@ public class Items {
         register(OBSIDIAN_PIPE, "obsidian_pipe");
         register(ENDER_PIPE, "ender_pipe");
         register(REDSTONE_PIPE, "redstone_pipe");
+        register(VOID_ITEM_PIPE, "void_item_pipe");
         register(PIPE_ITEMS_TELEPORT, "pipe_items_teleport");
     }
 

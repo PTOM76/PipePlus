@@ -5,6 +5,7 @@ import alexiil.mc.mod.pipes.client.render.PipeFluidTileRenderer;
 import alexiil.mc.mod.pipes.client.render.PipeItemTileRenderer;
 import ml.pkom.pipeplus.blockentities.BlockEntities;
 import ml.pkom.pipeplus.blocks.Blocks;
+import ml.pkom.pipeplus.guis.PipePlusScreens;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
@@ -15,6 +16,7 @@ import net.minecraft.client.render.RenderLayer;
 public class PipePlusClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        PipePlusScreens.load();
         registerItemPipeRender(BlockEntities.OBSIDIAN_PIPE_ENTITY);
         setCutoutLayer(Blocks.OBSIDIAN_PIPE);
         registerItemPipeRender(BlockEntities.ENDER_PIPE_ENTITY);
@@ -41,6 +43,8 @@ public class PipePlusClient implements ClientModInitializer {
         setCutoutLayer(Blocks.PIPE_ITEMS_TELEPORT);
         registerItemPipeRender(BlockEntities.COBBLESTONE_PIPE_ENTITY);
         setCutoutLayer(Blocks.COBBLESTONE_PIPE);
+        registerItemPipeRender(BlockEntities.VOID_ITEM_PIPE_TILE_ENTITY);
+        setCutoutLayer(Blocks.VOID_ITEM_PIPE);
     }
 
     private static void setCutoutLayer(Block block) {

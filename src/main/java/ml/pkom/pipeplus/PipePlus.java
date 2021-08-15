@@ -2,12 +2,18 @@ package ml.pkom.pipeplus;
 
 import ml.pkom.pipeplus.blockentities.BlockEntities;
 import ml.pkom.pipeplus.blocks.Blocks;
+import ml.pkom.pipeplus.guis.PipePlusContainers;
+import ml.pkom.pipeplus.guis.PipePlusScreens;
 import ml.pkom.pipeplus.items.Items;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Position;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,6 +37,7 @@ public class PipePlus implements ModInitializer {
         BlockEntities.registerInit();
         Blocks.registerInit();
         Items.registerInit();
+        PipePlusContainers.load();
     }
 
     public static void log(Level level, String message){
@@ -44,6 +51,11 @@ public class PipePlus implements ModInitializer {
     public static Identifier id(String id, boolean bool) {
         if (bool) return new Identifier(MOD_ID, id);
         return new Identifier(id);
+    }
+
+    public static String pos2str(BlockPos pos) {
+        return pos.getX() + "l" + pos.getY() + "l" + pos.getZ();
+
     }
 
 }
