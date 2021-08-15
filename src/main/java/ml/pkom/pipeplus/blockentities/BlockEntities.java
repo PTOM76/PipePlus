@@ -1,16 +1,18 @@
 package ml.pkom.pipeplus.blockentities;
 
+import alexiil.mc.mod.pipes.blocks.SimplePipeBlocks;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.blocks.Blocks;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.function.Supplier;
 
 public class BlockEntities {
     public static BlockEntityType<ObsidianPipeEntity> OBSIDIAN_PIPE_ENTITY;
@@ -59,8 +61,13 @@ public class BlockEntities {
         registerTile(VOID_ITEM_PIPE_TILE_ENTITY, "void_item_pipe");
     }
 
-    private static <T extends BlockEntity> BlockEntityType<T> createTile(Supplier<T> supplier, Block blocks) {
-        return new BlockEntityType<>(supplier, new HashSet<>(Arrays.asList(blocks)), null);
+    private static <T extends BlockEntity> BlockEntityType<T> createTile(SimplePipeBlocks.IBeCreator<T> supplier, Block... blocks) {
+        return new BlockEntityType<T>(null, new HashSet<>(Arrays.asList(blocks)), null) {
+            @Override
+            public T instantiate(BlockPos pos, BlockState state) {
+                return supplier.create(pos, state);
+            }
+        };
     }
 
     private static void registerTile(BlockEntityType<?> type, String name) {

@@ -1,6 +1,7 @@
 package ml.pkom.pipeplus.superClass.blocks;
 
 import alexiil.mc.mod.pipes.blocks.BlockPipe;
+import alexiil.mc.mod.pipes.pipe.PipeSpDef;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.blocks.PipeItemsTeleport;
@@ -18,8 +19,8 @@ import net.minecraft.world.World;
 
 public abstract class BlockPipeTeleport extends BlockPipe {
 
-    public BlockPipeTeleport(Settings settings) {
-        super(settings);
+    public BlockPipeTeleport(Settings settings, PipeSpDef pipeSpDef) {
+        super(settings, pipeSpDef);
     }
 
     @Override

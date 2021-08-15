@@ -1,10 +1,9 @@
 package ml.pkom.pipeplus.pipeflow;
 
-import alexiil.mc.mod.pipes.blocks.PipeFlowItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
-import alexiil.mc.mod.pipes.blocks.TravellingItem;
+import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 
-public abstract class CustomPipeFlow extends PipeFlowItem {
+public abstract class CustomPipeFlow extends PipeSpFlowItem {
 
     public CustomPipeFlow(TilePipe pipe) {
         super(pipe);

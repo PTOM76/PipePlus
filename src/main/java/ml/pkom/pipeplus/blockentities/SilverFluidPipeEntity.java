@@ -1,17 +1,19 @@
 package ml.pkom.pipeplus.blockentities;
 
 import alexiil.mc.lib.attributes.fluid.impl.EmptyFluidExtractable;
-import alexiil.mc.mod.pipes.blocks.PipeFlowFluid;
 import alexiil.mc.mod.pipes.blocks.TilePipeSided;
+import alexiil.mc.mod.pipes.pipe.PipeSpFlowFluid;
 import ml.pkom.pipeplus.blocks.Blocks;
+import net.minecraft.block.BlockState;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
 public class SilverFluidPipeEntity extends TilePipeSided {
     private int needCooldown = 5;
     private int cooldown = needCooldown;
 
-    public SilverFluidPipeEntity() {
-        super(BlockEntities.SILVER_FLUID_PIPE_ENTITY, Blocks.SILVER_FLUID_PIPE, PipeFlowFluid::new);
+    public SilverFluidPipeEntity(BlockPos pos, BlockState state) {
+        super(BlockEntities.SILVER_FLUID_PIPE_ENTITY, pos, state, Blocks.SILVER_FLUID_PIPE, PipeSpFlowFluid::new);
     }
 
     @Override
@@ -38,6 +40,6 @@ public class SilverFluidPipeEntity extends TilePipeSided {
     }
 
     public void tryExtract(Direction dir, int pulses) {
-        ((PipeFlowFluid)this.flow).tryExtract(dir);
+        ((PipeSpFlowFluid)this.getFlow()).tryExtract(dir);
     }
 }

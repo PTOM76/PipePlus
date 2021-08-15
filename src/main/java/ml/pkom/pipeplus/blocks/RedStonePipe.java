@@ -4,6 +4,7 @@ import alexiil.mc.mod.pipes.blocks.BlockPipe;
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
 import ml.pkom.pipeplus.blockentities.RedStonePipeEntity;
+import ml.pkom.pipeplus.parts.PipePlusParts;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
@@ -23,7 +24,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class RedStonePipe extends BlockPipe implements BlockPipeItem {
-    public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.SUPPORTED);
+    public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.DECORATION);
     public static BooleanProperty POWERED;
     public boolean isPowered = false;
 
@@ -36,7 +37,7 @@ public class RedStonePipe extends BlockPipe implements BlockPipeItem {
     }
 
     public RedStonePipe(Settings settings) {
-        super(settings);
+        super(settings, PipePlusParts.REDSTONE_ITEM_PIPE);
         setDefaultState(stateManager.getDefaultState().with(POWERED, false));
     }
 
@@ -104,8 +105,8 @@ public class RedStonePipe extends BlockPipe implements BlockPipeItem {
     }
 
     @Override
-    public TilePipe createBlockEntity(BlockView view) {
-        return new RedStonePipeEntity();
+    public TilePipe createBlockEntity(BlockPos pos, BlockState state) {
+        return new RedStonePipeEntity(pos, state);
     }
 
     public static Settings getSettings() {

@@ -1,7 +1,7 @@
 package ml.pkom.pipeplus.pipeflow;
 
-import alexiil.mc.mod.pipes.blocks.PipeFlowItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
+import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.IPipeTeleportTileEntity;
@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
 
-public class TeleportPipeFlow extends PipeFlowItem {
+public class TeleportPipeFlow extends PipeSpFlowItem {
 
     public PipeItemsTeleportEntity tileEntity;
 
@@ -31,7 +31,7 @@ public class TeleportPipeFlow extends PipeFlowItem {
             for ( IPipeTeleportTileEntity entity : TeleportManager.instance.getConnectedPipes(tileEntity, false, true) ) {
                 if (entity instanceof PipeItemsTeleportEntity){
                     PipeItemsTeleportEntity pipe2 = PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(((PipeItemsTeleportEntity) entity).getPos()));
-                    itemStack = ((TeleportPipeFlow) pipe2.flow).addItem(stack, doAdd, from, colour, speed);
+                    itemStack = ((TeleportPipeFlow) pipe2.getFlow()).addItem(stack, doAdd, from, colour, speed);
                     success = true;
                     break;
                 }

@@ -1,23 +1,19 @@
 package ml.pkom.pipeplus.blockentities;
 
-import alexiil.mc.lib.attributes.Simulation;
 import alexiil.mc.lib.attributes.fluid.impl.EmptyFluidExtractable;
-import alexiil.mc.lib.attributes.item.ItemExtractable;
-import alexiil.mc.lib.attributes.item.impl.EmptyItemExtractable;
-import alexiil.mc.mod.pipes.blocks.PipeFlowFluid;
-import alexiil.mc.mod.pipes.blocks.PipeFlowItem;
 import alexiil.mc.mod.pipes.blocks.TilePipeSided;
+import alexiil.mc.mod.pipes.pipe.PipeSpFlowFluid;
 import ml.pkom.pipeplus.blocks.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DyeColor;
+import net.minecraft.block.BlockState;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
 public class CopperFluidPipeEntity extends TilePipeSided {
     private int needCooldown = 20;
     private int cooldown = needCooldown;
 
-    public CopperFluidPipeEntity() {
-        super(BlockEntities.COPPER_FLUID_PIPE_ENTITY, Blocks.COPPER_FLUID_PIPE, PipeFlowFluid::new);
+    public CopperFluidPipeEntity(BlockPos pos, BlockState state) {
+        super(BlockEntities.COPPER_FLUID_PIPE_ENTITY, pos, state, Blocks.COPPER_FLUID_PIPE, PipeSpFlowFluid::new);
     }
 
     @Override
@@ -44,6 +40,6 @@ public class CopperFluidPipeEntity extends TilePipeSided {
     }
 
     public void tryExtract(Direction dir, int pulses) {
-        ((PipeFlowFluid)this.flow).tryExtract(dir);
+        ((PipeSpFlowFluid)this.getFlow()).tryExtract(dir);
     }
 }
