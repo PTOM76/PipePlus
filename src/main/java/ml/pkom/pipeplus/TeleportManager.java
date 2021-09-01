@@ -3,7 +3,7 @@ package ml.pkom.pipeplus;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 import ml.pkom.pipeplus.blockentities.IPipeTeleportTileEntity;
-
+import ml.pkom.pipeplus.classes.TeleportPipeType;
 
 import java.util.*;
 

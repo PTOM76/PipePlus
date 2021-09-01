@@ -5,6 +5,7 @@ import alexiil.mc.mod.pipes.blocks.TilePipe;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
+import ml.pkom.pipeplus.classes.TeleportPipeType;
 import ml.pkom.pipeplus.parts.PipePlusParts;
 import ml.pkom.pipeplus.superClass.blocks.BlockPipeTeleport;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -16,6 +17,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 import java.util.UUID;
