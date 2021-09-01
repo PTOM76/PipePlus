@@ -6,7 +6,7 @@ import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blocks.Blocks;
 import ml.pkom.pipeplus.blocks.PipeItemsTeleport;
-import ml.pkom.pipeplus.classes.TeleportPipeType;
+import ml.pkom.pipeplus.TeleportPipeType;
 import ml.pkom.pipeplus.pipeflow.TeleportPipeFlow;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;

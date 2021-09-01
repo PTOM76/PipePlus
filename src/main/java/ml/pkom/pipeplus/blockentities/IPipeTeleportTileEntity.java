@@ -1,7 +1,7 @@
 package ml.pkom.pipeplus.blockentities;
 
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
-import ml.pkom.pipeplus.classes.TeleportPipeType;
+import ml.pkom.pipeplus.TeleportPipeType;
 
 import java.util.UUID;
 

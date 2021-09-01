@@ -29,7 +29,7 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
             ItemStack itemStack = null;
             boolean success = false;
             for ( IPipeTeleportTileEntity entity : TeleportManager.instance.getConnectedPipes(tileEntity, false, true) ) {
-                if (entity instanceof PipeItemsTeleportEntity){
+                if (entity instanceof PipeItemsTeleportEntity & !this.world().isClient){
                     PipeItemsTeleportEntity pipe2 = PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(((PipeItemsTeleportEntity) entity).getPos()));
                     itemStack = ((TeleportPipeFlow) pipe2.getFlow()).addItem(stack, doAdd, from, colour, speed);
                     success = true;
