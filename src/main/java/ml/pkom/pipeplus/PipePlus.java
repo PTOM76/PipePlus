@@ -38,6 +38,7 @@ public class PipePlus implements ModInitializer {
         Blocks.registerInit();
         Items.registerInit();
         PipePlusContainers.load();
+        ServerNetwork.init();
     }
 
     public static void log(Level level, String message){

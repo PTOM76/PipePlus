@@ -29,7 +29,7 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
             ItemStack itemStack = null;
             boolean success = false;
             for ( IPipeTeleportTileEntity entity : TeleportManager.instance.getConnectedPipes(tileEntity, false, true) ) {
-                if (entity instanceof PipeItemsTeleportEntity){
+                if (entity instanceof PipeItemsTeleportEntity & !this.world().isClient){
                     PipeItemsTeleportEntity pipe2 = PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(((PipeItemsTeleportEntity) entity).getPos()));
                     itemStack = ((TeleportPipeFlow) pipe2.getFlow()).addItem(stack, doAdd, from, colour, speed);
                     success = true;
@@ -50,7 +50,8 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
     public ItemStack addItem(ItemStack stack, boolean doAdd, Direction from, DyeColor colour, double speed) {
         if (this.world().isClient() || this.world() == null)
         {
-            return super.injectItem(stack, doAdd, from, colour, speed);
+            return ItemStack.EMPTY;
+            //return super.injectItem(stack, doAdd, from, colour, speed);
         }
         if (isNotConnected()) return super.injectItem(stack, doAdd, from, colour, speed);
         if (this.pipe.isConnected(Direction.UP)) from = Direction.UP;

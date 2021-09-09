@@ -14,7 +14,7 @@ public class PipePlusContainers {
     }
 
     public static void load() {
-        register(TELEPORT_PIPE, TeleportPipeSettingGui.FACTORY);
+        register(TELEPORT_PIPE, TeleportPipeSettingHandler.FACTORY);
     }
 
     private static void register(Identifier id, ContainerFactory<ScreenHandler> factory) {
