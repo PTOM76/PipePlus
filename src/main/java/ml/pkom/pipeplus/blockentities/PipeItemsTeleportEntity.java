@@ -19,10 +19,10 @@ import java.util.*;
 public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTileEntity {
     public UUID owner = null;
     public String ownerName = null;
-    public Boolean modeIsPublic = false;
-    public Integer pipeModeInt = 3; // 0=Send Only, 1=Receive Only, 2=Send & Receive 3=Disabled
-    public Integer frequency = 0;
-    public PipeSpFlowItem iFlow = null;
+    public Boolean modeIsPublic = null;
+    public Integer pipeModeInt = null; // 0=Send Only, 1=Receive Only, 2=Send & Receive 3=Disabled
+    public Integer frequency = null;
+    public PipeSpFlowItem iFlow;
 
     @Override
     public boolean isPublic() {
