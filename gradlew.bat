@@ -1,4 +1,4 @@
-set JAVA_HOME=C:\Program Files\AdoptOpenJDK\jdk-16.0.1.9-hotspot\
+@rem set JAVA_HOME=C:\Program Files\AdoptOpenJDK\jdk-16.0.1.9-hotspot\
 
 @rem
 @rem Copyright 2015 the original author or authors.

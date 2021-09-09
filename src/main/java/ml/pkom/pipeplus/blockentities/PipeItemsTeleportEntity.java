@@ -19,9 +19,9 @@ import java.util.*;
 public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTileEntity {
     public UUID owner = null;
     public String ownerName = null;
-    public Boolean modeIsPublic = null;
-    public Integer pipeModeInt = null; // 0=Send Only, 1=Receive Only, 2=Send & Receive 3=Disabled
-    public Integer frequency = null;
+    public Boolean modeIsPublic = false;
+    public Integer pipeModeInt = 3; // 0=Send Only, 1=Receive Only, 2=Send & Receive 3=Disabled
+    public Integer frequency = 0;
     public PipeSpFlowItem iFlow = null;
 
     @Override
@@ -96,16 +96,9 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
             tileMap.put(PipePlus.pos2str(getPos()), this);
         }
         PipeItemsTeleportEntity tile = tileMap.get(PipePlus.pos2str(getPos()));
-        try {
-            tile.owner = tag.getUuid("owner");
-        } catch (NullPointerException e) {
-            tile.owner = UUID.fromString("00000000-0000-0000-0000-000000000000");
-        }
-        try {
-            tile.ownerName = getWorld().getPlayerByUuid(tile.owner).getName().getString();
-        } catch (NullPointerException e) {
-            tile.ownerName = tag.getString("ownerName");
-        }
+
+        tile.owner = tag.getUuid("owner");
+        tile.ownerName = tag.getString("ownerName");
         tile.modeIsPublic = tag.getBoolean("isPublic");
         tile.pipeModeInt = tag.getInt("modeInt");
         tile.frequency = tag.getInt("frequency");
@@ -118,11 +111,12 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
     public NbtCompound writeNbt(NbtCompound tag) {
         tag = super.writeNbt(tag);
         PipeItemsTeleportEntity tile = tileMap.get(PipePlus.pos2str(getPos()));
-        try {
+
+        if (owner != null)
             tag.putUuid("owner", tile.owner);
-        } catch (NullPointerException e) {
+            else
             tag.putUuid("owner", UUID.fromString("00000000-0000-0000-0000-000000000000"));
-        }
+
         if (tile.ownerName != null)
             tag.putString("ownerName", tile.ownerName);
         if (tile.modeIsPublic != null)
