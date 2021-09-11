@@ -17,12 +17,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.Level;
 
 import java.util.UUID;
 
 public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeItem {
     public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.DECORATION);
-    public UUID owner;
+
+    public UUID latestOwner;
 
     static {
         blockSettings.strength(0.5F, 1.0F);
@@ -40,7 +42,15 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack) {
         super.onPlaced(world, pos, state, entity, stack);
         if (entity instanceof PlayerEntity) {
-            owner = entity.getUuid();
+            UUID owner = entity.getUuid();
+            if (PipeItemsTeleportEntity.getTilePipe(world, pos) == null) return;
+            PipeItemsTeleportEntity pipe = PipeItemsTeleportEntity.getTilePipe(world, pos);
+            TeleportManager.instance.remove(pipe, pipe.getFrequency());
+            pipe.setOwnerNameAndUUID(owner);
+            // なぜかサーバーまでもクライアント判定になるのでここで修正を入れる。
+            //PipePlus.log(Level.INFO, (world.isClient() ? "isClient" : "isServer"));
+            pipe.setWorld(world);
+            TeleportManager.instance.add(pipe, pipe.getFrequency());
         }
     }
 

@@ -1,6 +1,7 @@
 package ml.pkom.pipeplus.blockentities;
 
 import alexiil.mc.mod.pipes.blocks.TilePipe;
+import alexiil.mc.mod.pipes.pipe.PipeSpFlow;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
@@ -12,6 +13,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 
 import java.util.*;
@@ -22,7 +24,7 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
     public Boolean modeIsPublic = null;
     public Integer pipeModeInt = null; // 0=Send Only, 1=Receive Only, 2=Send & Receive 3=Disabled
     public Integer frequency = null;
-    public PipeSpFlowItem iFlow = null;
+    //public PipeSpFlowItem iFlow = null;
 
     @Override
     public boolean isPublic() {
@@ -32,6 +34,28 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
     @Override
     public UUID getOwnerUUID() {
         return owner;
+    }
+
+    @Override
+    public TeleportPipeFlow getFlow() {
+        return (TeleportPipeFlow) super.getFlow();
+    }
+
+    public static PipeItemsTeleportEntity getTilePipe(World world, BlockPos pos) {
+        if (world.getBlockEntity(pos) == null) return null;
+        if (!(world.getBlockEntity(pos) instanceof PipeItemsTeleportEntity)) return null;
+        return (PipeItemsTeleportEntity) world.getBlockEntity(pos);
+    }
+
+    public static PipeItemsTeleportEntity getTilePipe(BlockPos pos) {
+        if (!tileMap.containsKey(PipePlus.pos2str(pos))) return null;
+        return tileMap.get(PipePlus.pos2str(pos));
+    }
+
+    @Override
+    public void setOwnerNameAndUUID(UUID uuid) {
+        owner = uuid;
+        if (getWorld().getPlayerByUuid(uuid) != null) ownerName = getWorld().getPlayerByUuid(uuid).getName().getString();
     }
 
     public boolean canReceive()
@@ -72,8 +96,8 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
 
     public PipeItemsTeleportEntity(BlockPos pos, BlockState state) {
         super(BlockEntities.PIPE_ITEMS_TELEPORT_ENTITY, pos, state, Blocks.PIPE_ITEMS_TELEPORT, TeleportPipeFlow::new);
-        iFlow = (PipeSpFlowItem) getFlow();
-        if (owner == null) owner = ((PipeItemsTeleport) pipeBlock).owner;
+        //iFlow = (PipeSpFlowItem) getFlow();
+        /*if (owner == null) owner = ((PipeItemsTeleport) pipeBlock).latestOwner;
 
         if (ownerName == null) {
             try {
@@ -81,6 +105,8 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
             } catch (NullPointerException e) {
             }
         }
+
+         */
         if (modeIsPublic == null) modeIsPublic = false;
         if (pipeModeInt == null) pipeModeInt = 0;
         if (frequency == null) frequency = 0;
@@ -91,7 +117,7 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
     public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
         //debug();
-        PipePlus.log(Level.INFO, "ReadTeleportPipeNBT");
+        //PipePlus.log(Level.INFO, "ReadTeleportPipeNBT");
         if (!tileMap.containsKey(PipePlus.pos2str(getPos()))) {
             tileMap.put(PipePlus.pos2str(getPos()), this);
         }
@@ -101,6 +127,7 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
         } catch (NullPointerException e) {
             tile.owner = UUID.fromString("00000000-0000-0000-0000-000000000000");
         }
+
         try {
             tile.ownerName = getWorld().getPlayerByUuid(tile.owner).getName().getString();
         } catch (NullPointerException e) {

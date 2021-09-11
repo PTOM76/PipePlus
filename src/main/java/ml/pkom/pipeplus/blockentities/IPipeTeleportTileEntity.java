@@ -23,6 +23,8 @@ public interface IPipeTeleportTileEntity {
 
     public UUID getOwnerUUID();
 
+    public void setOwnerNameAndUUID(UUID uuid);
+
     public TeleportPipeType getPipeType();
 
 
