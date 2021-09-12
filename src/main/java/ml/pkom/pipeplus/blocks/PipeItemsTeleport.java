@@ -4,8 +4,8 @@ import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
+import ml.pkom.pipeplus.blockentities.IPipeTeleportTileEntity;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
-import ml.pkom.pipeplus.classes.TeleportPipeType;
 import ml.pkom.pipeplus.superClass.blocks.BlockPipeTeleport;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
@@ -18,12 +18,13 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.Level;
 
 import java.util.UUID;
 
 public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeItem {
     public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.SUPPORTED);
-    public UUID owner;
+    public UUID latestOwner;
 
     static {
         blockSettings.strength(0.5F, 1.0F);
@@ -41,7 +42,15 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack) {
         super.onPlaced(world, pos, state, entity, stack);
         if (entity instanceof PlayerEntity) {
-            owner = entity.getUuid();
+            UUID owner = entity.getUuid();
+            if (PipeItemsTeleportEntity.getTilePipe(world, pos) == null) return;
+            PipeItemsTeleportEntity pipe = PipeItemsTeleportEntity.getTilePipe(world, pos);
+            TeleportManager.instance.remove(pipe, pipe.getFrequency());
+            pipe.setOwnerNameAndUUID(owner);
+            // なぜかサーバーまでもクライアント判定になるのでここで修正を入れる。
+            PipePlus.log(Level.INFO, (world.isClient() ? "isClient" : "isServer"));
+            pipe.setLocation(world, pos);
+            TeleportManager.instance.add(pipe, pipe.getFrequency());
         }
     }
 
@@ -59,6 +68,8 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
 
     @Override
     public TilePipe createBlockEntity(BlockView view) {
+        //PipeItemsTeleportEntity tileEntity = new PipeItemsTeleportEntity();
+        //TeleportManager.instance.add(tileEntity, 0);
         return new PipeItemsTeleportEntity();
     }
 

@@ -3,8 +3,6 @@ package ml.pkom.pipeplus.superClass.blocks;
 import alexiil.mc.mod.pipes.blocks.BlockPipe;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
-import ml.pkom.pipeplus.blocks.PipeItemsTeleport;
-import ml.pkom.pipeplus.classes.TeleportPipeType;
 import ml.pkom.pipeplus.guis.PipePlusContainers;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.block.BlockState;

@@ -1,6 +1,7 @@
 package ml.pkom.pipeplus;
 
 import ml.pkom.pipeplus.blockentities.BlockEntities;
+import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.blocks.Blocks;
 import ml.pkom.pipeplus.guis.PipePlusContainers;
 import ml.pkom.pipeplus.guis.PipePlusScreens;
@@ -9,6 +10,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -18,11 +20,13 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.LinkedHashMap;
+
 public class PipePlus implements ModInitializer {
 
     public static final String MOD_ID = "pipeplus";
     public static final String MOD_NAME = "PipePlus";
-    public static final String VERSION = "1.0.0";
+    public static final String VERSION = "0.3.1";
     public static PipePlus instance;
     private static Logger LOGGER = LogManager.getLogger();
 
@@ -38,6 +42,11 @@ public class PipePlus implements ModInitializer {
         Blocks.registerInit();
         Items.registerInit();
         PipePlusContainers.load();
+        ServerNetwork.init();
+        ServerLifecycleEvents.SERVER_STOPPED.register((server -> {
+            TeleportManager.instance.reset();
+            PipeItemsTeleportEntity.tileMap = new LinkedHashMap<>();
+        }));
     }
 
     public static void log(Level level, String message){

@@ -1,7 +1,7 @@
 package ml.pkom.pipeplus.blockentities;
 
 import alexiil.mc.mod.pipes.blocks.PipeFlow;
-import ml.pkom.pipeplus.classes.TeleportPipeType;
+import ml.pkom.pipeplus.TeleportPipeType;
 
 import java.util.UUID;
 
@@ -14,6 +14,8 @@ public interface IPipeTeleportTileEntity {
     public default Integer getFrequency() {
         return frequency;
     }
+
+    public void setOwnerNameAndUUID(UUID uuid);
 
     public boolean canReceive();
 

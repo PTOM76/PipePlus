@@ -3,7 +3,12 @@ package ml.pkom.pipeplus;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 import ml.pkom.pipeplus.blockentities.IPipeTeleportTileEntity;
-import ml.pkom.pipeplus.classes.TeleportPipeType;
+import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import org.apache.logging.log4j.Level;
 
 import java.util.*;
 
@@ -45,6 +50,10 @@ public class TeleportManager {
     }
 
     public void remove(IPipeTeleportTileEntity pipeToRemove, int frequency) {
+        if (pipeToRemove instanceof PipeItemsTeleportEntity) {
+            removeItemPipe((PipeItemsTeleportEntity) pipeToRemove, frequency);
+            return;
+        }
         Collection<IPipeTeleportTileEntity> pipesInChannel = pipes.get(pipeToRemove.getPipeType()).get(frequency);
         for(Iterator<IPipeTeleportTileEntity> pipesIter = pipesInChannel.iterator(); pipesIter.hasNext(); )
         {
@@ -57,6 +66,16 @@ public class TeleportManager {
 
     }
 
+    // Pos, Dimension
+    public void removeItemPipe(PipeItemsTeleportEntity pipeToRemove, int frequency) {
+        for (IPipeTeleportTileEntity v : instance.getPipesInChannel(frequency, TeleportPipeType.ITEMS)) {
+            PipeItemsTeleportEntity pipe = (PipeItemsTeleportEntity) v;
+            if (pipe.getPos().equals(pipeToRemove.getPos()) && pipe.getWorld().getDimension().equals(pipeToRemove.getWorld().getDimension())) {
+                instance.getPipesInChannel(frequency, TeleportPipeType.ITEMS).remove(pipe);
+            }
+        }
+    }
+
     public void reset() {
         for(TeleportPipeType type : TeleportPipeType.values())
         {
@@ -64,6 +83,34 @@ public class TeleportManager {
         }
 
         frequencyNames.clear();
+    }
+
+    // 1.17.1の方も修正必須
+    public static PipeItemsTeleportEntity getItemPipeFromPos(BlockPos pos, World world, int frequency) {
+        for (IPipeTeleportTileEntity v:
+                instance.getPipesInChannel(frequency, TeleportPipeType.ITEMS)) {
+            PipeItemsTeleportEntity pipe = (PipeItemsTeleportEntity) v;
+            if (pipe.getPos().equals(pos) && pipe.getWorld().getDimension().equals(world.getDimension())) {
+                if (FabricLoader.getInstance().getEnvironmentType().equals(EnvType.SERVER)) {
+                    if (pipe.getWorld().isClient()) continue;
+                }
+                return pipe;
+            }
+
+        }
+        return null;
+    }
+
+    public static void printAllPipes(int frequency) {
+        for (IPipeTeleportTileEntity v:
+                instance.getPipesInChannel(frequency, TeleportPipeType.ITEMS)) {
+            PipeItemsTeleportEntity pipe = (PipeItemsTeleportEntity) v;
+            PipePlus.log(Level.INFO, "Frequency: " + pipe.getFrequency() +
+                    "\nuuid: " + pipe.getOwnerUUID() +
+                    "\nname: " + pipe.ownerName +
+                    "\nenv: " + (pipe.getWorld().isClient() ? "isClient" : "isServer") +
+                    "\npos: " + pipe.getPos());
+        }
     }
 
     public ArrayList<IPipeTeleportTileEntity> getConnectedPipes(IPipeTeleportTileEntity pipe, boolean includeSend, boolean includeReceive)

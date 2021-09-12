@@ -24,6 +24,8 @@ public class Items {
     public static Item PIPE_ITEMS_TELEPORT = PipeItemsTeleport.newItem();
     public static Item VOID_ITEM_PIPE = new BlockItem(Blocks.VOID_ITEM_PIPE, new Item.Settings().group(PipePlus.PIPEPLUS_GROUP));
 
+    public static Item DEBUG_ITEM = DebugItem.newItem();
+
     public static void registerInit() {
         register(COPPER_PIPE, "copper_pipe");
         register(TIN_PIPE, "tin_pipe");
@@ -39,6 +41,8 @@ public class Items {
         register(REDSTONE_PIPE, "redstone_pipe");
         register(VOID_ITEM_PIPE, "void_item_pipe");
         register(PIPE_ITEMS_TELEPORT, "pipe_items_teleport");
+
+        register(DEBUG_ITEM, "debug_item");
     }
 
     public static void register(Item item, String id) {
