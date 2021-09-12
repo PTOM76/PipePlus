@@ -8,17 +8,17 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.util.math.BlockPos;
 
-public class TeleportPipeSettingGui extends ContainerTile<PipeItemsTeleportEntity> {
+public class TeleportPipeSettingHandler extends ContainerTile<PipeItemsTeleportEntity> {
 
     public PipeItemsTeleportEntity tile;
 
     public static final ContainerFactory<ScreenHandler> FACTORY = (syncId, id, player, buffer) -> {
         BlockPos pos = buffer.readBlockPos();
         BlockEntity be = player.world.getBlockEntity(pos);
-        return be instanceof PipeItemsTeleportEntity ? new TeleportPipeSettingGui(syncId, player, (PipeItemsTeleportEntity)be) : null;
+        return be instanceof PipeItemsTeleportEntity ? new TeleportPipeSettingHandler(syncId, player, (PipeItemsTeleportEntity)be) : null;
     };
 
-    protected TeleportPipeSettingGui(int syncId, PlayerEntity player, PipeItemsTeleportEntity tile) {
+    protected TeleportPipeSettingHandler(int syncId, PlayerEntity player, PipeItemsTeleportEntity tile) {
         super(syncId, player, tile);
         this.tile = tile;
     }

@@ -114,8 +114,8 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
     }
 
     @Override
-    public void readNbt(NbtCompound tag) {
-        super.readNbt(tag);
+    public void fromTag(NbtCompound tag) {
+        super.fromTag(tag);
         //debug();
         //PipePlus.log(Level.INFO, "ReadTeleportPipeNBT");
         if (!tileMap.containsKey(PipePlus.pos2str(getPos()))) {

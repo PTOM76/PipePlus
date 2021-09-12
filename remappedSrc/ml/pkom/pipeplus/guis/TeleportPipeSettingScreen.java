@@ -165,14 +165,14 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         this.addDrawable(numberAdd十10);
         this.addDrawable(numberAdd十100);
 
-        this.addSelectableChild(pipeMode);
-        this.addSelectableChild(openMode);
-        this.addSelectableChild(numberAddー100);
-        this.addSelectableChild(numberAddー10);
-        this.addSelectableChild(numberAddー1);
-        this.addSelectableChild(numberAdd十1);
-        this.addSelectableChild(numberAdd十10);
-        this.addSelectableChild(numberAdd十100);
+        this.addChild(pipeMode);
+        this.addChild(openMode);
+        this.addChild(numberAddー100);
+        this.addChild(numberAddー10);
+        this.addChild(numberAddー1);
+        this.addChild(numberAdd十1);
+        this.addChild(numberAdd十10);
+        this.addChild(numberAdd十100);
     }
 
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
