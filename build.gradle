@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.8-SNAPSHOT'
+	id 'fabric-loom' version '0.10-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -29,7 +29,7 @@ dependencies {
 	include "alexiil.mc.lib:libnetworkstack-base:$libnetworkstack_version"
 	include "alexiil.mc.lib:libmultipart-base:$libmultipart_version"
 
-	modImplementation "alexiil.mc.mod:simplepipes-all:0.6.1"
+	modImplementation "alexiil.mc.mod:simplepipes-all:0.6.2"
 }
 
 processResources {

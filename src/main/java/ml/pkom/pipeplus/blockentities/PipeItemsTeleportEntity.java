@@ -1,12 +1,9 @@
 package ml.pkom.pipeplus.blockentities;
 
 import alexiil.mc.mod.pipes.blocks.TilePipe;
-import alexiil.mc.mod.pipes.pipe.PipeSpFlow;
-import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blocks.Blocks;
-import ml.pkom.pipeplus.blocks.PipeItemsTeleport;
 import ml.pkom.pipeplus.TeleportPipeType;
 import ml.pkom.pipeplus.pipeflow.TeleportPipeFlow;
 import net.minecraft.block.BlockState;
@@ -14,7 +11,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.apache.logging.log4j.Level;
 
 import java.util.*;
 
