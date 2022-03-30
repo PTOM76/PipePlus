@@ -27,7 +27,7 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
     static {
         blockSettings.strength(0.5F, 1.0F);
         blockSettings.sounds(BlockSoundGroup.GLASS);
-        blockSettings.breakByHand(true);
+
     }
 
     public PipeItemsTeleport(Settings settings) {

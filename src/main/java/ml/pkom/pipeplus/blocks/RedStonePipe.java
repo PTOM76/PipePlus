@@ -32,7 +32,7 @@ public class RedStonePipe extends BlockPipe implements BlockPipeItem {
         blockSettings.strength(0.5F, 1.0F);
         blockSettings.sounds(BlockSoundGroup.GLASS);
         
-        blockSettings.breakByHand(true);
+
         POWERED = Properties.POWERED;
     }
 
@@ -100,7 +100,7 @@ public class RedStonePipe extends BlockPipe implements BlockPipeItem {
     }
 
     public void updatePoweredStatus(World world, BlockPos pos, BlockState state) {
-        world.getBlockTickScheduler().schedule(pos, this, 20);
+        world.createAndScheduleBlockTick(pos, this, 20);
         world.updateComparators(pos, this);
     }
 

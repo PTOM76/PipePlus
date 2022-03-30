@@ -15,7 +15,7 @@ public class CopperPipe extends BlockPipeSided implements BlockPipeItem {
     static {
         blockSettings.strength(0.5F, 1.0F);
         blockSettings.sounds(BlockSoundGroup.GLASS);
-        blockSettings.breakByHand(true);
+
     }
 
     public CopperPipe(Settings settings) {

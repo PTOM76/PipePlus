@@ -20,7 +20,7 @@ public class TinFluidPipe extends BlockPipeSided implements BlockPipeFluid {
         blockSettings.strength(0.5F, 1.0F);
         blockSettings.sounds(BlockSoundGroup.GLASS);
         
-        blockSettings.breakByHand(true);
+
     }
 
     public TinFluidPipe(Settings settings) {

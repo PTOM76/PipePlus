@@ -138,8 +138,8 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound tag) {
-        tag = super.writeNbt(tag);
+    public void writeNbt(NbtCompound tag) {
+        super.writeNbt(tag);
         PipeItemsTeleportEntity tile = tileMap.get(PipePlus.pos2str(getPos()));
         try {
             tag.putUuid("owner", tile.owner);
@@ -155,7 +155,6 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
         if (tile.frequency != null)
             tag.putInt("frequency", tile.frequency);
         //debug();
-        return tag;
     }
 
     public void debug() {
