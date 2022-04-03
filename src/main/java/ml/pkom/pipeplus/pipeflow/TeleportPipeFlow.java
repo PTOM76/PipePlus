@@ -112,4 +112,9 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
         //PipePlus.log(Level.INFO, "isNotConnected");
         return true;
     }
+
+    @Override
+    protected boolean canBounce() {
+        return super.canBounce();
+    }
 }

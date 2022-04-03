@@ -101,7 +101,6 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
             } catch (NullPointerException e) {
             }
         }
-
          */
         if (modeIsPublic == null) modeIsPublic = false;
         if (pipeModeInt == null) pipeModeInt = 0;

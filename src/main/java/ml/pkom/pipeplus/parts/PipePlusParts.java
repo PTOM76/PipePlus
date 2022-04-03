@@ -41,7 +41,7 @@ public class PipePlusParts {
         VOID_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("void_item_pipe"), false, false, 1);
         OBSIDIAN_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("obsidian_item_pipe"), true, false, 1);
         ENDER_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("ender_pipe"), true, true, 1);
-        TELEPORT_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("teleport_item_pipe"), true, false, 1);
+        TELEPORT_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("teleport_item_pipe"), true, true, 1);
 
         RUBY_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("ruby_pipe"), false, false, 12);
         EMERALD_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("emerald_pipe"), false, false, 6);
