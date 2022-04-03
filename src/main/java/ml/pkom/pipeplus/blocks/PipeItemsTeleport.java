@@ -22,12 +22,11 @@ import java.util.UUID;
 public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeItem {
     public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.DECORATION);
 
-    public UUID latestOwner;
+    //public UUID latestOwner;
 
     static {
         blockSettings.strength(0.5F, 1.0F);
         blockSettings.sounds(BlockSoundGroup.GLASS);
-
     }
 
     public PipeItemsTeleport(Settings settings) {

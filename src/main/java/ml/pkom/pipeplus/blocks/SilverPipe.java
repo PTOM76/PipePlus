@@ -17,7 +17,6 @@ public class SilverPipe extends BlockPipeSided implements BlockPipeItem {
     static {
         blockSettings.strength(0.5F, 1.0F);
         blockSettings.sounds(BlockSoundGroup.GLASS);
-
     }
 
     public SilverPipe(Settings settings) {
