@@ -73,6 +73,12 @@ public class AddPipeMixin {
 				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/silver_pipe_filled"));
 			}
 		}
+		if (key.def == PipePlusParts.STACK_EXTRACT_ITEM_PIPE) {
+			if (key instanceof TilePipeSided.PipeBlockModelStateSided) {
+				Direction mainDir = ((TilePipeSided.PipeBlockModelStateSided)key).mainSide;
+				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/stack_extract_pipe_filled"));
+			}
+		}
 		if (key.def == PipePlusParts.COPPER_FLUID_PIPE) {
 			if (key instanceof TilePipeSided.PipeBlockModelStateSided) {
 				Direction mainDir = ((TilePipeSided.PipeBlockModelStateSided)key).mainSide;
