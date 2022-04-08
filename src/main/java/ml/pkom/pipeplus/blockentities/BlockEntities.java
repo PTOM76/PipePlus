@@ -20,6 +20,7 @@ public class BlockEntities {
     public static BlockEntityType<CopperPipeEntity> COPPER_PIPE_ENTITY;
     public static BlockEntityType<TinPipeEntity> TIN_PIPE_ENTITY;
     public static BlockEntityType<SilverPipeEntity> SILVER_PIPE_ENTITY;
+    public static BlockEntityType<StackExtractPipeTile> STACK_EXTRACT_PIPE_TILE;
     public static BlockEntityType<PipeItemsTeleportEntity> PIPE_ITEMS_TELEPORT_ENTITY;
     public static BlockEntityType<EmeraldPipeEntity> EMERALD_PIPE_ENTITY;
     public static BlockEntityType<RubyPipeEntity> RUBY_PIPE_ENTITY;
@@ -41,6 +42,8 @@ public class BlockEntities {
         registerTile(TIN_PIPE_ENTITY, "tin_pipe");
         SILVER_PIPE_ENTITY = createTile(SilverPipeEntity::new, Blocks.SILVER_PIPE);
         registerTile(SILVER_PIPE_ENTITY, "silver_pipe");
+        STACK_EXTRACT_PIPE_TILE = createTile(StackExtractPipeTile::new, Blocks.STACK_EXTRACT_PIPE);
+        registerTile(STACK_EXTRACT_PIPE_TILE, "stack_extract_pipe");
         PIPE_ITEMS_TELEPORT_ENTITY = createTile(PipeItemsTeleportEntity::new, Blocks.PIPE_ITEMS_TELEPORT);
         registerTile(PIPE_ITEMS_TELEPORT_ENTITY, "pipe_items_teleport");
         EMERALD_PIPE_ENTITY = createTile(EmeraldPipeEntity::new, Blocks.EMERALD_PIPE);

@@ -1,13 +1,10 @@
 package ml.pkom.pipeplus.mixin;
 
-import alexiil.mc.mod.pipes.blocks.BlockPipe;
-import alexiil.mc.mod.pipes.blocks.SimplePipeBlocks;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
 import alexiil.mc.mod.pipes.blocks.TilePipeSided;
 import alexiil.mc.mod.pipes.client.model.PipeBaseModelGenStandard;
 import alexiil.mc.mod.pipes.client.model.SpriteSupplier;
 import alexiil.mc.mod.pipes.pipe.PipeSpDef;
-import ml.pkom.pipeplus.blocks.Blocks;
 import ml.pkom.pipeplus.blocks.RedStonePipe;
 import ml.pkom.pipeplus.parts.PipePlusParts;
 import net.fabricmc.api.EnvType;
@@ -34,6 +31,8 @@ public class AddPipeMixin {
 			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/tin_pipe"));
 		if (def == PipePlusParts.SILVER_ITEM_PIPE)
 			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/silver_pipe"));
+		if (def == PipePlusParts.STACK_EXTRACT_ITEM_PIPE)
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/stack_extract_pipe"));
 		if (def == PipePlusParts.COPPER_FLUID_PIPE)
 			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/copper_fluid_pipe"));
 		if (def == PipePlusParts.TIN_FLUID_PIPE)

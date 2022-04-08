@@ -12,6 +12,7 @@ public class Blocks {
     public static CopperPipe COPPER_PIPE = CopperPipe.newBlock();
     public static TinPipe TIN_PIPE = TinPipe.newBlock();
     public static SilverPipe SILVER_PIPE = SilverPipe.newBlock();
+    public static StackExtractPipe STACK_EXTRACT_PIPE = StackExtractPipe.newBlock();
     public static PipeItemsTeleport PIPE_ITEMS_TELEPORT = PipeItemsTeleport.newBlock();
     public static EmeraldPipe EMERALD_PIPE = EmeraldPipe.newBlock();
     public static RubyPipe RUBY_PIPE = RubyPipe.newBlock();
@@ -28,6 +29,7 @@ public class Blocks {
         register(COPPER_PIPE, "copper_pipe");
         register(TIN_PIPE, "tin_pipe");
         register(SILVER_PIPE, "silver_pipe");
+        register(STACK_EXTRACT_PIPE, "stack_extract_pipe");
         register(PIPE_ITEMS_TELEPORT, "pipe_items_teleport");
         register(EMERALD_PIPE, "emerald_pipe");
         register(RUBY_PIPE, "ruby_pipe");

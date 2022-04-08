@@ -6,7 +6,6 @@ import alexiil.mc.lib.attributes.item.impl.EmptyItemExtractable;
 import alexiil.mc.mod.pipes.blocks.TilePipeSided;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import ml.pkom.pipeplus.blocks.Blocks;
-import ml.pkom.pipeplus.pipeflow.CustomPipeFlow;
 import ml.pkom.pipeplus.pipeflow.SilverPipeFlow;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -14,12 +13,12 @@ import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
-public class SilverPipeEntity extends TilePipeSided {
+public class StackExtractPipeTile extends TilePipeSided {
     private int needCooldown = 4;
     private int cooldown = needCooldown;
 
-    public SilverPipeEntity(BlockPos pos, BlockState state) {
-        super(BlockEntities.SILVER_PIPE_ENTITY, pos, state, Blocks.SILVER_PIPE, SilverPipeFlow::new);
+    public StackExtractPipeTile(BlockPos pos, BlockState state) {
+        super(BlockEntities.STACK_EXTRACT_PIPE_TILE, pos, state, Blocks.STACK_EXTRACT_PIPE, SilverPipeFlow::new);
     }
 
     @Override
@@ -31,14 +30,14 @@ public class SilverPipeEntity extends TilePipeSided {
             if (!world.isClient) {
                 Direction dir = currentDirection();
                 if (dir != null) {
-                    tryExtract(dir, 1);
+                    tryExtract(dir, 64);
                 }
             }
         }
     }
 
     @Override
-    protected boolean canFaceDirection(Direction dir) {
+    public boolean canFaceDirection(Direction dir) {
         if (this.getNeighbourPipe(dir) != null) {
             return false;
         } else {

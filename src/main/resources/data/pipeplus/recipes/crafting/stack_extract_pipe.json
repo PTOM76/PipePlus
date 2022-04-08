@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X#X",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "tag": "pipeplus:silver_pipe"
+    },
+    "#": {
+      "item": "minecraft:glass"
+    }
+  },
+  "result": {
+    "item": "pipeplus:stack_extract_pipe",
+    "count": 6
+  }
+}

@@ -44,7 +44,6 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
             TeleportManager.instance.remove(pipe, pipe.getFrequency());
             pipe.setOwnerNameAndUUID(owner);
             // なぜかサーバーまでもクライアント判定になるのでここで修正を入れる。
-            //PipePlus.log(Level.INFO, (world.isClient() ? "isClient" : "isServer"));
             pipe.setWorld(world);
             TeleportManager.instance.add(pipe, pipe.getFrequency());
         }

@@ -23,6 +23,9 @@ public class TeleportPipeSettingHandler extends ContainerTile<PipeItemsTeleportE
         this.tile = tile;
     }
 
-
-
+    @Override
+    public void close(PlayerEntity player) {
+        tile.markDirty();
+        super.close(player);
+    }
 }

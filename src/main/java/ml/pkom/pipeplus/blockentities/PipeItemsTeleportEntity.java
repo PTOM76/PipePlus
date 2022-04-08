@@ -52,6 +52,7 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
     public void setOwnerNameAndUUID(UUID uuid) {
         owner = uuid;
         if (getWorld().getPlayerByUuid(uuid) != null) ownerName = getWorld().getPlayerByUuid(uuid).getName().getString();
+        markDirty();
     }
 
     public boolean canReceive()

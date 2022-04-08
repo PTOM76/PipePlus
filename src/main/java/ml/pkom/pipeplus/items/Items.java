@@ -15,6 +15,7 @@ public class Items {
     public static Item COPPER_FLUID_PIPE = CopperFluidPipe.newItem();
     public static Item TIN_FLUID_PIPE = TinFluidPipe.newItem();
     public static Item SILVER_FLUID_PIPE = SilverFluidPipe.newItem();
+    public static Item STACK_EXTRACT_PIPE = new BlockItem(Blocks.STACK_EXTRACT_PIPE, new Item.Settings().group(PipePlus.PIPEPLUS_GROUP));
     public static Item EMERALD_PIPE = EmeraldPipe.newItem();
     public static Item RUBY_PIPE = RubyPipe.newItem();
     public static Item COBBLESTONE_PIPE = CobbleStonePipe.newItem();
@@ -28,6 +29,7 @@ public class Items {
         register(COPPER_PIPE, "copper_pipe");
         register(TIN_PIPE, "tin_pipe");
         register(SILVER_PIPE, "silver_pipe");
+        register(STACK_EXTRACT_PIPE, "stack_extract_pipe");
         register(COPPER_FLUID_PIPE, "copper_fluid_pipe");
         register(TIN_FLUID_PIPE, "tin_fluid_pipe");
         register(SILVER_FLUID_PIPE, "silver_fluid_pipe");

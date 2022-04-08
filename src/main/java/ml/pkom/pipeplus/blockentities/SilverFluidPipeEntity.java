@@ -9,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
 public class SilverFluidPipeEntity extends TilePipeSided {
-    private int needCooldown = 5;
+    private int needCooldown = 4;
     private int cooldown = needCooldown;
 
     public SilverFluidPipeEntity(BlockPos pos, BlockState state) {
