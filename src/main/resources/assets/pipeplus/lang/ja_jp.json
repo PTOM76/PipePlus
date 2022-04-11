@@ -8,7 +8,7 @@
     "block.pipeplus.copper_pipe": "銅の輸送パイプ",
     "block.pipeplus.tin_pipe": "錫の輸送パイプ",
     "block.pipeplus.silver_pipe": "銀の輸送パイプ",
-    "block.pipeplus.stack_extract_pipe": "スタック抽出輸送パイプ",
+    "block.pipeplus.stack_extract_pipe": "スタック搬出輸送パイプ",
     "block.pipeplus.copper_fluid_pipe": "銅の防水パイプ",
     "block.pipeplus.tin_fluid_pipe": "錫の防水パイプ",
     "block.pipeplus.silver_fluid_pipe": "銀の防水パイプ",
@@ -23,14 +23,25 @@
     "tip.pipeplus.void_pipe": "§r消去パイプ",
     "tip.pipeplus.redstone_pipe": "§rレッドストーン信号出力パイプ",
 
-    "button.pipeplus.teleport_pipe_setting.pipeMode.sendOnly": "Send Only",
-    "button.pipeplus.teleport_pipe_setting.pipeMode.receive_only": "Receive Only",
-    "button.pipeplus.teleport_pipe_setting.pipeMode.send_and_receive": "Send & Receive",
-    "button.pipeplus.teleport_pipe_setting.pipeMode.disabled": "Disabled",
-    "button.pipeplus.teleport_pipe_setting.openMode.public": "Public",
-    "button.pipeplus.teleport_pipe_setting.openMode.private": "Private",
+    "button.pipeplus.teleport_pipe_setting.pipeMode.sendOnly": "輸送のみ",
+    "button.pipeplus.teleport_pipe_setting.pipeMode.receive_only": "受取のみ",
+    "button.pipeplus.teleport_pipe_setting.pipeMode.send_and_receive": "輸送 & 受取",
+    "button.pipeplus.teleport_pipe_setting.pipeMode.disabled": "無効",
+    "button.pipeplus.teleport_pipe_setting.openMode.public": "パブリック",
+    "button.pipeplus.teleport_pipe_setting.openMode.private": "プライベート",
 
-    "label.pipeplus.teleport_pipe_setting.owner": "Owner: %s",
-    "label.pipeplus.teleport_pipe_setting.coords": "Coords: (%s, %s, %s)",
-    "label.pipeplus.teleport_pipe_setting.frequency": "Frequency: %s"
+    "label.pipeplus.teleport_pipe_setting.owner": "所有者: %s",
+    "label.pipeplus.teleport_pipe_setting.coords": "座標: (%s, %s, %s)",
+    "label.pipeplus.teleport_pipe_setting.frequency": "周波数: %s",
+
+
+
+    "text.autoconfig.pipeplus.title": "PipePlusの設定",
+    "text.autoconfig.pipeplus.option.copperTransportExtractDelay": "銅の輸送パイプの搬出遅延",
+    "text.autoconfig.pipeplus.option.copperFluidExtractDelay": "銅の防水パイプの搬出遅延",
+    "text.autoconfig.pipeplus.option.tinTransportExtractDelay": "錫の輸送パイプの搬出遅延",
+    "text.autoconfig.pipeplus.option.tinFluidExtractDelay": "錫の防水パイプの搬出遅延",
+    "text.autoconfig.pipeplus.option.silverTransportExtractDelay": "銀の輸送パイプの搬出遅延",
+    "text.autoconfig.pipeplus.option.silverFluidExtractDelay": "銀の防水パイプの搬出遅延",
+    "text.autoconfig.pipeplus.option.stackTransportExtractDelay": "スタック搬出輸送パイプの搬出遅延"
 }

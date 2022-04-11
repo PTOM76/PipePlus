@@ -6,6 +6,7 @@ import alexiil.mc.lib.attributes.item.impl.EmptyItemExtractable;
 import alexiil.mc.mod.pipes.blocks.TilePipeSided;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import ml.pkom.pipeplus.blocks.Blocks;
+import ml.pkom.pipeplus.config.PipePlusConfig;
 import ml.pkom.pipeplus.pipeflow.CustomPipeFlow;
 import ml.pkom.pipeplus.pipeflow.SilverPipeFlow;
 import net.minecraft.block.BlockState;
@@ -20,6 +21,7 @@ public class SilverPipeEntity extends TilePipeSided {
 
     public SilverPipeEntity(BlockPos pos, BlockState state) {
         super(BlockEntities.SILVER_PIPE_ENTITY, pos, state, Blocks.SILVER_PIPE, SilverPipeFlow::new);
+        needCooldown = PipePlusConfig.getConfig().silverTransportExtractDelay;
     }
 
     @Override

@@ -6,6 +6,7 @@ import alexiil.mc.lib.attributes.item.impl.EmptyItemExtractable;
 import alexiil.mc.mod.pipes.blocks.TilePipeSided;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import ml.pkom.pipeplus.blocks.Blocks;
+import ml.pkom.pipeplus.config.PipePlusConfig;
 import ml.pkom.pipeplus.pipeflow.TinPipeFlow;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -19,6 +20,7 @@ public class TinPipeEntity extends TilePipeSided {
 
     public TinPipeEntity(BlockPos pos, BlockState state) {
         super(BlockEntities.TIN_PIPE_ENTITY, pos, state, Blocks.TIN_PIPE, TinPipeFlow::new);
+        needCooldown = PipePlusConfig.getConfig().tinTransportExtractDelay;
     }
 
     @Override

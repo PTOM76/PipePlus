@@ -32,5 +32,16 @@
 
     "label.pipeplus.teleport_pipe_setting.owner": "Owner: %s",
     "label.pipeplus.teleport_pipe_setting.coords": "Coords: (%s, %s, %s)",
-    "label.pipeplus.teleport_pipe_setting.frequency": "Frequency: %s"
+    "label.pipeplus.teleport_pipe_setting.frequency": "Frequency: %s",
+
+
+
+    "text.autoconfig.pipeplus.title": "PipePlus Configures",
+    "text.autoconfig.pipeplus.option.copperTransportExtractDelay": "Copper Transport Pipe extraction delay",
+    "text.autoconfig.pipeplus.option.copperFluidExtractDelay": "Copper Fluid Pipe extraction delay",
+    "text.autoconfig.pipeplus.option.tinTransportExtractDelay": "Tin Transport Pipe extraction delay",
+    "text.autoconfig.pipeplus.option.tinFluidExtractDelay": "Tin Fluid Pipe extraction delay",
+    "text.autoconfig.pipeplus.option.silverTransportExtractDelay": "Silver Transport Pipe extraction delay",
+    "text.autoconfig.pipeplus.option.silverFluidExtractDelay": "Silver Fluid Pipe extraction delay",
+    "text.autoconfig.pipeplus.option.stackTransportExtractDelay": "Stack Extract Transport Pipe extraction delay"
 }

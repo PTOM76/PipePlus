@@ -27,6 +27,8 @@ public class PipePlusClient implements ClientModInitializer {
         setCutoutLayer(Blocks.TIN_PIPE);
         registerItemPipeRender(BlockEntities.SILVER_PIPE_ENTITY);
         setCutoutLayer(Blocks.SILVER_PIPE);
+        registerItemPipeRender(BlockEntities.STACK_EXTRACT_PIPE_TILE);
+        setCutoutLayer(Blocks.STACK_EXTRACT_PIPE);
         registerFluidPipeRender(BlockEntities.COPPER_FLUID_PIPE_ENTITY);
         setCutoutLayer(Blocks.COPPER_FLUID_PIPE);
         registerFluidPipeRender(BlockEntities.TIN_FLUID_PIPE_ENTITY);

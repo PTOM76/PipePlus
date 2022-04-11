@@ -21,6 +21,9 @@
     "main": [
       "ml.pkom.pipeplus.PipePlus"
     ],
+    "modmenu": [
+      "ml.pkom.pipeplus.addon.ModMenuAddon"
+    ],
     "client": [
       "ml.pkom.pipeplus.PipePlusClient"
     ]

@@ -6,6 +6,7 @@ import alexiil.mc.lib.attributes.item.impl.EmptyItemExtractable;
 import alexiil.mc.mod.pipes.blocks.TilePipeSided;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import ml.pkom.pipeplus.blocks.Blocks;
+import ml.pkom.pipeplus.config.PipePlusConfig;
 import ml.pkom.pipeplus.pipeflow.SilverPipeFlow;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
@@ -19,6 +20,7 @@ public class StackExtractPipeTile extends TilePipeSided {
 
     public StackExtractPipeTile(BlockPos pos, BlockState state) {
         super(BlockEntities.STACK_EXTRACT_PIPE_TILE, pos, state, Blocks.STACK_EXTRACT_PIPE, SilverPipeFlow::new);
+        needCooldown = PipePlusConfig.getConfig().stackTransportExtractDelay;
     }
 
     @Override

@@ -1,21 +1,20 @@
 package ml.pkom.pipeplus;
 
+import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
+import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
+import ml.pkom.mcpitanlib.api.util.IdentifierExt;
 import ml.pkom.pipeplus.blockentities.BlockEntities;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.blocks.Blocks;
+import ml.pkom.pipeplus.config.PipePlusConfig;
 import ml.pkom.pipeplus.guis.PipePlusContainers;
-import ml.pkom.pipeplus.guis.PipePlusScreens;
 import ml.pkom.pipeplus.items.Items;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Position;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,6 +37,7 @@ public class PipePlus implements ModInitializer {
         log(Level.INFO, "Initializing");
         instance = this;
 
+        AutoConfig.register(PipePlusConfig.class, GsonConfigSerializer::new);
         BlockEntities.registerInit();
         Blocks.registerInit();
         Items.registerInit();
@@ -53,13 +53,13 @@ public class PipePlus implements ModInitializer {
         LOGGER.log(level, "[" + MOD_NAME + "] " + message);
     }
 
-    public static Identifier id(String id) {
-        return new Identifier(MOD_ID, id);
+    public static IdentifierExt id(String id) {
+        return new IdentifierExt(MOD_ID, id);
     }
 
-    public static Identifier id(String id, boolean bool) {
-        if (bool) return new Identifier(MOD_ID, id);
-        return new Identifier(id);
+    public static IdentifierExt id(String id, boolean bool) {
+        if (bool) return new IdentifierExt(MOD_ID, id);
+        return new IdentifierExt(id);
     }
 
     public static String pos2str(BlockPos pos) {

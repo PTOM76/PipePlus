@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Environment(EnvType.CLIENT)
 @Mixin(SimplePipesClient.class)
-public class AddRegisterSpritesMixin {
+public class RegisterSpritesMixin {
 	@Inject(method = "registerSprites", at = @At("TAIL"), remap = false)
 	private void registerSprites(SpriteAtlasTexture atlasTexture, ClientSpriteRegistryCallback.Registry registry, CallbackInfo ci) {
 		registry.register(PipePlus.id("pipes/cobblestone_pipe"));

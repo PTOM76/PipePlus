@@ -4,6 +4,7 @@ import alexiil.mc.lib.attributes.fluid.impl.EmptyFluidExtractable;
 import alexiil.mc.mod.pipes.blocks.TilePipeSided;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowFluid;
 import ml.pkom.pipeplus.blocks.Blocks;
+import ml.pkom.pipeplus.config.PipePlusConfig;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -14,6 +15,7 @@ public class TinFluidPipeEntity extends TilePipeSided {
 
     public TinFluidPipeEntity(BlockPos pos, BlockState state) {
         super(BlockEntities.TIN_FLUID_PIPE_ENTITY, pos, state, Blocks.TIN_FLUID_PIPE, PipeSpFlowFluid::new);
+        needCooldown = PipePlusConfig.getConfig().tinFluidExtractDelay;
     }
 
     @Override

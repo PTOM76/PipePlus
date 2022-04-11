@@ -32,7 +32,7 @@ public class PipePlusParts {
         COPPER_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("copper_item_pipe"), true, false, 1);
         TIN_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("tin_item_pipe"), true, false, 3);
         SILVER_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("silver_item_pipe"), true, true, 6);
-        STACK_EXTRACT_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("stack_extract_item_pipe"), true, true, 6);
+        STACK_EXTRACT_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("stack_extract_pipe"), true, true, 6);
 
         COPPER_FLUID_PIPE = new PipeSpDef.PipeDefFluid(PipePlus.id("copper_fluid_pipe"), true);
         TIN_FLUID_PIPE = new PipeSpDef.PipeDefFluid(PipePlus.id("tin_fluid_pipe"), true);

@@ -5,7 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "AddPipeMixin",
-    "AddRegisterSpritesMixin"
+    "RegisterSpritesMixin"
   ],
   "injectors": {
     "defaultRequire": 1
