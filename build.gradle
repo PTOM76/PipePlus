@@ -23,6 +23,8 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+	modApi 'com.github.PTOM76:MCPitanLib:1.19-SNAPSHOT'
+	include 'com.github.PTOM76:MCPitanLib:1.19-SNAPSHOT'
 
 	modApi "alexiil.mc.lib:libblockattributes-all:$libblockattributes_version"
 	modApi "alexiil.mc.lib:libnetworkstack-base:$libnetworkstack_version"
@@ -41,9 +43,6 @@ dependencies {
 
 	modImplementation "alexiil.mc.mod:simplepipes-all:0.8.0-pre.1"
 	include "alexiil.mc.mod:simplepipes-all:0.8.0-pre.1"
-
-	modImplementation 'com.github.PTOM76:MCPitanLib:1.19-SNAPSHOT'
-	include 'com.github.PTOM76:MCPitanLib:1.19-SNAPSHOT'
 
 	// Mod Menu
 	// 1.16 => 1.16.19
