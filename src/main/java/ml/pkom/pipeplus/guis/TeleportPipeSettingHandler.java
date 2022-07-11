@@ -2,25 +2,31 @@ package ml.pkom.pipeplus.guis;
 
 import alexiil.mc.mod.pipes.container.ContainerTile;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
-import net.fabricmc.fabric.api.container.ContainerFactory;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.screen.ScreenHandler;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
 public class TeleportPipeSettingHandler extends ContainerTile<PipeItemsTeleportEntity> {
 
     public PipeItemsTeleportEntity tile;
 
-    public static final ContainerFactory<ScreenHandler> FACTORY = (syncId, id, player, buffer) -> {
+    public static final ExtendedScreenHandlerType.ExtendedFactory<TeleportPipeSettingHandler> FACTORY = (syncId, inv, buffer) -> {
+        PlayerEntity player = inv.player;
         BlockPos pos = buffer.readBlockPos();
         BlockEntity be = player.world.getBlockEntity(pos);
         return be instanceof PipeItemsTeleportEntity ? new TeleportPipeSettingHandler(syncId, player, (PipeItemsTeleportEntity)be) : null;
     };
 
-    protected TeleportPipeSettingHandler(int syncId, PlayerEntity player, PipeItemsTeleportEntity tile) {
-        super(syncId, player, tile);
+    public TeleportPipeSettingHandler(int syncId, PlayerEntity player, PipeItemsTeleportEntity tile) {
+        super(PipePlusContainers.TELEPORT_PIPE_SCREEN_HANDLER, syncId, player, tile);
         this.tile = tile;
+    }
+
+    @Override
+    public ItemStack transferSlot(PlayerEntity player, int index) {
+        return ItemStack.EMPTY;
     }
 
     @Override

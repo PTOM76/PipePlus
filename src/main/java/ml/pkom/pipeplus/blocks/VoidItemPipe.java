@@ -10,6 +10,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 
 public class VoidItemPipe extends BlockPipe implements BlockPipeItem {
+
     public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.DECORATION);
 
     static {

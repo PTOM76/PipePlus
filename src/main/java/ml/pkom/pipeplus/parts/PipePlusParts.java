@@ -48,4 +48,25 @@ public class PipePlusParts {
         RUBY_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("ruby_pipe"), false, false, 12);
         EMERALD_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("emerald_pipe"), false, false, 6);
     }
+
+    public static void init() {
+        COPPER_ITEM_PIPE.register();
+        TIN_ITEM_PIPE.register();
+        SILVER_ITEM_PIPE.register();
+        STACK_EXTRACT_ITEM_PIPE.register();
+
+        COPPER_FLUID_PIPE.register();
+        TIN_FLUID_PIPE.register();
+        SILVER_FLUID_PIPE.register();
+
+        REDSTONE_ITEM_PIPE.register();
+        COBBLESTONE_ITEM_PIPE.register();
+        VOID_ITEM_PIPE.register();
+        OBSIDIAN_ITEM_PIPE.register();
+        ENDER_PIPE.register();
+        TELEPORT_ITEM_PIPE.register();
+
+        RUBY_PIPE.register();
+        EMERALD_PIPE.register();
+    }
 }

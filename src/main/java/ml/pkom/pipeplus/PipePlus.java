@@ -1,7 +1,7 @@
 package ml.pkom.pipeplus;
 
-import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
-import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import ml.pkom.mcpitanlib.api.util.IdentifierExt;
 import ml.pkom.pipeplus.blockentities.BlockEntities;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
@@ -9,6 +9,7 @@ import ml.pkom.pipeplus.blocks.Blocks;
 import ml.pkom.pipeplus.config.PipePlusConfig;
 import ml.pkom.pipeplus.guis.PipePlusContainers;
 import ml.pkom.pipeplus.items.Items;
+import ml.pkom.pipeplus.parts.PipePlusParts;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -38,6 +39,7 @@ public class PipePlus implements ModInitializer {
         instance = this;
 
         AutoConfig.register(PipePlusConfig.class, GsonConfigSerializer::new);
+        PipePlusParts.init();
         BlockEntities.registerInit();
         Blocks.registerInit();
         Items.registerInit();

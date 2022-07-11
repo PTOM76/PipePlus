@@ -7,7 +7,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
+import ml.pkom.mcpitanlib.api.text.TextUtil;
 import net.minecraft.world.World;
 
 import java.util.List;
