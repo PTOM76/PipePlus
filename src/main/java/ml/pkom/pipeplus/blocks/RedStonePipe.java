@@ -98,7 +98,7 @@ public class RedStonePipe extends BlockPipe implements BlockPipeItem {
     }
 
     public void updatePoweredStatus(World world, BlockPos pos, BlockState state) {
-        world.createAndScheduleBlockTick(pos, this, 20);
+        world.scheduleBlockTick(pos, this, 20);
         world.updateComparators(pos, this);
     }
 

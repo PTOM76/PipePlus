@@ -9,10 +9,11 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
 
 import java.util.Arrays;
 import java.util.HashSet;
+
+import static ml.pkom.pipeplus.PipePlus.registry;
 
 public class BlockEntities {
     public static BlockEntityType<ObsidianPipeEntity> OBSIDIAN_PIPE_ENTITY;
@@ -74,11 +75,11 @@ public class BlockEntities {
     }
 
     private static void registerTile(BlockEntityType<?> type, String name) {
-        Registry.register(Registry.BLOCK_ENTITY_TYPE, PipePlus.id(name), type);
+        registry.registerBlockEntityType(PipePlus.id(name), () -> type);
     }
 
     private static void registerTile(BlockEntityType<?> type, Identifier id) {
-        Registry.register(Registry.BLOCK_ENTITY_TYPE, id, type);
+        registry.registerBlockEntityType(id, () -> type);
     }
 
 }

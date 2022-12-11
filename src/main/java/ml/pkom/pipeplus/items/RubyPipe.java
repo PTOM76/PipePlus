@@ -8,9 +8,6 @@ import net.minecraft.item.Item;
 public class RubyPipe extends Item {
     public static Settings itemSettings = new Settings();
 
-    static {
-        itemSettings.group(PipePlus.PIPEPLUS_GROUP);
-    }
 
     public RubyPipe(Settings settings) {
         super(settings);

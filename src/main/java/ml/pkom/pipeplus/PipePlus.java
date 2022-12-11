@@ -2,7 +2,7 @@ package ml.pkom.pipeplus;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
-import ml.pkom.mcpitanlib.api.util.IdentifierExt;
+import ml.pkom.mcpitanlibarch.api.registry.ArchRegistry;
 import ml.pkom.pipeplus.blockentities.BlockEntities;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.blocks.Blocks;
@@ -11,10 +11,11 @@ import ml.pkom.pipeplus.guis.PipePlusContainers;
 import ml.pkom.pipeplus.items.Items;
 import ml.pkom.pipeplus.parts.PipePlusParts;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -30,9 +31,12 @@ public class PipePlus implements ModInitializer {
     public static PipePlus instance;
     private static Logger LOGGER = LogManager.getLogger();
 
-    public static final ItemGroup PIPEPLUS_GROUP = FabricItemGroupBuilder.build(
-            id("all"),
-            () -> new ItemStack(Items.COPPER_PIPE));
+    public static final ItemGroup PIPEPLUS_GROUP = FabricItemGroup.builder(
+            id("all")).
+            icon(() -> new ItemStack(Items.COPPER_PIPE)).
+            build();
+
+    public static ArchRegistry registry = ArchRegistry.createRegistry(MOD_ID);
 
     public void onInitialize() {
         log(Level.INFO, "Initializing");
@@ -55,13 +59,13 @@ public class PipePlus implements ModInitializer {
         LOGGER.log(level, "[" + MOD_NAME + "] " + message);
     }
 
-    public static IdentifierExt id(String id) {
-        return new IdentifierExt(MOD_ID, id);
+    public static Identifier id(String id) {
+        return new Identifier(MOD_ID, id);
     }
 
-    public static IdentifierExt id(String id, boolean bool) {
-        if (bool) return new IdentifierExt(MOD_ID, id);
-        return new IdentifierExt(id);
+    public static Identifier id(String id, boolean bool) {
+        if (bool) return new Identifier(MOD_ID, id);
+        return new Identifier(id);
     }
 
     public static String pos2str(BlockPos pos) {

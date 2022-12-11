@@ -3,7 +3,8 @@ package ml.pkom.pipeplus.blocks;
 import ml.pkom.pipeplus.PipePlus;
 import net.minecraft.block.Block;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+
+import static ml.pkom.pipeplus.PipePlus.registry;
 
 public class Blocks {
     public static VoidItemPipe VOID_ITEM_PIPE = VoidItemPipe.newBlock();
@@ -41,9 +42,9 @@ public class Blocks {
     }
 
     public static void register(Block block, String id) {
-        Registry.register(Registry.BLOCK, PipePlus.id(id), block);
+        registry.registerBlock(PipePlus.id(id), () -> block);
     }
     public static void register(Block block, Identifier id) {
-        Registry.register(Registry.BLOCK, id, block);
+        registry.registerBlock(id, () -> block);
     }
 }

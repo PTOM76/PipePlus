@@ -24,8 +24,10 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-	modApi 'com.github.PTOM76:MCPitanLib:1.19-SNAPSHOT'
-	include 'com.github.PTOM76:MCPitanLib:1.19-SNAPSHOT'
+	//modApi 'com.github.PTOM76:MCPitanLib:1.19-SNAPSHOT'
+	//include 'com.github.PTOM76:MCPitanLib:1.19-SNAPSHOT'
+
+	modImplementation "ml.pkom:mcpitanlibarch-fabric${rootProject.mcpitanlib_version}"
 
 	modApi "alexiil.mc.lib:libblockattributes-all:$libblockattributes_version"
 	modApi "alexiil.mc.lib:libnetworkstack-base:$libnetworkstack_version"

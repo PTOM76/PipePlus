@@ -1,6 +1,6 @@
 {
     "parent": "simple_pipes:item/pipe",
     "textures": {
-        "main": "pipeplus:pipes/stack_extract_pipe"
+        "main": "pipeplus:block/stack_extract_pipe"
     }
 }

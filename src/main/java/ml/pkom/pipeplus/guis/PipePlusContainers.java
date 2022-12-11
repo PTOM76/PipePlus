@@ -5,7 +5,8 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+
+import static ml.pkom.pipeplus.PipePlus.registry;
 
 public class PipePlusContainers {
     public static final Identifier TELEPORT_PIPE = PipePlus.id("teleport_pipe");
@@ -21,6 +22,6 @@ public class PipePlusContainers {
     }
 
     private static void register(Identifier id, ScreenHandlerType<? extends ScreenHandler> type) {
-        Registry.register(Registry.SCREEN_HANDLER, id, type);
+        registry.registerScreenHandlerType(id, () -> type);
     }
 }

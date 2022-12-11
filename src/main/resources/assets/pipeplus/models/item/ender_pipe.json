@@ -1,6 +1,6 @@
 {
     "parent": "simple_pipes:item/pipe",
     "textures": {
-        "main": "pipeplus:pipes/ender_pipe"
+        "main": "pipeplus:block/ender_pipe"
     }
 }

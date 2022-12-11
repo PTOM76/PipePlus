@@ -1,12 +1,13 @@
 package ml.pkom.pipeplus.items;
 
+import ml.pkom.mcpitanlibarch.api.item.CreativeTabManager;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.blocks.Blocks;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+
+import static ml.pkom.pipeplus.PipePlus.registry;
 
 public class Items {
     public static Item COPPER_PIPE = CopperPipe.newItem();
@@ -15,7 +16,7 @@ public class Items {
     public static Item COPPER_FLUID_PIPE = CopperFluidPipe.newItem();
     public static Item TIN_FLUID_PIPE = TinFluidPipe.newItem();
     public static Item SILVER_FLUID_PIPE = SilverFluidPipe.newItem();
-    public static Item STACK_EXTRACT_PIPE = new BlockItem(Blocks.STACK_EXTRACT_PIPE, new Item.Settings().group(PipePlus.PIPEPLUS_GROUP));
+    public static Item STACK_EXTRACT_PIPE = new BlockItem(Blocks.STACK_EXTRACT_PIPE, new Item.Settings());
     public static Item EMERALD_PIPE = EmeraldPipe.newItem();
     public static Item RUBY_PIPE = RubyPipe.newItem();
     public static Item COBBLESTONE_PIPE = CobbleStonePipe.newItem();
@@ -23,7 +24,7 @@ public class Items {
     public static Item ENDER_PIPE = EnderPipe.newItem();
     public static Item REDSTONE_PIPE = RedStonePipe.newItem();
     public static Item PIPE_ITEMS_TELEPORT = PipeItemsTeleport.newItem();
-    public static Item VOID_ITEM_PIPE = new BlockItem(Blocks.VOID_ITEM_PIPE, new Item.Settings().group(PipePlus.PIPEPLUS_GROUP));
+    public static Item VOID_ITEM_PIPE = new BlockItem(Blocks.VOID_ITEM_PIPE, new Item.Settings());
 
     public static void registerInit() {
         register(COPPER_PIPE, "copper_pipe");
@@ -44,9 +45,11 @@ public class Items {
     }
 
     public static void register(Item item, String id) {
-        Registry.register(Registry.ITEM, PipePlus.id(id), item);
+        CreativeTabManager.addItem(PipePlus.PIPEPLUS_GROUP, PipePlus.id(id));
+        registry.registerItem(PipePlus.id(id), () -> item);
     }
     public static void register(Item item, Identifier id) {
-        Registry.register(Registry.ITEM, id, item);
+        CreativeTabManager.addItem(PipePlus.PIPEPLUS_GROUP, id);
+        registry.registerItem(id, () -> item);
     }
 }

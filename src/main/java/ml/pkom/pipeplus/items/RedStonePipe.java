@@ -8,9 +8,7 @@ import net.minecraft.item.Item;
 public class RedStonePipe extends Item {
     public static Settings itemSettings = new Settings();
 
-    static {
-        itemSettings.group(PipePlus.PIPEPLUS_GROUP);
-    }
+
 
     public RedStonePipe(Settings settings) {
         super(settings);

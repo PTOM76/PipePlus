@@ -1,7 +1,7 @@
 package ml.pkom.pipeplus.guis;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import ml.pkom.mcpitanlib.api.text.TextUtil;
+import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.ServerNetwork;
 import ml.pkom.pipeplus.TeleportManager;
@@ -43,13 +43,13 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         }
     }
 
-    public ButtonWidget pipeMode = new ButtonWidget(12, 35, 102, 20, TextUtil.translatable("button.pipeplus.teleport_pipe_setting.pipeMode.sendOnly"), (button -> {
+    public ButtonWidget pipeMode = ButtonWidget.builder(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.pipeMode.sendOnly"), (button -> {
         tile.pipeModeInt++;
         if (tile.pipeModeInt >= 4) tile.pipeModeInt = 0;
         pipeModeBtnUpdate();
-    }));
+    })).dimensions(12, 35, 102, 20).build();
 
-    public ButtonWidget openMode = new ButtonWidget(114, 35, 102, 20, TextUtil.translatable("button.pipeplus.teleport_pipe_setting.openMode.private"), (button -> {
+    public ButtonWidget openMode = ButtonWidget.builder(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.openMode.private"), (button -> {
         if (tile.modeIsPublic) {
             tile.modeIsPublic = false;
             button.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.openMode.private"));
@@ -57,25 +57,25 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
             tile.modeIsPublic = true;
             button.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.openMode.public"));
         }
-    }));
-    public ButtonWidget numberAddー100 = new ButtonWidget(12, 78, 34, 20, TextUtil.literal("-100"), (button -> {
+    })).dimensions(114, 35, 102, 20).build();
+    public ButtonWidget numberAddー100 = ButtonWidget.builder(TextUtil.literal("-100"), (button -> {
         addFrequency(-100);
-    }));
-    public ButtonWidget numberAddー10 = new ButtonWidget(46, 78, 34, 20, TextUtil.literal("-10"), (button -> {
+    })).dimensions(12, 78, 34, 20).build();
+    public ButtonWidget numberAddー10 = ButtonWidget.builder(TextUtil.literal("-10"), (button -> {
         addFrequency(-10);
-    }));
-    public ButtonWidget numberAddー1 = new ButtonWidget(80, 78, 34, 20, TextUtil.literal("-1"), (button -> {
+    })).dimensions(46, 78, 34, 20).build();
+    public ButtonWidget numberAddー1 = ButtonWidget.builder(TextUtil.literal("-1"), (button -> {
         addFrequency(-1);
-    }));
-    public ButtonWidget numberAdd十1 = new ButtonWidget(114, 78, 34, 20, TextUtil.literal("+1"), (button -> {
+    })).dimensions(80, 78, 34, 20).build();
+    public ButtonWidget numberAdd十1 = ButtonWidget.builder(TextUtil.literal("+1"), (button -> {
         addFrequency(1);
-    }));
-    public ButtonWidget numberAdd十10 = new ButtonWidget(148, 78, 34, 20, TextUtil.literal("+10"), (button -> {
+    })).dimensions(114, 78, 34, 20).build();
+    public ButtonWidget numberAdd十10 = ButtonWidget.builder(TextUtil.literal("+10"), (button -> {
         addFrequency(10);
-    }));
-    public ButtonWidget numberAdd十100 = new ButtonWidget(182, 78, 34, 20, TextUtil.literal("+100"), (button -> {
+    })).dimensions(148, 78, 34, 20).build();
+    public ButtonWidget numberAdd十100 = ButtonWidget.builder(TextUtil.literal("+100"), (button -> {
         addFrequency(100);
-    }));
+    })).dimensions(182, 78, 34, 20).build();
 
 
     public void addFrequency(int i) {
@@ -133,7 +133,7 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
     protected void drawBackground(MatrixStack matrices, float partialTicks, int mouseX, int mouseY) {
         //GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, GUI);
 
@@ -141,22 +141,22 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         int x = (this.width - this.backgroundWidth) / 2;
         int y = (this.height - this.backgroundHeight) / 2;
         this.drawTexture(matrices, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
-        pipeMode.x = 12 + x;
-        pipeMode.y = 35 + y;
-        openMode.x = 114 + x;
-        openMode.y = 35 + y;
-        numberAddー100.x = 12 + x;
-        numberAddー100.y = 78 + y;
-        numberAddー10.x = 46 + x;
-        numberAddー10.y = 78 + y;
-        numberAddー1.x = 80 + x;
-        numberAddー1.y = 78 + y;
-        numberAdd十1.x = 114 + x;
-        numberAdd十1.y = 78 + y;
-        numberAdd十10.x = 148 + x;
-        numberAdd十10.y = 78 + y;
-        numberAdd十100.x = 182 + x;
-        numberAdd十100.y = 78 + y;
+        pipeMode.setX(12 + x);
+        pipeMode.setY(35 + y);
+        openMode.setX(114 + x);
+        openMode.setY(35 + y);
+        numberAddー100.setX(12 + x);
+        numberAddー100.setY(78 + y);
+        numberAddー10.setX(46 + x);
+        numberAddー10.setY(78 + y);
+        numberAddー1.setX(80 + x);
+        numberAddー1.setY(78 + y);
+        numberAdd十1.setX(114 + x);
+        numberAdd十1.setY(78 + y);
+        numberAdd十10.setX(148 + x);
+        numberAdd十10.setY(78 + y);
+        numberAdd十100.setX(182 + x);
+        numberAdd十100.setY(78 + y);
         this.addDrawable(pipeMode);
         this.addDrawable(openMode);
         this.addDrawable(numberAddー100);
