@@ -20,12 +20,12 @@ public class TeleportPipeSettingHandler extends ContainerTile<PipeItemsTeleportE
     };
 
     public TeleportPipeSettingHandler(int syncId, PlayerEntity player, PipeItemsTeleportEntity tile) {
-        super(PipePlusContainers.TELEPORT_PIPE_SCREEN_HANDLER, syncId, player, tile);
+        super(syncId, player, tile);
         this.tile = tile;
     }
 
     @Override
-    public ItemStack quickMove(PlayerEntity player, int index) {
+    public ItemStack transferSlot(PlayerEntity player, int index) {
         return ItemStack.EMPTY;
     }
 

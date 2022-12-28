@@ -52,6 +52,8 @@ dependencies {
 	}
 	include "me.shedaniel.cloth:cloth-config-fabric:6.2.57"
 
+	modImplementation "me.sargunvohra.mcmods:autoconfig1u:3.4.0"
+	include "me.sargunvohra.mcmods:autoconfig1u:3.4.0"
 }
 
 processResources {

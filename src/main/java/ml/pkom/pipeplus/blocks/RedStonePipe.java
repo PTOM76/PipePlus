@@ -3,6 +3,7 @@ package ml.pkom.pipeplus.blocks;
 import alexiil.mc.mod.pipes.blocks.BlockPipe;
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
+import ml.pkom.mcpitanlibarch.api.util.WorldUtil;
 import ml.pkom.pipeplus.blockentities.RedStonePipeEntity;
 import ml.pkom.pipeplus.parts.PipePlusParts;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -18,9 +19,10 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 
 public class RedStonePipe extends BlockPipe implements BlockPipeItem {
@@ -98,7 +100,7 @@ public class RedStonePipe extends BlockPipe implements BlockPipeItem {
     }
 
     public void updatePoweredStatus(World world, BlockPos pos, BlockState state) {
-        world.scheduleBlockTick(pos, this, 20);
+        WorldUtil.scheduleBlockTick(world, pos, this, 20);
         world.updateComparators(pos, this);
     }
 

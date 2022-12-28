@@ -1,8 +1,8 @@
 package ml.pkom.pipeplus.config;
 
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.ConfigData;
-import me.shedaniel.autoconfig.annotation.Config;
+import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
+import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
+import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
 import ml.pkom.pipeplus.PipePlus;
 
 @Config(name = PipePlus.MOD_ID)
