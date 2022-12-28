@@ -39,9 +39,7 @@
     "fabricloader": "*",
     "simple_pipes": "*",
     "fabric": "*",
-    "minecraft": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
+    "minecraft": "*",
+    "mcpitanlibarch": ">1.2.2"
   }
 }
