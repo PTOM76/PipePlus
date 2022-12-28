@@ -2,6 +2,7 @@ package ml.pkom.pipeplus;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
+import ml.pkom.mcpitanlibarch.api.item.CreativeTabBuilder;
 import ml.pkom.mcpitanlibarch.api.registry.ArchRegistry;
 import ml.pkom.pipeplus.blockentities.BlockEntities;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
@@ -12,7 +13,6 @@ import ml.pkom.pipeplus.items.Items;
 import ml.pkom.pipeplus.parts.PipePlusParts;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -27,13 +27,12 @@ public class PipePlus implements ModInitializer {
 
     public static final String MOD_ID = "pipeplus";
     public static final String MOD_NAME = "PipePlus";
-    public static final String VERSION = "0.3.2";
     public static PipePlus instance;
     private static Logger LOGGER = LogManager.getLogger();
 
-    public static final ItemGroup PIPEPLUS_GROUP = FabricItemGroup.builder(
+    public static final ItemGroup PIPEPLUS_GROUP = new CreativeTabBuilder(
             id("all")).
-            icon(() -> new ItemStack(Items.COPPER_PIPE)).
+            setIcon(() -> new ItemStack(Items.COPPER_PIPE)).
             build();
 
     public static ArchRegistry registry = ArchRegistry.createRegistry(MOD_ID);
