@@ -36,7 +36,7 @@ dependencies {
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:$rei_version"
 	modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
 
-	modImplementation "alexiil.mc.mod:simplepipes-all:0.7.3"
+	modImplementation "alexiil.mc.mod:simplepipes-all:0.7.2"
 
 	modImplementation "ml.pkom:mcpitanlibarch-fabric${rootProject.mcpitanlib_version}"
 
