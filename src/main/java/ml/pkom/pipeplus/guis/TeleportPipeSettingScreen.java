@@ -1,6 +1,5 @@
 package ml.pkom.pipeplus.guis;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import ml.pkom.mcpitanlibarch.api.util.client.ScreenUtil;
 import ml.pkom.pipeplus.PipePlus;
@@ -11,7 +10,6 @@ import ml.pkom.pipeplus.blocks.Blocks;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
@@ -93,8 +91,6 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
 
     public TeleportPipeSettingScreen(TeleportPipeSettingHandler container, PlayerInventory inv, Text title) {
         super(container, container.player.getInventory(), Blocks.PIPE_ITEMS_TELEPORT.getName());
-        //tile = (PipeItemsTeleportEntity) container.player.getEntityWorld().getBlockEntity(container.tile.getPos());
-        //tile = container.tile;
         tile = PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(container.tile.getPos()));
         posX = tile.getPos().getX();
         posY = tile.getPos().getY();

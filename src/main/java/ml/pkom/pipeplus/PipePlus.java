@@ -62,11 +62,6 @@ public class PipePlus implements ModInitializer {
         return new Identifier(MOD_ID, id);
     }
 
-    public static Identifier id(String id, boolean bool) {
-        if (bool) return new Identifier(MOD_ID, id);
-        return new Identifier(id);
-    }
-
     public static String pos2str(BlockPos pos) {
         return pos.getX() + "l" + pos.getY() + "l" + pos.getZ();
 
