@@ -16,28 +16,28 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class RegisterSpritesMixin {
     @Inject(method = "registerSprites", at = @At("TAIL"), remap = false)
     private void registerSprites(SpriteAtlasTexture atlasTexture, ClientSpriteRegistryCallback.Registry registry, CallbackInfo ci) {
-        registry.register(PipePlus.id("pipes/cobblestone_pipe"));
-        registry.register(PipePlus.id("pipes/redstone_pipe"));
-        registry.register(PipePlus.id("pipes/active_redstone_pipe"));
-        registry.register(PipePlus.id("pipes/emerald_pipe"));
-        registry.register(PipePlus.id("pipes/ruby_pipe"));
-        registry.register(PipePlus.id("pipes/pipe_items_teleport"));
-        registry.register(PipePlus.id("pipes/obsidian_pipe"));
-        registry.register(PipePlus.id("pipes/ender_pipe"));
-        registry.register(PipePlus.id("pipes/copper_pipe"));
-        registry.register(PipePlus.id("pipes/copper_pipe_filled"));
-        registry.register(PipePlus.id("pipes/tin_pipe"));
-        registry.register(PipePlus.id("pipes/tin_pipe_filled"));
-        registry.register(PipePlus.id("pipes/silver_pipe"));
-        registry.register(PipePlus.id("pipes/silver_pipe_filled"));
-        registry.register(PipePlus.id("pipes/stack_extract_pipe"));
-        registry.register(PipePlus.id("pipes/stack_extract_pipe_filled"));
-        registry.register(PipePlus.id("pipes/copper_fluid_pipe"));
-        registry.register(PipePlus.id("pipes/copper_fluid_pipe_filled"));
-        registry.register(PipePlus.id("pipes/tin_fluid_pipe"));
-        registry.register(PipePlus.id("pipes/tin_fluid_pipe_filled"));
-        registry.register(PipePlus.id("pipes/silver_fluid_pipe"));
-        registry.register(PipePlus.id("pipes/silver_fluid_pipe_filled"));
-        registry.register(PipePlus.id("pipes/void_item"));
+        registry.register(PipePlus.id("block/cobblestone_pipe"));
+        registry.register(PipePlus.id("block/redstone_pipe"));
+        registry.register(PipePlus.id("block/active_redstone_pipe"));
+        registry.register(PipePlus.id("block/emerald_pipe"));
+        registry.register(PipePlus.id("block/ruby_pipe"));
+        registry.register(PipePlus.id("block/pipe_items_teleport"));
+        registry.register(PipePlus.id("block/obsidian_pipe"));
+        registry.register(PipePlus.id("block/ender_pipe"));
+        registry.register(PipePlus.id("block/copper_pipe"));
+        registry.register(PipePlus.id("block/copper_pipe_filled"));
+        registry.register(PipePlus.id("block/tin_pipe"));
+        registry.register(PipePlus.id("block/tin_pipe_filled"));
+        registry.register(PipePlus.id("block/silver_pipe"));
+        registry.register(PipePlus.id("block/silver_pipe_filled"));
+        registry.register(PipePlus.id("block/stack_extract_pipe"));
+        registry.register(PipePlus.id("block/stack_extract_pipe_filled"));
+        registry.register(PipePlus.id("block/copper_fluid_pipe"));
+        registry.register(PipePlus.id("block/copper_fluid_pipe_filled"));
+        registry.register(PipePlus.id("block/tin_fluid_pipe"));
+        registry.register(PipePlus.id("block/tin_fluid_pipe_filled"));
+        registry.register(PipePlus.id("block/silver_fluid_pipe"));
+        registry.register(PipePlus.id("block/silver_fluid_pipe_filled"));
+        registry.register(PipePlus.id("block/void_item"));
     }
 }
