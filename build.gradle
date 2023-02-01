@@ -8,10 +8,10 @@ version = project.minecraft_version + "-" + project.mod_version
 group = project.maven_group
 
 repositories {
-	//maven { name="BuildCraft"; url="https://mod-buildcraft.com/maven" }
+	maven { name="BuildCraft"; url="https://mod-buildcraft.com/maven" }
 	maven { url "https://maven.shedaniel.me/" }
 	maven { url 'https://jitpack.io' }
-	maven { url "https://kneelawk.com/maven/" }
+	//maven { url "https://kneelawk.com/maven/" }
 	maven { url "https://maven.terraformersmc.com/releases" }
 	mavenLocal()
 }
@@ -41,8 +41,7 @@ dependencies {
 	modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
 	//modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
 
-	modImplementation "alexiil.mc.mod:simplepipes-all:0.8.0-pre.1"
-	include "alexiil.mc.mod:simplepipes-all:0.8.0-pre.1"
+	modImplementation "alexiil.mc.mod:simplepipes-all:0.8.0"
 
 	// Mod Menu
 	// 1.16 => 1.16.19
