@@ -45,11 +45,11 @@ public class Items {
     }
 
     public static void register(Item item, String id) {
-        CreativeTabManager.addItem(PipePlus.PIPEPLUS_GROUP, PipePlus.id(id));
+        //CreativeTabManager.addItem(PipePlus.PIPEPLUS_GROUP, PipePlus.id(id));
         registry.registerItem(PipePlus.id(id), () -> item);
     }
     public static void register(Item item, Identifier id) {
-        CreativeTabManager.addItem(PipePlus.PIPEPLUS_GROUP, id);
+        //CreativeTabManager.addItem(PipePlus.PIPEPLUS_GROUP, id);
         registry.registerItem(id, () -> item);
     }
 }
