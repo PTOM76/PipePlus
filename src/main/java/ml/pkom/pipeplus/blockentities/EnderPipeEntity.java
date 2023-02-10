@@ -1,29 +1,27 @@
 package ml.pkom.pipeplus.blockentities;
 
-import alexiil.mc.mod.pipes.blocks.TilePipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import alexiil.mc.mod.pipes.pipe.TravellingItem;
+import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.pipeplus.blocks.Blocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.predicate.entity.EntityPredicates;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class EnderPipeEntity extends TilePipe {
+public class EnderPipeEntity extends ExtendTilePipe {
     private static VoxelShape INPUT_AREA_SHAPE = Block.createCuboidShape(-48.0D, -48.0D, -48.0D, 64.0D, 64.0D, 64.0D);
     private static VoxelShape REDSTONE_SIGNAL_INPUT_AREA_SHAPE = Block.createCuboidShape(-80.0D, -80.0D, -80.0D, 96.0D, 96.0D, 96.0D);
 
-    public EnderPipeEntity(BlockPos pos, BlockState state) {
-        super(BlockEntities.ENDER_PIPE_ENTITY, pos, state, Blocks.ENDER_PIPE, PipeSpFlowItem::new);
+    public EnderPipeEntity(TileCreateEvent event) {
+        super(BlockEntities.ENDER_PIPE_ENTITY, event, Blocks.ENDER_PIPE, PipeSpFlowItem::new);
     }
 
     public double getX() {

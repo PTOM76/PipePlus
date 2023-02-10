@@ -2,6 +2,7 @@ package ml.pkom.pipeplus.blocks;
 
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
+import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
@@ -62,8 +63,8 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
     }
 
     @Override
-    public TilePipe createBlockEntity(BlockPos pos, BlockState state) {
-        return new PipeItemsTeleportEntity(pos, state);
+    public TilePipe createBlockEntity(TileCreateEvent event) {
+        return new PipeItemsTeleportEntity(event);
     }
 
     public static Settings getSettings() {

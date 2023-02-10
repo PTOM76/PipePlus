@@ -1,19 +1,15 @@
 package ml.pkom.pipeplus.blocks;
 
 import alexiil.mc.mod.pipes.blocks.BlockPipeFluid;
-import alexiil.mc.mod.pipes.blocks.BlockPipeSided;
 import alexiil.mc.mod.pipes.blocks.TilePipeSided;
+import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.pipeplus.blockentities.CopperFluidPipeEntity;
 import ml.pkom.pipeplus.parts.PipePlusParts;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
 
-public class CopperFluidPipe extends BlockPipeSided implements BlockPipeFluid {
+public class CopperFluidPipe extends ExtendBlockPipeSided implements BlockPipeFluid {
     public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.DECORATION);
 
     static {
@@ -26,8 +22,8 @@ public class CopperFluidPipe extends BlockPipeSided implements BlockPipeFluid {
     }
 
     @Override
-    public TilePipeSided createBlockEntity(BlockPos pos, BlockState state) {
-        return new CopperFluidPipeEntity(pos, state);
+    public TilePipeSided createBlockEntity(TileCreateEvent event) {
+        return new CopperFluidPipeEntity(event);
     }
 
     public static Settings getSettings() {

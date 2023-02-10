@@ -1,20 +1,18 @@
 package ml.pkom.pipeplus.blockentities;
 
 import alexiil.mc.lib.attributes.fluid.impl.EmptyFluidExtractable;
-import alexiil.mc.mod.pipes.blocks.TilePipeSided;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowFluid;
+import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.pipeplus.blocks.Blocks;
 import ml.pkom.pipeplus.config.PipePlusConfig;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
-public class SilverFluidPipeEntity extends TilePipeSided {
+public class SilverFluidPipeEntity extends ExtendTilePipeSided {
     private int needCooldown = 4;
     private int cooldown = needCooldown;
 
-    public SilverFluidPipeEntity(BlockPos pos, BlockState state) {
-        super(BlockEntities.SILVER_FLUID_PIPE_ENTITY, pos, state, Blocks.SILVER_FLUID_PIPE, PipeSpFlowFluid::new);
+    public SilverFluidPipeEntity(TileCreateEvent event) {
+        super(BlockEntities.SILVER_FLUID_PIPE_ENTITY, event, Blocks.SILVER_FLUID_PIPE, PipeSpFlowFluid::new);
         needCooldown = PipePlusConfig.getConfig().silverFluidExtractDelay;
     }
 

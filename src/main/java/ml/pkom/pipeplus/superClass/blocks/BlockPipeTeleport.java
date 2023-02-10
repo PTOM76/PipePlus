@@ -1,26 +1,19 @@
 package ml.pkom.pipeplus.superClass.blocks;
 
-import alexiil.mc.mod.pipes.blocks.BlockPipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpDef;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
-import ml.pkom.pipeplus.guis.PipePlusContainers;
-import ml.pkom.pipeplus.guis.TeleportPipeSettingHandler;
+import ml.pkom.pipeplus.blocks.ExtendBlockPipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
-public abstract class BlockPipeTeleport extends BlockPipe {
+public abstract class BlockPipeTeleport extends ExtendBlockPipe {
 
     public BlockPipeTeleport(Settings settings, PipeSpDef pipeSpDef) {
         super(settings, pipeSpDef);
@@ -39,18 +32,7 @@ public abstract class BlockPipeTeleport extends BlockPipe {
             }
 
             if (!world.isClient) {
-                player.openHandledScreen(new NamedScreenHandlerFactory() {
-                    @Override
-                    public Text getDisplayName() {
-                        return null;
-                    }
-
-                    @Nullable
-                    @Override
-                    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-                        return new TeleportPipeSettingHandler(syncId, player, (PipeItemsTeleportEntity) blockEntity);
-                    }
-                });
+                player.openHandledScreen((PipeItemsTeleportEntity) blockEntity);
             }
             return ActionResult.SUCCESS;
         }

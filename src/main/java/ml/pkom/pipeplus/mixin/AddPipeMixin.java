@@ -44,7 +44,7 @@ public class AddPipeMixin {
 		if (def == PipePlusParts.RUBY_PIPE)
 			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/ruby_pipe"));
 		if (def == PipePlusParts.REDSTONE_ITEM_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/redstone_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite(((RedStonePipe) def.pipeBlock).isPowered() ? "pipeplus:block/active_redstone_pipe" : "pipeplus:block/redstone_pipe"));
 		if (def == PipePlusParts.TELEPORT_ITEM_PIPE)
 			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/pipe_items_teleport"));
 		if (def == PipePlusParts.COBBLESTONE_ITEM_PIPE)
@@ -95,11 +95,6 @@ public class AddPipeMixin {
 			if (key instanceof TilePipeSided.PipeBlockModelStateSided) {
 				Direction mainDir = ((TilePipeSided.PipeBlockModelStateSided)key).mainSide;
 				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/silver_fluid_pipe_filled"));
-			}
-		}
-		if (key.def == PipePlusParts.REDSTONE_ITEM_PIPE) {
-			if (((RedStonePipe) key.def.pipeBlock).isPowered()) {
-				cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/active_redstone_pipe"));
 			}
 		}
 	}

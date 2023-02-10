@@ -1,20 +1,31 @@
 package ml.pkom.pipeplus.blockentities;
 
-import alexiil.mc.mod.pipes.blocks.TilePipe;
+import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
+import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
-import ml.pkom.pipeplus.blocks.Blocks;
 import ml.pkom.pipeplus.TeleportPipeType;
+import ml.pkom.pipeplus.blocks.Blocks;
+import ml.pkom.pipeplus.guis.TeleportPipeSettingHandler;
 import ml.pkom.pipeplus.pipeflow.TeleportPipeFlow;
-import net.minecraft.block.BlockState;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.UUID;
 
-public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTileEntity {
+public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTeleportTileEntity, ExtendedScreenHandlerFactory {
     public UUID owner = null;
     public String ownerName = null;
     public Boolean modeIsPublic = null;
@@ -91,8 +102,8 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
         super.tick();
     }
 
-    public PipeItemsTeleportEntity(BlockPos pos, BlockState state) {
-        super(BlockEntities.PIPE_ITEMS_TELEPORT_ENTITY, pos, state, Blocks.PIPE_ITEMS_TELEPORT, TeleportPipeFlow::new);
+    public PipeItemsTeleportEntity(TileCreateEvent event) {
+        super(BlockEntities.PIPE_ITEMS_TELEPORT_ENTITY, event, Blocks.PIPE_ITEMS_TELEPORT, TeleportPipeFlow::new);
         //iFlow = (PipeSpFlowItem) getFlow();
         /*if (owner == null) owner = ((PipeItemsTeleport) pipeBlock).latestOwner;
 
@@ -164,5 +175,23 @@ public class PipeItemsTeleportEntity extends TilePipe implements IPipeTeleportTi
     @Override
     public TeleportPipeType getPipeType() {
         return TeleportPipeType.ITEMS;
+    }
+
+    @Override
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(pos);
+    }
+
+    @Override
+    public Text getDisplayName() {
+        return TextUtil.empty();
+    }
+
+    @Nullable
+    @Override
+    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+        PacketByteBuf buf = PacketByteBufs.create();
+        buf.writeBlockPos(pos);
+        return new TeleportPipeSettingHandler(syncId, inv, this);
     }
 }

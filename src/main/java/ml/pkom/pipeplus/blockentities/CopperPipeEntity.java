@@ -3,22 +3,20 @@ package ml.pkom.pipeplus.blockentities;
 import alexiil.mc.lib.attributes.Simulation;
 import alexiil.mc.lib.attributes.item.ItemExtractable;
 import alexiil.mc.lib.attributes.item.impl.EmptyItemExtractable;
-import alexiil.mc.mod.pipes.blocks.*;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
+import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.pipeplus.blocks.Blocks;
 import ml.pkom.pipeplus.config.PipePlusConfig;
-import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
-public class CopperPipeEntity extends TilePipeSided {
+public class CopperPipeEntity extends ExtendTilePipeSided {
     private int needCooldown = 20;
     private int cooldown = needCooldown;
 
-    public CopperPipeEntity(BlockPos pos, BlockState state) {
-        super(BlockEntities.COPPER_PIPE_ENTITY, pos, state, Blocks.COPPER_PIPE, PipeSpFlowItem::new);
+    public CopperPipeEntity(TileCreateEvent event) {
+        super(BlockEntities.COPPER_PIPE_ENTITY, event, Blocks.COPPER_PIPE, PipeSpFlowItem::new);
         needCooldown = PipePlusConfig.getConfig().copperTransportExtractDelay;
     }
 

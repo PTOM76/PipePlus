@@ -1,20 +1,18 @@
 package ml.pkom.pipeplus.blockentities;
 
 import alexiil.mc.lib.attributes.fluid.impl.EmptyFluidExtractable;
-import alexiil.mc.mod.pipes.blocks.TilePipeSided;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowFluid;
+import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.pipeplus.blocks.Blocks;
 import ml.pkom.pipeplus.config.PipePlusConfig;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
-public class CopperFluidPipeEntity extends TilePipeSided {
+public class CopperFluidPipeEntity extends ExtendTilePipeSided {
     private int needCooldown = 20;
     private int cooldown = needCooldown;
 
-    public CopperFluidPipeEntity(BlockPos pos, BlockState state) {
-        super(BlockEntities.COPPER_FLUID_PIPE_ENTITY, pos, state, Blocks.COPPER_FLUID_PIPE, PipeSpFlowFluid::new);
+    public CopperFluidPipeEntity(TileCreateEvent event) {
+        super(BlockEntities.COPPER_FLUID_PIPE_ENTITY, event, Blocks.COPPER_FLUID_PIPE, PipeSpFlowFluid::new);
         needCooldown = PipePlusConfig.getConfig().copperFluidExtractDelay;
     }
 
@@ -24,6 +22,7 @@ public class CopperFluidPipeEntity extends TilePipeSided {
         cooldown--;
         if (cooldown <= 0) {
             cooldown = needCooldown;
+            if (world == null) return;
             if (!world.isClient) {
                 Direction dir = currentDirection();
                 if (dir != null) {

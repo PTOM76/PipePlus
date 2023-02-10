@@ -1,13 +1,12 @@
 package ml.pkom.pipeplus.blocks;
 
-import alexiil.mc.mod.pipes.blocks.BlockPipe;
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
+import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.mcpitanlibarch.api.util.WorldUtil;
 import ml.pkom.pipeplus.blockentities.RedStonePipeEntity;
 import ml.pkom.pipeplus.parts.PipePlusParts;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -25,7 +24,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 
-public class RedStonePipe extends BlockPipe implements BlockPipeItem {
+public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
     public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.DECORATION);
     public static BooleanProperty POWERED;
     public boolean isPowered = false;
@@ -105,8 +104,8 @@ public class RedStonePipe extends BlockPipe implements BlockPipeItem {
     }
 
     @Override
-    public TilePipe createBlockEntity(BlockPos pos, BlockState state) {
-        return new RedStonePipeEntity(pos, state);
+    public TilePipe createBlockEntity(TileCreateEvent event) {
+        return new RedStonePipeEntity(event);
     }
 
     public static Settings getSettings() {
