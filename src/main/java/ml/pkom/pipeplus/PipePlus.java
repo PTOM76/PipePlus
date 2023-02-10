@@ -1,7 +1,7 @@
 package ml.pkom.pipeplus;
 
-import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
-import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import ml.pkom.mcpitanlibarch.api.item.CreativeTabBuilder;
 import ml.pkom.mcpitanlibarch.api.registry.ArchRegistry;
 import ml.pkom.pipeplus.blockentities.BlockEntities;

@@ -31,9 +31,10 @@ dependencies {
 	include "alexiil.mc.lib:libnetworkstack-base:$libnetworkstack_version"
 	include "alexiil.mc.lib:libmultipart-base:$libmultipart_version"
 
+	// Cloth Config APIとなぜか相性が悪い？w
 	// REI
-	modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:$rei_version"
-	modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
+	//modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:$rei_version"
+	//modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
 
 	modImplementation "alexiil.mc.mod:simplepipes-all:0.8.0"
 
