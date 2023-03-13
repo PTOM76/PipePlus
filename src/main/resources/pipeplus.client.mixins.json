@@ -3,13 +3,10 @@
   "minVersion": "0.8",
   "package": "ml.pkom.pipeplus.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "AddPipeMixin"
-  ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "RegisterSpritesMixin"
+    "AddPipeMixin"
   ]
 }
