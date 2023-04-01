@@ -9,7 +9,7 @@ import net.minecraft.util.Identifier;
 
 import static ml.pkom.pipeplus.PipePlus.registry;
 
-public class Items {
+public class OldItems {
     public static Item COPPER_PIPE = CopperPipe.newItem();
     public static Item TIN_PIPE = TinPipe.newItem();
     public static Item SILVER_PIPE = SilverPipe.newItem();

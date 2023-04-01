@@ -5,7 +5,7 @@ import alexiil.mc.mod.pipes.blocks.TilePipeSided;
 import alexiil.mc.mod.pipes.client.model.PipeBaseModelGenStandard;
 import alexiil.mc.mod.pipes.client.model.SpriteSupplier;
 import alexiil.mc.mod.pipes.pipe.PipeSpDef;
-import ml.pkom.pipeplus.blocks.RedStonePipe;
+import ml.pkom.pipeplus.blocks.RedstonePipe;
 import ml.pkom.pipeplus.parts.PipePlusParts;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -44,7 +44,7 @@ public class AddPipeMixin {
 		if (def == PipePlusParts.RUBY_PIPE)
 			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/ruby_pipe"));
 		if (def == PipePlusParts.REDSTONE_ITEM_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite(((RedStonePipe) def.pipeBlock).isPowered() ? "pipeplus:block/active_redstone_pipe" : "pipeplus:block/redstone_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite(((RedstonePipe) def.pipeBlock).isPowered() ? "pipeplus:block/active_redstone_pipe" : "pipeplus:block/redstone_pipe"));
 		if (def == PipePlusParts.TELEPORT_ITEM_PIPE)
 			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/pipe_items_teleport"));
 		if (def == PipePlusParts.COBBLESTONE_ITEM_PIPE)

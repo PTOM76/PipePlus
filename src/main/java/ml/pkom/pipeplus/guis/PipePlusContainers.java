@@ -17,7 +17,7 @@ public class PipePlusContainers {
 
     }
 
-    public static void load() {
+    public static void init() {
         register(TELEPORT_PIPE, TELEPORT_PIPE_SCREEN_HANDLER);
     }
 

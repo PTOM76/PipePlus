@@ -3,7 +3,7 @@ package ml.pkom.pipeplus.blockentities;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.pipeplus.blocks.Blocks;
-import ml.pkom.pipeplus.blocks.RedStonePipe;
+import ml.pkom.pipeplus.blocks.RedstonePipe;
 import net.minecraft.block.BlockState;
 
 public class RedStonePipeEntity extends ExtendTilePipe {
@@ -17,9 +17,9 @@ public class RedStonePipeEntity extends ExtendTilePipe {
         super.tick();
         if (world == null) return;
         if (!world.isClient) {
-            RedStonePipe block = ((RedStonePipe) this.pipeBlock);
+            RedstonePipe block = ((RedstonePipe) this.pipeBlock);
             BlockState state = getWorld().getBlockState(getPos());
-            block.setRedStoneSignal(state, getWorld(), getPos(), !((PipeSpFlowItem) this.getFlow()).getAllItemsForRender().isEmpty());
+            block.setRedstoneSignal(state, getWorld(), getPos(), !((PipeSpFlowItem) this.getFlow()).getAllItemsForRender().isEmpty());
             block.updatePoweredStatus(getWorld(), getPos(), state);
         }
     }

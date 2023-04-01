@@ -97,23 +97,8 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
 
     public static Map<String, PipeItemsTeleportEntity> tileMap = new LinkedHashMap<>();
 
-    @Override
-    public void tick() {
-        super.tick();
-    }
-
     public PipeItemsTeleportEntity(TileCreateEvent event) {
         super(BlockEntities.PIPE_ITEMS_TELEPORT_ENTITY, event, Blocks.PIPE_ITEMS_TELEPORT, TeleportPipeFlow::new);
-        //iFlow = (PipeSpFlowItem) getFlow();
-        /*if (owner == null) owner = ((PipeItemsTeleport) pipeBlock).latestOwner;
-
-        if (ownerName == null) {
-            try {
-                ownerName = getWorld().getPlayerByUuid(owner).getName().getString();
-            } catch (NullPointerException e) {
-            }
-        }
-         */
         if (modeIsPublic == null) modeIsPublic = false;
         if (pipeModeInt == null) pipeModeInt = 0;
         if (frequency == null) frequency = 0;
@@ -123,8 +108,6 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
     @Override
     public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
-        //debug();
-        //PipePlus.log(Level.INFO, "ReadTeleportPipeNBT");
         if (!tileMap.containsKey(PipePlus.pos2str(getPos()))) {
             tileMap.put(PipePlus.pos2str(getPos()), this);
         }
@@ -144,8 +127,6 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
         tile.pipeModeInt = tag.getInt("modeInt");
         tile.frequency = tag.getInt("frequency");
         TeleportManager.instance.add(tile, tile.frequency);
-
-        //debug();
     }
 
     @Override

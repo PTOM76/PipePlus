@@ -17,13 +17,13 @@ public class Blocks {
     public static PipeItemsTeleport PIPE_ITEMS_TELEPORT = PipeItemsTeleport.newBlock();
     public static EmeraldPipe EMERALD_PIPE = EmeraldPipe.newBlock();
     public static RubyPipe RUBY_PIPE = RubyPipe.newBlock();
-    public static RedStonePipe REDSTONE_PIPE = RedStonePipe.newBlock();
+    public static RedstonePipe REDSTONE_PIPE = RedstonePipe.newBlock();
     public static CobbleStonePipe COBBLESTONE_PIPE = CobbleStonePipe.newBlock();
     public static CopperFluidPipe COPPER_FLUID_PIPE = CopperFluidPipe.newBlock();
     public static TinFluidPipe TIN_FLUID_PIPE = TinFluidPipe.newBlock();
     public static SilverFluidPipe SILVER_FLUID_PIPE = SilverFluidPipe.newBlock();
 
-    public static void registerInit() {
+    public static void init() {
         register(VOID_ITEM_PIPE, "void_item_pipe");
         register(OBSIDIAN_PIPE, "obsidian_pipe");
         register(ENDER_PIPE, "ender_pipe");

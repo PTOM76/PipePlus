@@ -25,15 +25,15 @@ public class ObsidianPipeEntity extends ExtendTilePipe {
     }
 
     public double getX() {
-        return (double)this.pos.getX() + 0.5D;
+        return (double)getPipePos().getX() + 0.5D;
     }
 
     public double getY() {
-        return (double)this.pos.getY() + 0.5D;
+        return (double)getPipePos().getY() + 0.5D;
     }
 
     public double getZ() {
-        return (double)this.pos.getZ() + 0.5D;
+        return (double)getPipePos().getZ() + 0.5D;
     }
 
     public void tick() {

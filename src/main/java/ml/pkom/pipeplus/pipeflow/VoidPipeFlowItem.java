@@ -1,6 +1,7 @@
 package ml.pkom.pipeplus.pipeflow;
 
 import alexiil.mc.mod.pipes.blocks.*;
+import alexiil.mc.mod.pipes.pipe.PartSpPipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
@@ -8,6 +9,9 @@ import net.minecraft.util.math.Direction;
 
 public class VoidPipeFlowItem extends PipeSpFlowItem {
 
+    public VoidPipeFlowItem(PartSpPipe pipe) {
+        super(pipe);
+    }
 
     public VoidPipeFlowItem(TilePipe pipe) {
         super(pipe);

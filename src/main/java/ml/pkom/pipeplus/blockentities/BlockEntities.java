@@ -25,7 +25,7 @@ public class BlockEntities {
     public static BlockEntityType<SilverFluidPipeEntity> SILVER_FLUID_PIPE_ENTITY;
     public static BlockEntityType<VoidPipeEntity> VOID_ITEM_PIPE_TILE_ENTITY;
 
-    public static void registerInit() {
+    public static void init() {
         OBSIDIAN_PIPE_ENTITY = BlockEntityTypeBuilder.create(ObsidianPipeEntity::new, Blocks.OBSIDIAN_PIPE).build();
         registerTile(OBSIDIAN_PIPE_ENTITY, "obsidian_pipe");
         ENDER_PIPE_ENTITY = BlockEntityTypeBuilder.create(EnderPipeEntity::new, Blocks.ENDER_PIPE).build();

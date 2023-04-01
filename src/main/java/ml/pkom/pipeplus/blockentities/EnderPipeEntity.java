@@ -17,23 +17,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class EnderPipeEntity extends ExtendTilePipe {
-    private static VoxelShape INPUT_AREA_SHAPE = Block.createCuboidShape(-48.0D, -48.0D, -48.0D, 64.0D, 64.0D, 64.0D);
-    private static VoxelShape REDSTONE_SIGNAL_INPUT_AREA_SHAPE = Block.createCuboidShape(-80.0D, -80.0D, -80.0D, 96.0D, 96.0D, 96.0D);
+    private static final VoxelShape INPUT_AREA_SHAPE = Block.createCuboidShape(-48.0D, -48.0D, -48.0D, 64.0D, 64.0D, 64.0D);
+    private static final VoxelShape REDSTONE_SIGNAL_INPUT_AREA_SHAPE = Block.createCuboidShape(-80.0D, -80.0D, -80.0D, 96.0D, 96.0D, 96.0D);
 
     public EnderPipeEntity(TileCreateEvent event) {
         super(BlockEntities.ENDER_PIPE_ENTITY, event, Blocks.ENDER_PIPE, PipeSpFlowItem::new);
     }
 
     public double getX() {
-        return (double)this.pos.getX() + 0.5D;
+        return (double)getPipePos().getX() + 0.5D;
     }
 
     public double getY() {
-        return (double)this.pos.getY() + 0.5D;
+        return (double)getPipePos().getY() + 0.5D;
     }
 
     public double getZ() {
-        return (double)this.pos.getZ() + 0.5D;
+        return (double)getPipePos().getZ() + 0.5D;
     }
 
     public void tick() {

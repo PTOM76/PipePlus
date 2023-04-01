@@ -10,7 +10,7 @@ import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.blocks.Blocks;
 import ml.pkom.pipeplus.config.PipePlusConfig;
 import ml.pkom.pipeplus.guis.PipePlusContainers;
-import ml.pkom.pipeplus.items.Items;
+import ml.pkom.pipeplus.items.PipePlusItems;
 import ml.pkom.pipeplus.parts.PipePlusParts;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.item.ItemGroup;
@@ -32,7 +32,7 @@ public class PipePlus implements ModInitializer {
 
     public static final ItemGroup PIPEPLUS_GROUP = CreativeTabBuilder.create(
             id("all")).
-            setIcon(() -> new ItemStack(Items.COPPER_PIPE)).
+            setIcon(() -> new ItemStack(PipePlusItems.COPPER_PIPE)).
             build();
 
     public static ArchRegistry registry = ArchRegistry.createRegistry(MOD_ID);
@@ -43,11 +43,12 @@ public class PipePlus implements ModInitializer {
 
         AutoConfig.register(PipePlusConfig.class, GsonConfigSerializer::new);
         PipePlusParts.init();
-        BlockEntities.registerInit();
-        Blocks.registerInit();
-        Items.registerInit();
-        PipePlusContainers.load();
+        BlockEntities.init();
+        Blocks.init();
+        PipePlusItems.init();
+        PipePlusContainers.init();
         ServerNetwork.init();
+
         EventRegistry.ServerLifecycle.serverStopped((server -> {
             TeleportManager.instance.reset();
             PipeItemsTeleportEntity.tileMap = new LinkedHashMap<>();

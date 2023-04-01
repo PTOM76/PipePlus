@@ -23,7 +23,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 
-public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
+public class RedstonePipe extends ExtendBlockPipe implements BlockPipeItem {
     public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(Material.DECORATION);
     public static BooleanProperty POWERED;
     public boolean isPowered = false;
@@ -34,12 +34,12 @@ public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
         POWERED = Properties.POWERED;
     }
 
-    public RedStonePipe(CompatibleBlockSettings settings) {
+    public RedstonePipe(CompatibleBlockSettings settings) {
         super(settings, PipePlusParts.REDSTONE_ITEM_PIPE);
         setDefaultState(stateManager.getDefaultState().with(POWERED, false));
     }
 
-    public void setRedStoneSignal(BlockState state, World world, BlockPos pos, boolean bool) {
+    public void setRedstoneSignal(BlockState state, World world, BlockPos pos, boolean bool) {
         world.setBlockState(pos, state.with(POWERED, bool), 3);
         world.scheduleBlockRerenderIfNeeded(pos, state, state.with(POWERED, bool));
         isPowered = bool;
@@ -111,8 +111,8 @@ public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
         return blockSettings;
     }
 
-    public static RedStonePipe newBlock() {
-        return new RedStonePipe(getSettings());
+    public static RedstonePipe newBlock() {
+        return new RedstonePipe(getSettings());
     }
 
     @Override

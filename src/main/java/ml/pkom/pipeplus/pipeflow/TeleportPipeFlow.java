@@ -1,15 +1,14 @@
 package ml.pkom.pipeplus.pipeflow;
 
 import alexiil.mc.mod.pipes.blocks.TilePipe;
+import alexiil.mc.mod.pipes.pipe.PartSpPipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
-import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.IPipeTeleportTileEntity;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
-import org.apache.logging.log4j.Level;
 
 public class TeleportPipeFlow extends PipeSpFlowItem {
 
@@ -18,6 +17,12 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
     public TeleportPipeFlow(TilePipe pipe) {
         super(pipe);
         tileEntity = (PipeItemsTeleportEntity) pipe;
+    }
+
+    public TeleportPipeFlow(PartSpPipe pipe) {
+        super(pipe);
+        if (pipe.getPipeWorld().getBlockEntity(pipe.getPipePos()) instanceof PipeItemsTeleportEntity)
+            tileEntity = (PipeItemsTeleportEntity) pipe.getPipeWorld().getBlockEntity(pipe.getPipePos());
     }
 
     @Override
