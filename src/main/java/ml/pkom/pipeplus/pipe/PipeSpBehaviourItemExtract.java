@@ -27,9 +27,11 @@ public class PipeSpBehaviourItemExtract extends PipeSpBehaviourSided {
         cooldown--;
         if (cooldown <= 0) {
             cooldown = needCooldown;
-            Direction dir = currentDirection();
-            if (dir != null) {
-                tryExtract(dir, pulses);
+            if (!pipe.getPipeWorld().isClient) {
+                Direction dir = currentDirection();
+                if (dir != null) {
+                    tryExtract(dir, pulses);
+                }
             }
         }
     }

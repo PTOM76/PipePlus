@@ -3,7 +3,6 @@ package ml.pkom.pipeplus.pipe;
 import alexiil.mc.mod.pipes.pipe.PartSpPipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpBehaviour;
 import alexiil.mc.mod.pipes.pipe.TravellingItem;
-import ml.pkom.pipeplus.blockentities.ObsidianPipeEntity;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
@@ -51,12 +50,12 @@ public class PipeSpBehaviourObsidian extends PipeSpBehaviour {
         }
     }
 
-    public boolean extract() {
+    public void extract() {
         List<ItemEntity> itemsList = getInputItemEntities();
         if (itemsList.isEmpty())
-            return false;
+            return;
         if (isNotConnected())
-            return false;
+            return;
         NbtCompound nbt = new NbtCompound();
         NbtList tagList = new NbtList();
         long tickNow = pipe.getWorldTime();
@@ -67,7 +66,6 @@ public class PipeSpBehaviourObsidian extends PipeSpBehaviour {
         }
         nbt.put("items", tagList);
         pipe.getFlow().fromTag(nbt);
-        return true;
     }
 
     public boolean isNotConnected() {
