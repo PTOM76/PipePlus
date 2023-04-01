@@ -1,21 +1,20 @@
 package ml.pkom.pipeplus;
 
+import ml.pkom.mcpitanlibarch.api.network.ClientNetworking;
+import ml.pkom.mcpitanlibarch.api.network.PacketByteUtil;
+import ml.pkom.mcpitanlibarch.api.network.ServerNetworking;
 import ml.pkom.pipeplus.guis.TeleportPipeSettingHandler;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
 
-import java.util.UUID;
-
+// そもそももっといい方法があるが放置している
 public class ServerNetwork {
 
     public static Identifier id = PipePlus.id("network");
 
     public static void init() {
-        ServerPlayNetworking.registerGlobalReceiver(id, ((server, player, handler, buf, responseSender) -> {
+        ServerNetworking.registerReceiver(id, ((server, player, buf) -> {
             NbtCompound tag = buf.readNbt();
             String type = tag.getString("type");
             if (tag.contains("teleportPipe.frequency")) {
@@ -40,16 +39,9 @@ public class ServerNetwork {
 
     // とりあえずTagで管理する
     public static void send(NbtCompound tag) {
-        PacketByteBuf buf = PacketByteBufs.create();
+        PacketByteBuf buf = PacketByteUtil.create();
         buf.writeNbt(tag);
-        ClientPlayNetworking.send(id, buf);
-    }
-
-    public static void send(String key, String string) {
-        NbtCompound tag = newTag();
-        tag.putString("type", "string");
-        tag.putString(key, string);
-        send(tag);
+        ClientNetworking.send(id, buf);
     }
 
     public static void send(String key, Integer integer) {
@@ -63,48 +55,6 @@ public class ServerNetwork {
         NbtCompound tag = newTag();
         tag.putString("type", "bool");
         tag.putBoolean(key, bool);
-        send(tag);
-    }
-
-    public static void send(String key, UUID uuid) {
-        NbtCompound tag = newTag();
-        tag.putString("type", "uuid");
-        tag.putUuid(key, uuid);
-        send(tag);
-    }
-
-    public static void send(String key, Byte b) {
-        NbtCompound tag = newTag();
-        tag.putString("type", "byte");
-        tag.putByte(key, b);
-        send(tag);
-    }
-
-    public static void send(String key, Double d) {
-        NbtCompound tag = newTag();
-        tag.putString("type", "double");
-        tag.putDouble(key, d);
-        send(tag);
-    }
-
-    public static void send(String key, Float f) {
-        NbtCompound tag = newTag();
-        tag.putString("type", "float");
-        tag.putFloat(key, f);
-        send(tag);
-    }
-
-    public static void send(String key, Short s) {
-        NbtCompound tag = newTag();
-        tag.putString("type", "short");
-        tag.putShort(key, s);
-        send(tag);
-    }
-
-    public static void send(String key, Long l) {
-        NbtCompound tag = newTag();
-        tag.putString("type", "long");
-        tag.putLong(key, l);
         send(tag);
     }
 

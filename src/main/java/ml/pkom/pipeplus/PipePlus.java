@@ -2,6 +2,7 @@ package ml.pkom.pipeplus;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
+import ml.pkom.mcpitanlibarch.api.event.v0.EventRegistry;
 import ml.pkom.mcpitanlibarch.api.item.CreativeTabBuilder;
 import ml.pkom.mcpitanlibarch.api.registry.ArchRegistry;
 import ml.pkom.pipeplus.blockentities.BlockEntities;
@@ -12,7 +13,6 @@ import ml.pkom.pipeplus.guis.PipePlusContainers;
 import ml.pkom.pipeplus.items.Items;
 import ml.pkom.pipeplus.parts.PipePlusParts;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -30,7 +30,7 @@ public class PipePlus implements ModInitializer {
     public static PipePlus instance;
     private static Logger LOGGER = LogManager.getLogger();
 
-    public static final ItemGroup PIPEPLUS_GROUP = new CreativeTabBuilder(
+    public static final ItemGroup PIPEPLUS_GROUP = CreativeTabBuilder.create(
             id("all")).
             setIcon(() -> new ItemStack(Items.COPPER_PIPE)).
             build();
@@ -48,10 +48,19 @@ public class PipePlus implements ModInitializer {
         Items.registerInit();
         PipePlusContainers.load();
         ServerNetwork.init();
+        EventRegistry.ServerLifecycle.serverStopped((server -> {
+            TeleportManager.instance.reset();
+            PipeItemsTeleportEntity.tileMap = new LinkedHashMap<>();
+        }));
+        /*
         ServerLifecycleEvents.SERVER_STOPPED.register((server -> {
             TeleportManager.instance.reset();
             PipeItemsTeleportEntity.tileMap = new LinkedHashMap<>();
         }));
+
+         */
+
+        registry.allRegister();
     }
 
     public static void log(Level level, String message){

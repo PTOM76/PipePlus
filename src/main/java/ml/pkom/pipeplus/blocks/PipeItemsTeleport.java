@@ -8,7 +8,7 @@ import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.parts.PipePlusParts;
 import ml.pkom.pipeplus.superClass.blocks.BlockPipeTeleport;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.entity.LivingEntity;
@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeItem {
-    public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.DECORATION);
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(Material.DECORATION);
 
     //public UUID latestOwner;
 
@@ -30,7 +30,7 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
         blockSettings.sounds(BlockSoundGroup.GLASS);
     }
 
-    public PipeItemsTeleport(Settings settings) {
+    public PipeItemsTeleport(CompatibleBlockSettings settings) {
         super(settings, PipePlusParts.TELEPORT_ITEM_PIPE);
     }
 
@@ -67,7 +67,7 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
         return new PipeItemsTeleportEntity(event);
     }
 
-    public static Settings getSettings() {
+    public static CompatibleBlockSettings getSettings() {
         return blockSettings;
     }
 

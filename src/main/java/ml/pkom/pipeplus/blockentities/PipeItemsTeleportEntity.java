@@ -1,6 +1,7 @@
 package ml.pkom.pipeplus.blockentities;
 
 import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
+import ml.pkom.mcpitanlibarch.api.network.PacketByteUtil;
 import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
@@ -8,7 +9,6 @@ import ml.pkom.pipeplus.TeleportPipeType;
 import ml.pkom.pipeplus.blocks.Blocks;
 import ml.pkom.pipeplus.guis.TeleportPipeSettingHandler;
 import ml.pkom.pipeplus.pipeflow.TeleportPipeFlow;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -190,7 +190,7 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        PacketByteBuf buf = PacketByteBufs.create();
+        PacketByteBuf buf = PacketByteUtil.create();
         buf.writeBlockPos(pos);
         return new TeleportPipeSettingHandler(syncId, inv, this);
     }

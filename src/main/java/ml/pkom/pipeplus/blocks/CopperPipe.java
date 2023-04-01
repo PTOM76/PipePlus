@@ -5,19 +5,19 @@ import alexiil.mc.mod.pipes.blocks.TilePipeSided;
 import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.pipeplus.blockentities.CopperPipeEntity;
 import ml.pkom.pipeplus.parts.PipePlusParts;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
 
 public class CopperPipe extends ExtendBlockPipeSided implements BlockPipeItem {
-    public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.DECORATION);
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(Material.DECORATION);
 
     static {
         blockSettings.strength(0.5F, 1.0F);
         blockSettings.sounds(BlockSoundGroup.GLASS);
     }
 
-    public CopperPipe(Settings settings) {
+    public CopperPipe(CompatibleBlockSettings settings) {
         super(settings, PipePlusParts.COPPER_ITEM_PIPE);
     }
 
@@ -26,7 +26,7 @@ public class CopperPipe extends ExtendBlockPipeSided implements BlockPipeItem {
         return new CopperPipeEntity(event);
     }
 
-    public static Settings getSettings() {
+    public static CompatibleBlockSettings getSettings() {
         return blockSettings;
     }
 

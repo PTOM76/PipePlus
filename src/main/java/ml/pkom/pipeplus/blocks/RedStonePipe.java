@@ -6,7 +6,7 @@ import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.mcpitanlibarch.api.util.WorldUtil;
 import ml.pkom.pipeplus.blockentities.RedStonePipeEntity;
 import ml.pkom.pipeplus.parts.PipePlusParts;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 
 
 public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
-    public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.DECORATION);
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(Material.DECORATION);
     public static BooleanProperty POWERED;
     public boolean isPowered = false;
 
@@ -34,7 +34,7 @@ public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
         POWERED = Properties.POWERED;
     }
 
-    public RedStonePipe(Settings settings) {
+    public RedStonePipe(CompatibleBlockSettings settings) {
         super(settings, PipePlusParts.REDSTONE_ITEM_PIPE);
         setDefaultState(stateManager.getDefaultState().with(POWERED, false));
     }
@@ -107,7 +107,7 @@ public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
         return new RedStonePipeEntity(event);
     }
 
-    public static Settings getSettings() {
+    public static CompatibleBlockSettings getSettings() {
         return blockSettings;
     }
 

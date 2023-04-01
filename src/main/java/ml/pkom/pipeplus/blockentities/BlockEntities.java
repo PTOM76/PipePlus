@@ -1,18 +1,10 @@
 package ml.pkom.pipeplus.blockentities;
 
-import alexiil.mc.mod.pipes.blocks.SimplePipeBlocks;
 import ml.pkom.mcpitanlibarch.api.tile.BlockEntityTypeBuilder;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.blocks.Blocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 import static ml.pkom.pipeplus.PipePlus.registry;
 

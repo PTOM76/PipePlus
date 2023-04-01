@@ -5,12 +5,12 @@ import alexiil.mc.mod.pipes.blocks.TilePipe;
 import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.pipeplus.blockentities.EmeraldPipeEntity;
 import ml.pkom.pipeplus.parts.PipePlusParts;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
 
 public class EmeraldPipe extends ExtendBlockPipe implements BlockPipeItem {
-    public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.DECORATION);
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(Material.DECORATION);
 
     static {
         blockSettings.strength(0.5F, 1.0F);
@@ -18,7 +18,7 @@ public class EmeraldPipe extends ExtendBlockPipe implements BlockPipeItem {
 
     }
 
-    public EmeraldPipe(Settings settings) {
+    public EmeraldPipe(CompatibleBlockSettings settings) {
         super(settings, PipePlusParts.EMERALD_PIPE);
     }
 
@@ -27,7 +27,7 @@ public class EmeraldPipe extends ExtendBlockPipe implements BlockPipeItem {
         return new EmeraldPipeEntity(event);
     }
 
-    public static Settings getSettings() {
+    public static CompatibleBlockSettings getSettings() {
         return blockSettings;
     }
 

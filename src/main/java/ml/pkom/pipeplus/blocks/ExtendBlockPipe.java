@@ -3,13 +3,19 @@ package ml.pkom.pipeplus.blocks;
 import alexiil.mc.mod.pipes.blocks.BlockPipe;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpDef;
+import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
 import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 
 public abstract class ExtendBlockPipe extends BlockPipe {
+
+    @Deprecated
     public ExtendBlockPipe(Settings settings, PipeSpDef pipeDef) {
         super(settings, pipeDef);
+    }
+    public ExtendBlockPipe(CompatibleBlockSettings settings, PipeSpDef pipeDef) {
+        this(settings.build(), pipeDef);
     }
 
     @Deprecated

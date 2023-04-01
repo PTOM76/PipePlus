@@ -1,24 +1,25 @@
 package ml.pkom.pipeplus.items;
 
-import ml.pkom.mcpitanlibarch.api.item.ExtendSettings;
+import ml.pkom.mcpitanlibarch.api.item.CompatibleItemSettings;
+import ml.pkom.mcpitanlibarch.api.item.ExtendItem;
+import ml.pkom.mcpitanlibarch.api.util.ItemUtil;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.blocks.Blocks;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 
-public class RubyPipe extends Item {
-    public static Settings itemSettings = new ExtendSettings().addGroup(PipePlus.PIPEPLUS_GROUP, PipePlus.id("ruby_pipe"));
+public class RubyPipe extends ExtendItem {
+    public static CompatibleItemSettings itemSettings = new CompatibleItemSettings().addGroup(PipePlus.PIPEPLUS_GROUP, PipePlus.id("ruby_pipe"));
 
 
-    public RubyPipe(Settings settings) {
+    public RubyPipe(CompatibleItemSettings settings) {
         super(settings);
     }
 
-    public static Settings getSettings() {
+    public static CompatibleItemSettings getSettings() {
         return itemSettings;
     }
 
     public static Item newItem() {
-        return new BlockItem(Blocks.RUBY_PIPE, getSettings());
+        return ItemUtil.ofBlock(Blocks.RUBY_PIPE, getSettings());
     }
 }
