@@ -39,7 +39,7 @@ public class PipePlusItems {
         ENDER_PIPE = new ItemPipePart(CompatibleItemSettings.of().addGroup(PIPEPLUS_GROUP, id("ender_pipe")).build(), PipePlusParts.ENDER_PIPE);
         REDSTONE_PIPE = new ItemPipePart(CompatibleItemSettings.of().addGroup(PIPEPLUS_GROUP, id("redstone_pipe")).build(), PipePlusParts.REDSTONE_ITEM_PIPE);
         VOID_ITEM_PIPE = new ItemPipePart(CompatibleItemSettings.of().addGroup(PIPEPLUS_GROUP, id("void_item_pipe")).build(), PipePlusParts.VOID_ITEM_PIPE);
-        PIPE_ITEMS_TELEPORT = new ItemPipePart(CompatibleItemSettings.of().addGroup(PIPEPLUS_GROUP, id("pipe_items_teleport")).build(), PipePlusParts.TELEPORT_ITEM_PIPE);
+        PIPE_ITEMS_TELEPORT = new ItemPipePart(CompatibleItemSettings.of().build(), PipePlusParts.TELEPORT_ITEM_PIPE); // .addGroup(PIPEPLUS_GROUP, id("pipe_items_teleport"))
 
         COPPER_FLUID_PIPE = new ItemPipePart(CompatibleItemSettings.of().addGroup(PIPEPLUS_GROUP, id("copper_fluid_pipe")).build(), PipePlusParts.COPPER_FLUID_PIPE);
         TIN_FLUID_PIPE = new ItemPipePart(CompatibleItemSettings.of().addGroup(PIPEPLUS_GROUP, id("tin_fluid_pipe")).build(), PipePlusParts.TIN_FLUID_PIPE);

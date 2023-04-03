@@ -33,13 +33,13 @@ public class PipePlusParts {
     public static final PipeDefFluid SILVER_FLUID_PIPE;
 
     static {
-        COPPER_ITEM_PIPE = new PipeDefItem(PipePlus.id("copper_item_pipe"), true, false, 1) {
+        COPPER_ITEM_PIPE = new PipeDefItem(PipePlus.id("copper_item_pipe"), true, true, 1) {
             @Override
             public PipeSpBehaviour createBehaviour(PartSpPipe pipe) {
                 return new PipeSpBehaviourItemExtract(pipe, 20, 1);
             }
         };
-        TIN_ITEM_PIPE = new PipeDefItem(PipePlus.id("tin_item_pipe"), true, false, 3) {
+        TIN_ITEM_PIPE = new PipeDefItem(PipePlus.id("tin_item_pipe"), true, true, 3) {
             @Override
             public PipeSpBehaviour createBehaviour(PartSpPipe pipe) {
                 return new PipeSpBehaviourItemExtract(pipe, 10, 1);
@@ -63,7 +63,12 @@ public class PipePlusParts {
                 return new PipeSpBehaviourRedstone(pipe);
             }
         };
-        COBBLESTONE_ITEM_PIPE = new PipeDefItem(PipePlus.id("cobblestone_item_pipe"), false, false, 1);
+        COBBLESTONE_ITEM_PIPE = new PipeDefItem(PipePlus.id("cobblestone_item_pipe"), false, false, 1) {
+            @Override
+            public PipeSpBehaviour createBehaviour(PartSpPipe pipe) {
+                return new PipeSpBehaviourCobblestone(pipe);
+            }
+        };
         VOID_ITEM_PIPE = new PipeDefItem(PipePlus.id("void_item_pipe"), false, false, 1) {
             @Override
             public PipeSpFlowItem createFlow(PartSpPipe pipe) {

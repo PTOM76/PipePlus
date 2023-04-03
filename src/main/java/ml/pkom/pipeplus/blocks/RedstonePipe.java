@@ -22,7 +22,6 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-
 public class RedstonePipe extends ExtendBlockPipe implements BlockPipeItem {
     public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(Material.DECORATION);
     public static BooleanProperty POWERED;
@@ -62,7 +61,7 @@ public class RedstonePipe extends ExtendBlockPipe implements BlockPipeItem {
     @SuppressWarnings("deprecation")
     @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if ((Boolean)state.get(POWERED)) {
+        if (state.get(POWERED)) {
             this.updatePoweredStatus(world, pos, state);
         }
     }
