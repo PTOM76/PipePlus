@@ -1,16 +1,19 @@
 package ml.pkom.pipeplus.pipe;
 
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
-
+import alexiil.mc.lib.multipart.api.property.MultipartProperties;
+import alexiil.mc.lib.multipart.api.property.MultipartPropertyContainer;
+import alexiil.mc.mod.pipes.blocks.TilePipe.PipeBlockModelState;
 import alexiil.mc.mod.pipes.pipe.PartSpPipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpBehaviour;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
-
-import alexiil.mc.lib.multipart.api.property.MultipartProperties;
-import alexiil.mc.lib.multipart.api.property.MultipartPropertyContainer;
+import ml.pkom.pipeplus.blocks.PipeBlockModelStateMutable;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.World;
 
 public class PipeSpBehaviourRedstone extends PipeSpBehaviour {
+
+    public boolean isEmpty = true;
 
     public PipeSpBehaviourRedstone(PartSpPipe pipe) {
         super(pipe);
@@ -24,7 +27,8 @@ public class PipeSpBehaviourRedstone extends PipeSpBehaviour {
         if (!world.isClient) {
             MultipartPropertyContainer properties = pipe.container.getProperties();
 
-            if (((PipeSpFlowItem) pipe.getFlow()).getAllItemsForRender().isEmpty()) {
+            isEmpty = ((PipeSpFlowItem) pipe.getFlow()).getAllItemsForRender().isEmpty();
+            if (isEmpty) {
                 properties.clearValue(pipe, MultipartProperties.getStrongRedstonePower(Direction.UP));
                 for (Direction dir : Direction.values()) {
                     properties.clearValue(pipe, MultipartProperties.getWeakRedstonePower(dir));
@@ -36,5 +40,23 @@ public class PipeSpBehaviourRedstone extends PipeSpBehaviour {
                 }
             }
         }
+    }
+
+    @Override
+    public void fromNbt(NbtCompound nbt) {
+        super.fromNbt(nbt);
+        isEmpty = nbt.getBoolean("isEmpty");
+    }
+
+    @Override
+    public NbtCompound toNbt() {
+        NbtCompound nbt = super.toNbt();
+        nbt.putBoolean("isEmpty", isEmpty);
+        return nbt;
+    }
+
+    @Override
+    public PipeBlockModelState createModelState() {
+        return new PipeBlockModelStateMutable(pipe.definition, pipe.connections, isEmpty ? 0 : 1);
     }
 }
