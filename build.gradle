@@ -1,6 +1,8 @@
 plugins {
 	id 'fabric-loom' version '1.0-SNAPSHOT'
 	id 'maven-publish'
+	id 'com.matthewprenger.cursegradle' version '1.+'
+	id "com.modrinth.minotaur" version "2.+"
 }
 
 //archivesBaseName = project.archives_base_name
@@ -31,29 +33,63 @@ dependencies {
 	include "alexiil.mc.lib:libnetworkstack-base:$libnetworkstack_version"
 	include "alexiil.mc.lib:libmultipart-base:$libmultipart_version"
 
-	// Cloth Config APIとなぜか相性が悪い？w
-	// REI
-	//modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:$rei_version"
-	//modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
-
-	modImplementation "alexiil.mc.mod:simplepipes-all:0.10.0"
+	modImplementation "alexiil.mc.mod:simplepipes-all:${rootProject.simplepipes_version}"
 
 	modImplementation "ml.pkom:mcpitanlibarch-fabric${rootProject.mcpitanlib_version}"
 
 	// Mod Menu
-	// 1.16 => 1.16.19
-	// 1.17 => 2.0.12
-	modImplementation "com.terraformersmc:modmenu:6.1.0-rc.4"
+	modImplementation "com.terraformersmc:modmenu:${rootProject.modmenu_version}"
+
 	// Cloth Config API
-	// 1.16 => 4.11.26
-	// 1.17 => 5.0.38
-	modApi("me.shedaniel.cloth:cloth-config-fabric:10.0.96") {
+	modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.clothconfig_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
 	}
-	include "me.shedaniel.cloth:cloth-config-fabric:10.0.96"
+	include "me.shedaniel.cloth:cloth-config-fabric:${rootProject.clothconfig_version}"
+}
 
-	//modImplementation "me.sargunvohra.mcmods:autoconfig1u:3.4.0"
-	//include "me.sargunvohra.mcmods:autoconfig1u:3.4.0"
+curseforge {
+	if (System.getenv("CURSEFORGE_TOKEN") != null) {
+		apiKey = System.getenv("CURSEFORGE_TOKEN")
+		project {
+			id = '514438'
+			changelog = 'port to 1.20'
+			releaseType = 'beta'
+			addGameVersion '1.20'
+			addGameVersion "Fabric"
+			relations {
+				requiredDependency 'fabric-api'
+				requiredDependency 'mcpitanlibarch'
+				requiredDependency 'simplepipes'
+				embeddedLibrary 'cloth-config'
+			}
+
+			mainArtifact(remapJar)
+		}
+		options {
+			forgeGradleIntegration = false
+		}
+	}
+}
+
+import com.modrinth.minotaur.dependencies.ModDependency
+
+modrinth {
+	if (System.getenv("MODRINTH_TOKEN") != null) {
+		token = System.getenv("MODRINTH_TOKEN")
+		projectId = 'zSS7GIKK'
+		versionNumber = project.mod_version
+		uploadFile = remapJar
+		gameVersions = ['1.20']
+		versionType = 'beta'
+		loaders = ['fabric']
+		changelog = 'port to 1.20'
+		dependencies = [
+				new ModDependency('P7dR8mSH', 'required'), // Fabric API
+				new ModDependency('uNRoUnGT', 'required'),  // MCPitanLibarch
+				new ModDependency('ls90k6B8', 'required'),  // MCPitanLibarch
+				new ModDependency('9s6osm5g', 'embedded')  // MCPitanLibarch
+		]
+	}
 }
 
 processResources {
