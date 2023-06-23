@@ -7,6 +7,7 @@ import ml.pkom.pipeplus.ServerNetwork;
 import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.blocks.Blocks;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -124,23 +125,23 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         this.backgroundHeight = 116;
     }
 
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        this.drawMouseoverTooltip(matrices, mouseX, mouseY);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
+        this.drawMouseoverTooltip(context, mouseX, mouseY);
     }
 
-    protected void drawBackground(MatrixStack matrices, float partialTicks, int mouseX, int mouseY) {
+    protected void drawBackground(DrawContext context, float partialTicks, int mouseX, int mouseY) {
         //GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
         RenderSystem.setShader(GameRenderer::getPositionTexProgram);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, GUI);
+        //RenderSystem.setShaderTexture(0, GUI);
 
         //MinecraftClient.getInstance().getTextureManager().bindTexture(GUI);
         int x = (this.width - this.backgroundWidth) / 2;
         int y = (this.height - this.backgroundHeight) / 2;
-        this.drawTexture(matrices, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
+        context.drawTexture(GUI, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
         pipeMode.setX(12 + x);
         pipeMode.setY(35 + y);
         openMode.setX(114 + x);
@@ -176,12 +177,12 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         this.addSelectableChild(numberAdd十100);
     }
 
-    protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+    protected void drawForeground(DrawContext context, int mouseX, int mouseY) {
         x = (this.width - this.backgroundWidth) / 2;
         y = (this.height - this.backgroundHeight) / 2;
-        this.textRenderer.draw(matrices, this.title, 71, 7, 0x0a0c84);
-        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.owner", owner), 12, 22, 4210752);
-        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.coords", posX, posY, posZ), 110, 22, 4210752);
-        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.frequency", tile.frequency), 16, 68, 4210752);
+        context.drawText(textRenderer, this.title, 71, 7, 0x0a0c84, false);
+        context.drawText(textRenderer, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.owner", owner), 12, 22, 4210752, false);
+        context.drawText(textRenderer, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.coords", posX, posY, posZ), 110, 22, 4210752, false);
+        context.drawText(textRenderer, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.frequency", tile.frequency), 16, 68, 4210752, false);
     }
 }

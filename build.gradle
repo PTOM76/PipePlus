@@ -55,6 +55,7 @@ curseforge {
 			changelog = 'port to 1.20'
 			releaseType = 'beta'
 			addGameVersion '1.20'
+			addGameVersion '1.20.1'
 			addGameVersion "Fabric"
 			relations {
 				requiredDependency 'fabric-api'
@@ -79,7 +80,7 @@ modrinth {
 		projectId = 'zSS7GIKK'
 		versionNumber = project.mod_version
 		uploadFile = remapJar
-		gameVersions = ['1.20']
+		gameVersions = ['1.20', '1.20.1']
 		versionType = 'beta'
 		loaders = ['fabric']
 		changelog = 'port to 1.20'

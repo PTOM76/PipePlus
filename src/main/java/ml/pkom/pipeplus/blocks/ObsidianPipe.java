@@ -3,14 +3,14 @@ package ml.pkom.pipeplus.blocks;
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
 import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
+import ml.pkom.mcpitanlibarch.api.block.CompatibleMaterial;
 import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.pipeplus.blockentities.ObsidianPipeEntity;
 import ml.pkom.pipeplus.parts.PipePlusParts;
-import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
 
 public class ObsidianPipe extends ExtendBlockPipe implements BlockPipeItem {
-    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(Material.DECORATION);
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
 
     static {
         blockSettings.strength(0.5F, 1.0F);

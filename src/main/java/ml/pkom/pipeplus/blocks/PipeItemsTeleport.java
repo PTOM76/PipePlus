@@ -2,6 +2,7 @@ package ml.pkom.pipeplus.blocks;
 
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
+import ml.pkom.mcpitanlibarch.api.block.CompatibleMaterial;
 import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
@@ -10,7 +11,6 @@ import ml.pkom.pipeplus.parts.PipePlusParts;
 import ml.pkom.pipeplus.superClass.blocks.BlockPipeTeleport;
 import ml.pkom.mcpitanlibarch.api.block.CompatibleBlockSettings;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeItem {
-    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(Material.DECORATION);
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
 
     //public UUID latestOwner;
 

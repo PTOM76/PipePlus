@@ -41,6 +41,7 @@ public class PipePlus implements ModInitializer {
         log(Level.INFO, "Initializing");
         instance = this;
 
+        registry.registerItemGroup(id("all"), () -> PIPEPLUS_GROUP);
         AutoConfig.register(PipePlusConfig.class, GsonConfigSerializer::new);
         PipePlusParts.init();
         BlockEntities.init();
