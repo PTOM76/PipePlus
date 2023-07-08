@@ -2,11 +2,11 @@ package ml.pkom.pipeplus.pipe;
 
 import alexiil.mc.lib.multipart.api.property.MultipartProperties;
 import alexiil.mc.lib.multipart.api.property.MultipartPropertyContainer;
-import alexiil.mc.mod.pipes.blocks.TilePipe.PipeBlockModelState;
+import alexiil.mc.mod.pipes.client.model.part.PipeSpPartKey;
 import alexiil.mc.mod.pipes.pipe.PartSpPipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpBehaviour;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
-import ml.pkom.pipeplus.blocks.PipeBlockModelStateMutable;
+import ml.pkom.pipeplus.client.model.part.PipeSpPartKeyMutable;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -56,7 +56,7 @@ public class PipeSpBehaviourRedstone extends PipeSpBehaviour {
     }
 
     @Override
-    public PipeBlockModelState createModelState() {
-        return new PipeBlockModelStateMutable(pipe.definition, pipe.connections, isEmpty ? 0 : 1);
+    public PipeSpPartKey createModelState() {
+        return new PipeSpPartKeyMutable(pipe.definition, pipe.connections, isEmpty ? 0 : 1);
     }
 }

@@ -7,7 +7,6 @@ import ml.pkom.pipeplus.PipePlus;
 import alexiil.mc.mod.pipes.pipe.PipeSpDef.PipeDefFluid;
 import alexiil.mc.mod.pipes.pipe.PipeSpDef.PipeDefItem;
 import ml.pkom.pipeplus.pipe.*;
-import ml.pkom.pipeplus.pipeflow.TeleportPipeFlow;
 import ml.pkom.pipeplus.pipeflow.VoidPipeFlowItem;
 
 public class PipePlusParts {
@@ -24,7 +23,6 @@ public class PipePlusParts {
     public static final PipeDefItem VOID_ITEM_PIPE;
     public static final PipeDefItem OBSIDIAN_ITEM_PIPE;
     public static final PipeDefItem ENDER_PIPE;
-    public static final PipeDefItem TELEPORT_ITEM_PIPE;
     public static final PipeDefItem RUBY_PIPE;
     public static final PipeDefItem EMERALD_PIPE;
     
@@ -87,17 +85,6 @@ public class PipePlusParts {
                 return new PipeSpBehaviourEnder(pipe);
             }
         };
-        TELEPORT_ITEM_PIPE = new PipeDefItem(PipePlus.id("teleport_item_pipe"), true, true, 1) {
-            @Override
-            public PipeSpFlowItem createFlow(PartSpPipe pipe) {
-                return new TeleportPipeFlow(pipe);
-            }
-
-            @Override
-            public PipeSpBehaviour createBehaviour(PartSpPipe pipe) {
-                return new PipeSpBehaviourTeleport(pipe);
-            }
-        };
         RUBY_PIPE = new PipeDefItem(PipePlus.id("ruby_pipe"), false, false, 12);
         EMERALD_PIPE = new PipeDefItem(PipePlus.id("emerald_pipe"), false, false, 9);
 
@@ -131,7 +118,6 @@ public class PipePlusParts {
         VOID_ITEM_PIPE.register();
         OBSIDIAN_ITEM_PIPE.register();
         ENDER_PIPE.register();
-        TELEPORT_ITEM_PIPE.register();
         RUBY_PIPE.register();
         EMERALD_PIPE.register();
 

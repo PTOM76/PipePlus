@@ -1,11 +1,11 @@
-package ml.pkom.pipeplus.blocks;
+package ml.pkom.pipeplus.client.model.part;
 
-import alexiil.mc.mod.pipes.blocks.TilePipe.PipeBlockModelState;
+import alexiil.mc.mod.pipes.client.model.part.PipeSpPartKey;
 import alexiil.mc.mod.pipes.pipe.PipeSpDef;
 
-public class PipeBlockModelStateMutable extends PipeBlockModelState {
+public class PipeSpPartKeyMutable extends PipeSpPartKey {
     public int index;
-    public PipeBlockModelStateMutable(PipeSpDef def, byte isConnected, int index) {
+    public PipeSpPartKeyMutable(PipeSpDef def, byte isConnected, int index) {
         super(def, isConnected);
         this.index = index;
     }
@@ -15,7 +15,7 @@ public class PipeBlockModelStateMutable extends PipeBlockModelState {
         if (this == obj) return true;
         if (!super.equals(obj)) return false;
         if (getClass() != obj.getClass()) return false;
-        PipeBlockModelStateMutable other = (PipeBlockModelStateMutable) obj;
+        PipeSpPartKeyMutable other = (PipeSpPartKeyMutable) obj;
         return index == other.index;
     }
 

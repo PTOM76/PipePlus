@@ -2,37 +2,29 @@ package ml.pkom.pipeplus;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
-import ml.pkom.mcpitanlibarch.api.event.v0.EventRegistry;
 import ml.pkom.mcpitanlibarch.api.item.CreativeTabBuilder;
 import ml.pkom.mcpitanlibarch.api.registry.ArchRegistry;
-import ml.pkom.pipeplus.blockentities.BlockEntities;
-import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
-import ml.pkom.pipeplus.blocks.Blocks;
 import ml.pkom.pipeplus.config.PipePlusConfig;
-import ml.pkom.pipeplus.guis.PipePlusContainers;
 import ml.pkom.pipeplus.items.PipePlusItems;
 import ml.pkom.pipeplus.parts.PipePlusParts;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.LinkedHashMap;
-
 public class PipePlus implements ModInitializer {
 
     public static final String MOD_ID = "pipeplus";
     public static final String MOD_NAME = "PipePlus";
     public static PipePlus instance;
-    private static Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
     public static final ItemGroup PIPEPLUS_GROUP = CreativeTabBuilder.create(
             id("all")).
-            setIcon(() -> new ItemStack(PipePlusItems.COPPER_PIPE)).
+            setIcon(PipePlusParts.COPPER_ITEM_PIPE::getPickStack).
             build();
 
     public static ArchRegistry registry = ArchRegistry.createRegistry(MOD_ID);
@@ -44,23 +36,7 @@ public class PipePlus implements ModInitializer {
         registry.registerItemGroup(id("all"), () -> PIPEPLUS_GROUP);
         AutoConfig.register(PipePlusConfig.class, GsonConfigSerializer::new);
         PipePlusParts.init();
-        BlockEntities.init();
-        Blocks.init();
         PipePlusItems.init();
-        PipePlusContainers.init();
-        ServerNetwork.init();
-
-        EventRegistry.ServerLifecycle.serverStopped((server -> {
-            TeleportManager.instance.reset();
-            PipeItemsTeleportEntity.tileMap = new LinkedHashMap<>();
-        }));
-        /*
-        ServerLifecycleEvents.SERVER_STOPPED.register((server -> {
-            TeleportManager.instance.reset();
-            PipeItemsTeleportEntity.tileMap = new LinkedHashMap<>();
-        }));
-
-         */
 
         registry.allRegister();
     }

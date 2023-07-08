@@ -40,6 +40,6 @@
     "simple_pipes": "*",
     "fabric": "*",
     "minecraft": "*",
-    "mcpitanlibarch": ">1.3.6"
+    "mcpitanlibarch": ">1.6.9"
   }
 }

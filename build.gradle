@@ -83,7 +83,7 @@ modrinth {
 		gameVersions = ['1.20', '1.20.1']
 		versionType = 'beta'
 		loaders = ['fabric']
-		changelog = 'port to 1.20'
+		changelog = 'update for latest simple pipes'
 		dependencies = [
 				new ModDependency('P7dR8mSH', 'required'), // Fabric API
 				new ModDependency('uNRoUnGT', 'required'),  // MCPitanLibarch
