@@ -13,7 +13,7 @@ repositories {
 	maven { url 'https://jitpack.io' }
 	maven { url "https://kneelawk.com/maven/" }
 	maven { url "https://maven.terraformersmc.com/releases" }
-	maven { url "https://maven.pkom.ml/" }
+	maven { url "https://maven.pitan76.net/" }
 	mavenLocal()
 }
 
