@@ -2,18 +2,24 @@ package ml.pkom.pipeplus.pipeflow;
 
 import alexiil.mc.mod.pipes.blocks.TilePipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
-import ml.pkom.pipeplus.PipePlus;
+import alexiil.mc.mod.pipes.pipe.TravellingItem;
 import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.IPipeTeleportTileEntity;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
-import org.apache.logging.log4j.Level;
+
+import java.util.EnumSet;
+import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class TeleportPipeFlow extends PipeSpFlowItem {
 
     public PipeItemsTeleportEntity tileEntity;
+    private ReentrantLock mutex = new ReentrantLock();
+
 
     public TeleportPipeFlow(TilePipe pipe) {
         super(pipe);
@@ -22,99 +28,65 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
 
     @Override
     public ItemStack injectItem(ItemStack stack, boolean doAdd, Direction from, DyeColor colour, double speed) {
-        if (this.world().isClient() || this.world() == null)
-        {
-            return ItemStack.EMPTY;
+        if(this.world().isClient) {
+            throw new IllegalStateException("Cannot inject items on the client side!");
         }
-        if (tileEntity.canSend()) {
-            ItemStack itemStack = null;
-            boolean success = false;
-            for ( IPipeTeleportTileEntity entity : TeleportManager.instance.getConnectedPipes(tileEntity, false, true) ) {
-                if (entity instanceof PipeItemsTeleportEntity) {
-                    //PipeItemsTeleportEntity pipe2 = PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(((PipeItemsTeleportEntity) entity).getPos()));
-                    PipeItemsTeleportEntity pipe2 = (PipeItemsTeleportEntity) entity;
-                    //PipePlus.log(Level.INFO, (pipe2.getWorld().isClient() ? "isClient" : "isServer"));
 
-                    itemStack = (pipe2.getFlow()).addItem(stack, doAdd, from, colour, speed);
-                    success = true;
-                    break;
-                }
-            }
-            if (success) {
-                return itemStack;
-            } else {
-                return super.injectItem(stack, doAdd, from, colour, speed);
-            }
-        } else {
-            return super.injectItem(stack, doAdd, from, colour, speed);
-        }
-    }
+        List<IPipeTeleportTileEntity> pipes = TeleportManager.instance.getPipes(tileEntity.getFrequency(), tileEntity.getOwnerUUID());
 
-    public ItemStack addItem(ItemStack stack, boolean doAdd, Direction from, DyeColor colour, double speed) {
-        //TeleportManager.printAllPipes(tileEntity.getFrequency());
-        // 謎にWorldがクライアント判定を出すのでTeleportManagerからPosとディメーションが一致したパイプを取り出す。
-        PipeItemsTeleportEntity targetPipe;
-        if (pipe.getPipeWorld().isClient()) {
+        for (IPipeTeleportTileEntity pipe : pipes) {
+            if(!(pipe instanceof PipeItemsTeleportEntity pipeTile)) {
+                continue;
+            }
+
+            if(pipeTile.pipeUUID == tileEntity.pipeUUID) {
+                continue;
+            }
+
+            lock();
+
+            //転送中にパイプが破壊された場合は中断
+            if(world().getBlockEntity(pipeTile.getPos()) == null || world().getBlockEntity(tileEntity.getPos()) == null) {
+                unlock();
+
+                return stack;
+            }
+
             try {
-            // なぜかここが解決のポイントとなった。
-            PipeItemsTeleportEntity tmpPipe = TeleportManager.getItemPipeFromPos(tileEntity.getPos(), tileEntity.getWorld(), tileEntity.getFrequency());
-            targetPipe = PipeItemsTeleportEntity.getTilePipe(tmpPipe.getWorld(), tileEntity.getPos());
-            } catch (NullPointerException e) {
-                return ItemStack.EMPTY;
+                if (tileEntity.canSend() && pipeTile.canReceive()) {
+                    ItemStack copy = stack.copy();
+
+                    copy.setSubNbt("pipeplus-teleporting", new NbtCompound());
+
+                    insertItemsForce(copy, from, colour, speed);
+
+                    pipeTile.getFlow().insertItemsForce(stack, from, colour, speed);
+
+                    return ItemStack.EMPTY;
+                }
+            } finally {
+                unlock();
             }
-        } else {
-            targetPipe = tileEntity;
-        }
-        /*
-        if (pipe.getPipeWorld().isClient() || pipe.getPipeWorld() == null)
-        {
-            //PipePlus.log(Level.INFO, "null");
-            return ItemStack.EMPTY;
-            //return super.injectItem(stack, doAdd, from, colour, speed);
         }
 
-         */
-        if (targetPipe.getWorld() == null)
-        {
-            //PipePlus.log(Level.INFO, "worldIsNull");
-            return ItemStack.EMPTY;
-        }
-        if (targetPipe.getWorld().isClient())
-        {
-            //PipePlus.log(Level.INFO, "isClient");
-            return ItemStack.EMPTY;
-        }
-
-        if (isNotConnected(targetPipe)) return targetPipe.getFlow().superInjectItem(stack, doAdd, from, colour, speed);
-        if (targetPipe.isConnected(Direction.UP)) from = Direction.UP;
-        if (targetPipe.isConnected(Direction.DOWN)) from = Direction.DOWN;
-        if (targetPipe.isConnected(Direction.NORTH)) from = Direction.NORTH;
-        if (targetPipe.isConnected(Direction.SOUTH)) from = Direction.SOUTH;
-        if (targetPipe.isConnected(Direction.EAST)) from = Direction.EAST;
-        if (targetPipe.isConnected(Direction.WEST)) from = Direction.WEST;
-        //PipePlus.log(Level.INFO, stack.getName().getString());
-
-        targetPipe.getFlow().superInjectItem(stack, doAdd, from, colour, speed);
-        return ItemStack.EMPTY;
+        return stack;
     }
 
-    public ItemStack superInjectItem(ItemStack stack, boolean doAdd, Direction from, DyeColor colour, double speed) {
-        return super.injectItem(stack, doAdd, from, colour, speed);
+    public void lock() {
+        mutex.lock();
     }
 
-    public boolean isNotConnected(PipeItemsTeleportEntity pipe) {
-        if(pipe.isConnected(Direction.UP)) return false;
-        if(pipe.isConnected(Direction.DOWN)) return false;
-        if(pipe.isConnected(Direction.NORTH)) return false;
-        if(pipe.isConnected(Direction.SOUTH)) return false;
-        if(pipe.isConnected(Direction.EAST)) return false;
-        if(pipe.isConnected(Direction.WEST)) return false;
-        //PipePlus.log(Level.INFO, "isNotConnected");
-        return true;
+    public void unlock() {
+        mutex.unlock();
     }
 
     @Override
     protected boolean canBounce() {
-        return super.canBounce();
+        return TeleportManager.instance.getPipes(tileEntity.getFrequency(), tileEntity.getOwnerUUID()).size() < 2;
+    }
+
+    @Override
+    protected List<EnumSet<Direction>> getOrderForItem(TravellingItem item, EnumSet<Direction> validDirections) {
+        return super.getOrderForItem(item, validDirections);
     }
 }

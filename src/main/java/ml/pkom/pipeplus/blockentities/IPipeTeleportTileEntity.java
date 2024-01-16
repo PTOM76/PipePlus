@@ -7,13 +7,11 @@ import java.util.UUID;
 
 public interface IPipeTeleportTileEntity {
 
-    public Integer frequency = 0;
+    public UUID getPipeUUID();
 
     public PipeSpFlowItem iFlow = null;
 
-    public default Integer getFrequency() {
-        return frequency;
-    }
+    public Integer getFrequency();
 
     public boolean canReceive();
 

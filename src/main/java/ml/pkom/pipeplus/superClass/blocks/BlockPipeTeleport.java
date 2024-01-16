@@ -1,11 +1,9 @@
 package ml.pkom.pipeplus.superClass.blocks;
 
 import alexiil.mc.mod.pipes.pipe.PipeSpDef;
-import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.blocks.ExtendBlockPipe;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -21,22 +19,18 @@ public abstract class BlockPipeTeleport extends ExtendBlockPipe {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hitResult) {
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (blockEntity instanceof PipeItemsTeleportEntity) {
-
-            //System.out.println(PipePlus.pos2str(pos));
-            if (!PipeItemsTeleportEntity.tileMap.containsKey(PipePlus.pos2str(pos))) PipeItemsTeleportEntity.tileMap.put(PipePlus.pos2str(pos), (PipeItemsTeleportEntity) blockEntity);
-            //System.out.println(PipeItemsTeleportEntity.tileMap);
-            if (!PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(pos)).canPlayerModifyPipe(player)) {
-                return ActionResult.FAIL;
-            }
-
-            if (!world.isClient) {
-                player.openHandledScreen((PipeItemsTeleportEntity) blockEntity);
-            }
-            return ActionResult.SUCCESS;
+        if(!(world.getBlockEntity(pos) instanceof PipeItemsTeleportEntity blockEntity)) {
+            return super.onUse(state, world, pos, player, hand, hitResult);
         }
 
-        return super.onUse(state, world, pos, player, hand, hitResult);
+        if(!blockEntity.canPlayerModifyPipe(player)) {
+            return ActionResult.FAIL;
+        }
+
+        if (!world.isClient) {
+            player.openHandledScreen(blockEntity);
+        }
+
+        return ActionResult.SUCCESS;
     }
 }
