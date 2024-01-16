@@ -62,7 +62,6 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
 
                     for (Direction value : Direction.values()) {
                         if(pipeTile.isConnected(value)) {
-                            System.out.println("Connected: " + value);
                             pipeTile.getFlow().insertItemsForce(stack, value.getOpposite(), colour, speed);
 
                             return ItemStack.EMPTY;
