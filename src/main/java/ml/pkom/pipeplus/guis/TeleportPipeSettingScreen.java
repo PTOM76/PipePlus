@@ -18,8 +18,6 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
 
     public PipeItemsTeleportEntity tile;
 
-    public String owner = "null";
-
     public void pipeModeBtnUpdate() {
         ServerNetwork.send("teleport_pipe.mode", tile.pipeModeInt);
         if (tile.pipeModeInt == 0) pipeMode.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.pipeMode.sendOnly"));
@@ -51,6 +49,7 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
             tile.modeIsPublic = true;
             button.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.openMode.public"));
         }
+        openModeBtnUpdate();
     }));
     public ButtonWidget numberAddー100 = ScreenUtil.createButtonWidget(12, 78, 34, 20, TextUtil.literal("-100"), (button -> {
         addFrequency(-100);
