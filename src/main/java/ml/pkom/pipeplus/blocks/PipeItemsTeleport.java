@@ -52,9 +52,9 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        super.onBreak(world, pos, state, player);
-
         if(!(world.getBlockEntity(pos) instanceof PipeItemsTeleportEntity pipeTile)) {
+            super.onBreak(world, pos, state, player);
+
             return;
         }
 
@@ -63,12 +63,12 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
             pipeTile.getFlow().lock();
 
             if (!pipeTile.canPlayerModifyPipe(player)) {
-                world.setBlockState(pos, state);
-
                 return;
             }
 
             TeleportManager.instance.removePipe(pipeTile);
+
+            super.onBreak(world, pos, state, player);
         }
         finally {
             pipeTile.getFlow().unlock();
