@@ -31,7 +31,7 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
             throw new IllegalStateException("Cannot inject items on the client side!");
         }
 
-        List<IPipeTeleportTileEntity> pipes = TeleportManager.instance.getPipes(tileEntity.getFrequency(), tileEntity.isPublic() ? null : tileEntity.getOwnerUUID());
+        List<IPipeTeleportTileEntity> pipes = TeleportManager.instance.getPipes(tileEntity.getFrequency());
 
         for (IPipeTeleportTileEntity pipe : pipes) {
             if(!(pipe instanceof PipeItemsTeleportEntity pipeTile)) {
@@ -39,6 +39,10 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
             }
 
             if(pipeTile.pipeUUID == tileEntity.pipeUUID) {
+                continue;
+            }
+
+            if(!pipeTile.canPlayerModifyPipe(tileEntity.getOwnerUUID())) {
                 continue;
             }
 
@@ -96,6 +100,6 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
 
     @Override
     protected boolean canBounce() {
-        return TeleportManager.instance.getPipes(tileEntity.getFrequency(), tileEntity.isPublic() ? null : tileEntity.getOwnerUUID()).size() < 2;
+        return TeleportManager.instance.getPipes(tileEntity.getFrequency()).size() < 2;
     }
 }

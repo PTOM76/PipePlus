@@ -90,22 +90,20 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
         return frequency;
     }
 
-    public boolean canPlayerModifyPipe(PlayerEntity player)
+    public boolean canPlayerModifyPipe(UUID uuid)
     {
-        if (owner == null) {
-            return true;
-        }
-
         if(modeIsPublic) {
             return true;
         }
 
-        if(owner.equals(player.getUuid())) {
+        if(owner.equals(uuid)) {
             return true;
         }
 
-        if(player.getAbilities().creativeMode) {
-            return true;
+        if(world.getPlayerByUuid(uuid) != null) {
+            if (world.getPlayerByUuid(uuid).getAbilities().creativeMode) {
+                return true;
+            }
         }
 
         if(owner.equals(UUID.fromString("00000000-0000-0000-0000-000000000000"))) {

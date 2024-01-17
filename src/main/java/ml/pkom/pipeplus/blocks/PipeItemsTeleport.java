@@ -58,7 +58,7 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
             return;
         }
 
-        if (!pipeTile.canPlayerModifyPipe(player)) {
+        if (!pipeTile.canPlayerModifyPipe(player.getUuid())) {
             return;
         }
 

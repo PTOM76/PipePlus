@@ -23,7 +23,7 @@ public abstract class BlockPipeTeleport extends ExtendBlockPipe {
             return super.onUse(state, world, pos, player, hand, hitResult);
         }
 
-        if(!blockEntity.canPlayerModifyPipe(player)) {
+        if(!blockEntity.canPlayerModifyPipe(player.getUuid())) {
             return ActionResult.FAIL;
         }
 
