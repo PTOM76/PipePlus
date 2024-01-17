@@ -59,15 +59,20 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
         }
 
         //転送中に破壊されないようにロック
-        pipeTile.getFlow().lock();
+        try {
+            pipeTile.getFlow().lock();
 
-        if(pipeTile.canPlayerModifyPipe(player)){
+            if (!pipeTile.canPlayerModifyPipe(player)) {
+                world.setBlockState(pos, state);
+
+                return;
+            }
+
             TeleportManager.instance.removePipe(pipeTile);
         }
-
-        pipeTile.getFlow().unlock();
-
-        world.setBlockState(pos, state);
+        finally {
+            pipeTile.getFlow().unlock();
+        }
     }
 
     @Override
