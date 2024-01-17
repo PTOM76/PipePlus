@@ -45,6 +45,7 @@ public class PipePlus implements ModInitializer {
         Items.registerInit();
         PipePlusContainers.load();
         ServerNetwork.init();
+        TeleportManager.register();
         ServerLifecycleEvents.SERVER_STOPPED.register((server -> {
             TeleportManager.instance.reset();
         }));

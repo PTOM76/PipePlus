@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
@@ -41,18 +42,21 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
                 continue;
             }
 
-            lock();
-            pipeTile.getFlow().lock();
-
-            //転送中にパイプが破壊された場合は中断
-            if(world().getBlockEntity(pipeTile.getPos()) == null || world().getBlockEntity(tileEntity.getPos()) == null) {
-                unlock();
-                pipeTile.getFlow().unlock();
-
-                return stack;
-            }
-
             try {
+                lock();
+                pipeTile.getFlow().lock();
+
+                World targetWorld = pipeTile.getWorld();
+
+                if(targetWorld == null) {
+                    return stack;
+                }
+
+                //転送中にパイプが破壊された場合は中断
+                if (targetWorld.getBlockEntity(pipeTile.getPos()) == null || world().getBlockEntity(tileEntity.getPos()) == null) {
+                    return stack;
+                }
+
                 if (tileEntity.canSend() && pipeTile.canReceive()) {
                     ItemStack copy = stack.copy();
 
@@ -61,7 +65,7 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
                     insertItemsForce(copy, from, colour, speed);
 
                     for (Direction value : Direction.values()) {
-                        if(pipeTile.isConnected(value)) {
+                        if (pipeTile.isConnected(value)) {
                             pipeTile.getFlow().insertItemsForce(stack, value.getOpposite(), colour, speed);
 
                             return ItemStack.EMPTY;
@@ -71,6 +75,7 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
                     pipeTile.getFlow().insertItemsForce(stack, from, colour, speed);
 
                     return ItemStack.EMPTY;
+
                 }
             } finally {
                 unlock();
