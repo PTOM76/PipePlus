@@ -58,13 +58,13 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
             return;
         }
 
+        if (!pipeTile.canPlayerModifyPipe(player)) {
+            return;
+        }
+
         //転送中に破壊されないようにロック
         try {
             pipeTile.getFlow().lock();
-
-            if (!pipeTile.canPlayerModifyPipe(player)) {
-                return;
-            }
 
             TeleportManager.instance.removePipe(pipeTile);
 
