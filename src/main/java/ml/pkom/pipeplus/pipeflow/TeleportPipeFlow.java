@@ -16,13 +16,13 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class TeleportPipeFlow extends PipeSpFlowItem {
 
-    public PipeItemsTeleportEntity tileEntity;
+    public PipeItemsTeleportEntity inputPipeTile;
     private ReentrantLock mutex = new ReentrantLock();
 
 
     public TeleportPipeFlow(TilePipe pipe) {
         super(pipe);
-        tileEntity = (PipeItemsTeleportEntity) pipe;
+        inputPipeTile = (PipeItemsTeleportEntity) pipe;
     }
 
     @Override
@@ -31,37 +31,42 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
             throw new IllegalStateException("Cannot inject items on the client side!");
         }
 
-        List<IPipeTeleportTileEntity> pipes = TeleportManager.instance.getPipes(tileEntity.getFrequency());
+        List<IPipeTeleportTileEntity> pipes = TeleportManager.instance.getPipes(inputPipeTile.getFrequency());
 
         for (IPipeTeleportTileEntity pipe : pipes) {
-            if(!(pipe instanceof PipeItemsTeleportEntity pipeTile)) {
+            if(!(pipe instanceof PipeItemsTeleportEntity outputPipeTile)) {
                 continue;
             }
 
-            if(pipeTile.pipeUUID == tileEntity.pipeUUID) {
+            if(outputPipeTile.pipeUUID == inputPipeTile.pipeUUID) {
                 continue;
             }
 
-            if(!pipeTile.canPlayerModifyPipe(tileEntity.getOwnerUUID())) {
+            if(!outputPipeTile.canPlayerModifyPipe(inputPipeTile.getOwnerUUID())) {
+                continue;
+            }
+
+            //送信先と受信先の公開モードが同一でない場合は除外
+            if(outputPipeTile.isPublic() != inputPipeTile.isPublic()) {
                 continue;
             }
 
             try {
                 lock();
-                pipeTile.getFlow().lock();
+                outputPipeTile.getFlow().lock();
 
-                World targetWorld = pipeTile.getWorld();
+                World targetWorld = outputPipeTile.getWorld();
 
                 if(targetWorld == null) {
                     return stack;
                 }
 
                 //転送中にパイプが破壊された場合は中断
-                if (targetWorld.getBlockEntity(pipeTile.getPos()) == null || world().getBlockEntity(tileEntity.getPos()) == null) {
+                if (targetWorld.getBlockEntity(outputPipeTile.getPos()) == null || world().getBlockEntity(inputPipeTile.getPos()) == null) {
                     return stack;
                 }
 
-                if (tileEntity.canSend() && pipeTile.canReceive()) {
+                if (inputPipeTile.canSend() && outputPipeTile.canReceive()) {
                     ItemStack copy = stack.copy();
 
                     copy.setSubNbt("pipeplus-teleporting", new NbtCompound());
@@ -69,21 +74,21 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
                     insertItemsForce(copy, from, colour, speed);
 
                     for (Direction value : Direction.values()) {
-                        if (pipeTile.isConnected(value)) {
-                            pipeTile.getFlow().insertItemsForce(stack, value.getOpposite(), colour, speed);
+                        if (outputPipeTile.isConnected(value)) {
+                            outputPipeTile.getFlow().insertItemsForce(stack, value.getOpposite(), colour, speed);
 
                             return ItemStack.EMPTY;
                         }
                     }
 
-                    pipeTile.getFlow().insertItemsForce(stack, from, colour, speed);
+                    outputPipeTile.getFlow().insertItemsForce(stack, from, colour, speed);
 
                     return ItemStack.EMPTY;
 
                 }
             } finally {
                 unlock();
-                pipeTile.getFlow().unlock();
+                outputPipeTile.getFlow().unlock();
             }
         }
 
@@ -100,6 +105,6 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
 
     @Override
     protected boolean canBounce() {
-        return TeleportManager.instance.getPipes(tileEntity.getFrequency()).size() < 2;
+        return TeleportManager.instance.getPipes(inputPipeTile.getFrequency()).size() < 2;
     }
 }
