@@ -31,6 +31,9 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
             throw new IllegalStateException("Cannot inject items on the client side!");
         }
 
+        //なんらかの理由で転送途中にドロップしたアイテムのNBTを削除
+        stack.removeSubNbt("pipeplus-teleporting");
+
         List<IPipeTeleportTileEntity> pipes = TeleportManager.instance.getPipes(inputPipeTile.getFrequency());
 
         for (IPipeTeleportTileEntity pipe : pipes) {
