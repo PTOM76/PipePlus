@@ -16,7 +16,7 @@ import net.minecraft.client.render.RenderLayer;
 public class PipePlusClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        PipePlusScreens.load();
+        PipePlusScreens.register();
         registerItemPipeRender(BlockEntities.OBSIDIAN_PIPE_ENTITY);
         setCutoutLayer(Blocks.OBSIDIAN_PIPE);
         registerItemPipeRender(BlockEntities.ENDER_PIPE_ENTITY);

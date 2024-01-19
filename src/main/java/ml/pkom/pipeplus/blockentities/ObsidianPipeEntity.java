@@ -4,13 +4,13 @@ import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import alexiil.mc.mod.pipes.pipe.TravellingItem;
 import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
 import ml.pkom.pipeplus.blocks.Blocks;
+import ml.pkom.pipeplus.util.PipeUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.predicate.entity.EntityPredicates;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 
 import java.util.List;
@@ -45,13 +45,18 @@ public class ObsidianPipeEntity extends ExtendTilePipe {
 
     public static boolean extract(ObsidianPipeEntity entity) {
         List<ItemEntity> itemsList = getInputItemEntities(entity);
-        if (itemsList.isEmpty())
+        if (itemsList.isEmpty()) {
             return false;
-        if (entity.isNotConnected())
+        }
+
+        if (PipeUtil.isNotConnectedPipe(entity)) {
             return false;
+        }
+
         NbtCompound nbt = new NbtCompound();
         NbtList tagList = new NbtList();
         long tickNow = entity.getWorldTime();
+
         for (ItemEntity itemEntity : itemsList) {
             TravellingItem item = new TravellingItem(itemEntity.getStack());
             tagList.add(item.writeToNbt(tickNow));
@@ -59,16 +64,6 @@ public class ObsidianPipeEntity extends ExtendTilePipe {
         }
         nbt.put("items", tagList);
         entity.getFlow().fromTag(nbt);
-        return true;
-    }
-
-    public boolean isNotConnected() {
-        if(this.isConnected(Direction.UP)) return false;
-        if(this.isConnected(Direction.DOWN)) return false;
-        if(this.isConnected(Direction.NORTH)) return false;
-        if(this.isConnected(Direction.SOUTH)) return false;
-        if(this.isConnected(Direction.EAST)) return false;
-        if(this.isConnected(Direction.WEST)) return false;
         return true;
     }
 

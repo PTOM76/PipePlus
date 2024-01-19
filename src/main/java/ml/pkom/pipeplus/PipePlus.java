@@ -5,7 +5,6 @@ import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import ml.pkom.mcpitanlibarch.api.item.CreativeTabBuilder;
 import ml.pkom.mcpitanlibarch.api.registry.ArchRegistry;
 import ml.pkom.pipeplus.blockentities.BlockEntities;
-import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.blocks.Blocks;
 import ml.pkom.pipeplus.config.PipePlusConfig;
 import ml.pkom.pipeplus.guis.PipePlusContainers;
@@ -20,8 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.LinkedHashMap;
 
 public class PipePlus implements ModInitializer {
 
@@ -48,9 +45,9 @@ public class PipePlus implements ModInitializer {
         Items.registerInit();
         PipePlusContainers.load();
         ServerNetwork.init();
+        TeleportManager.register();
         ServerLifecycleEvents.SERVER_STOPPED.register((server -> {
             TeleportManager.instance.reset();
-            PipeItemsTeleportEntity.tileMap = new LinkedHashMap<>();
         }));
     }
 

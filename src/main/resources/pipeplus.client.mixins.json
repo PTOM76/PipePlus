@@ -4,7 +4,8 @@
   "package": "ml.pkom.pipeplus.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "AddPipeMixin"
+    "AddPipeMixin",
+    "PipeSpFlowItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -4,29 +4,22 @@ import ml.pkom.mcpitanlibarch.api.util.TextUtil;
 import ml.pkom.mcpitanlibarch.api.util.client.ScreenUtil;
 import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.ServerNetwork;
-import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.blocks.Blocks;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import java.util.UUID;
-
 public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSettingHandler> {
-    public static final HandledScreens.Provider<TeleportPipeSettingHandler, TeleportPipeSettingScreen> FACTORY = TeleportPipeSettingScreen::new;
     private static final Identifier GUI = PipePlus.id("textures/gui/background_generic.png");
 
     public PipeItemsTeleportEntity tile;
 
-    public String owner = "null";
-
     public void pipeModeBtnUpdate() {
-        ServerNetwork.send("teleportPipe.mode", tile.pipeModeInt);
+        ServerNetwork.send("teleport_pipe.mode", tile.pipeModeInt);
         if (tile.pipeModeInt == 0) pipeMode.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.pipeMode.sendOnly"));
         if (tile.pipeModeInt == 1) pipeMode.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.pipeMode.receive_only"));
         if (tile.pipeModeInt == 2) pipeMode.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.pipeMode.send_and_receive"));
@@ -34,7 +27,7 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
     }
 
     public void openModeBtnUpdate() {
-        ServerNetwork.send("teleportPipe.isPublic", tile.modeIsPublic);
+        ServerNetwork.send("teleport_pipe.is_public", tile.modeIsPublic);
         if (tile.modeIsPublic) {
             openMode.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.openMode.public"));
         } else {
@@ -56,6 +49,7 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
             tile.modeIsPublic = true;
             button.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.openMode.public"));
         }
+        openModeBtnUpdate();
     }));
     public ButtonWidget numberAddー100 = ScreenUtil.createButtonWidget(12, 78, 34, 20, TextUtil.literal("-100"), (button -> {
         addFrequency(-100);
@@ -78,43 +72,18 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
 
 
     public void addFrequency(int i) {
-        int m = tile.frequency;
-        tile.frequency = Math.max(tile.frequency + i, 0);
-        ServerNetwork.send("teleportPipe.frequency", tile.frequency);
-        TeleportManager.instance.remove(tile, m);
-        TeleportManager.instance.add(tile, tile.frequency);
-    }
+        int newFrequency = Math.max(tile.frequency + i, 0);
+        tile.frequency = newFrequency;
 
-    private int posX;
-    private int posY;
-    private int posZ;
+        ServerNetwork.send("teleport_pipe.frequency", newFrequency);
+    }
 
     public TeleportPipeSettingScreen(TeleportPipeSettingHandler container, PlayerInventory inv, Text title) {
         super(container, container.player.getInventory(), Blocks.PIPE_ITEMS_TELEPORT.getName());
-        tile = PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(container.tile.getPos()));
-        posX = tile.getPos().getX();
-        posY = tile.getPos().getY();
-        posZ = tile.getPos().getZ();
-
-        if(tile.owner != null) {
-            if (tile.owner.equals(UUID.fromString("00000000-0000-0000-0000-000000000000"))) {
-                owner = tile.ownerName;
-            } else {
-                try {
-                    tile.ownerName = tile.getWorld().getPlayerByUuid(tile.owner).getName().getString();
-                    owner = tile.ownerName;
-                } catch (NullPointerException e) {
-                    owner = tile.ownerName;
-                }
-            }
-        } else {
-            owner = tile.ownerName;
-        }
+        tile = container.tile;
 
         pipeModeBtnUpdate();
         openModeBtnUpdate();
-        this.backgroundWidth = 227;
-        this.backgroundHeight = 116;
     }
 
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
@@ -165,11 +134,23 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
     }
 
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+        int posX = handler.tile.getPos().getX();
+        int posY = handler.tile.getPos().getY();
+        int posZ = handler.tile.getPos().getZ();
+
         x = (this.width - this.backgroundWidth) / 2;
         y = (this.height - this.backgroundHeight) / 2;
         this.textRenderer.draw(matrices, this.title, 71, 7, 0x0a0c84);
-        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.owner", owner), 12, 22, 4210752);
+        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.owner", handler.tile.ownerName), 12, 22, 4210752);
         this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.coords", posX, posY, posZ), 110, 22, 4210752);
-        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.frequency", tile.frequency), 16, 68, 4210752);
+        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.frequency", handler.tile.frequency), 16, 68, 4210752);
+    }
+
+    @Override
+    protected void init() {
+        super.init();
+
+        this.backgroundWidth = 227;
+        this.backgroundHeight = 116;
     }
 }

@@ -1,122 +1,85 @@
 package ml.pkom.pipeplus;
 
-import com.google.common.collect.LinkedListMultimap;
-import com.google.common.collect.Multimap;
 import ml.pkom.pipeplus.blockentities.IPipeTeleportTileEntity;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import org.apache.logging.log4j.Level;
 
 import java.util.*;
 
 public class TeleportManager {
     public static final TeleportManager instance = new TeleportManager();
-
-    private static HashMap<TeleportPipeType, Multimap<Integer, IPipeTeleportTileEntity>> pipes;
-
-    public final Map<Integer, String> frequencyNames;
-
-    public TeleportManager() {
-        pipes = new HashMap<>();
-
-        for(TeleportPipeType type : TeleportPipeType.values())
-        {
-            pipes.put(type, LinkedListMultimap.<Integer, IPipeTeleportTileEntity>create());
-        }
-
-        frequencyNames = new HashMap<Integer, String>();
+    private static final Map<UUID, IPipeTeleportTileEntity> allPipes = new LinkedHashMap<>();
+    private static final Set<UUID> unloadedPipes = new HashSet<>();
+    public List<IPipeTeleportTileEntity> getPipes(int frequency) {
+        return allPipes
+                .values()
+                .stream()
+                .filter(pipe -> pipe.getFrequency() == frequency)
+                .filter(pipe -> !unloadedPipes.contains(pipe.getPipeUUID()))
+                .toList();
     }
 
-    private Collection<IPipeTeleportTileEntity> getPipesInChannel(int frequency, TeleportPipeType type)
-    {
-        return pipes.get(type).get(frequency);
+    public IPipeTeleportTileEntity getPipe(UUID pipeUUID) {
+        return allPipes.get(pipeUUID);
     }
 
-    public void add(IPipeTeleportTileEntity newPipe, int frequency) {
-        Collection<IPipeTeleportTileEntity> pipesInChannel = pipes.get(newPipe.getPipeType()).get(frequency);
-        for(Iterator<IPipeTeleportTileEntity> pipesIter = pipesInChannel.iterator(); pipesIter.hasNext(); )
-        {
-            IPipeTeleportTileEntity pipe = pipesIter.next();
-            if(pipe.equals(newPipe))
-            {
-                pipesIter.remove();
-            }
-        }
-        pipesInChannel.add(newPipe);
-
+    public void addPipe(IPipeTeleportTileEntity pipe) {
+        allPipes.put(pipe.getPipeUUID(), pipe);
     }
 
-    public void remove(IPipeTeleportTileEntity pipeToRemove, int frequency) {
-        Collection<IPipeTeleportTileEntity> pipesInChannel = pipes.get(pipeToRemove.getPipeType()).get(frequency);
-        for(Iterator<IPipeTeleportTileEntity> pipesIter = pipesInChannel.iterator(); pipesIter.hasNext(); )
-        {
-            IPipeTeleportTileEntity pipe = pipesIter.next();
-            if(pipe.equals(pipeToRemove))
-            {
-                pipesIter.remove();
-            }
-        }
-
+    public void removePipe(IPipeTeleportTileEntity pipe) {
+        allPipes.remove(pipe.getPipeUUID());
     }
 
     public void reset() {
-        for(TeleportPipeType type : TeleportPipeType.values())
-        {
-            pipes.get(type).clear();
-        }
-
-        frequencyNames.clear();
+        allPipes.clear();
+        unloadedPipes.clear();
     }
 
-    public static PipeItemsTeleportEntity getItemPipeFromPos(BlockPos pos, World world, int frequency) {
-        for (IPipeTeleportTileEntity v:
-                instance.getPipesInChannel(frequency, TeleportPipeType.ITEMS)) {
-            PipeItemsTeleportEntity pipe = (PipeItemsTeleportEntity) v;
-            if (pipe.getPos().equals(pos) && pipe.getWorld().getDimension().equals(world.getDimension()))
-                if (FabricLoader.getInstance().getEnvironmentType().equals(EnvType.SERVER)) {
-                    if (pipe.getWorld().isClient()) continue;
+    public static void register() {
+        ServerChunkEvents.CHUNK_LOAD.register((world, chunk) -> {
+            for (Map.Entry<BlockPos, BlockEntity> blockEntity : chunk.getBlockEntities().entrySet()) {
+                if(!(blockEntity.getValue() instanceof IPipeTeleportTileEntity pipe)) {
+                    continue;
                 }
-                return pipe;
-        }
-        return null;
-    }
 
-    public static void printAllPipes(int frequency) {
-        for (IPipeTeleportTileEntity v:
-                instance.getPipesInChannel(frequency, TeleportPipeType.ITEMS)) {
-            PipeItemsTeleportEntity pipe = (PipeItemsTeleportEntity) v;
-            PipePlus.log(Level.INFO, "Frequency: " + pipe.getFrequency() + "\n" +
-            "uuid: " + pipe.getOwnerUUID() +
-            "name: " + pipe.ownerName +
-            "env: " + (pipe.getWorld().isClient() ? "isClient" : "isServer") +
-            "pos: " + pipe.getPos());
-        }
-    }
+                unloadedPipes.remove(pipe.getPipeUUID());
+            }
+        });
 
-    public ArrayList<IPipeTeleportTileEntity> getConnectedPipes(IPipeTeleportTileEntity pipe, boolean includeSend, boolean includeReceive)
-    {
-        Collection<IPipeTeleportTileEntity> channel = getPipesInChannel(pipe.getFrequency(), pipe.getPipeType());
-
-        ArrayList<IPipeTeleportTileEntity> connected = new ArrayList<IPipeTeleportTileEntity>();
-
-        for(IPipeTeleportTileEntity other : channel)
-        {
-            if(pipe != other)
-            {
-                if((other.canReceive() && includeReceive) || (other.canSend() && includeSend))
-                {
-                    if(pipe.isPublic() ? other.isPublic() : (other.getOwnerUUID() != null && other.getOwnerUUID().equals(pipe.getOwnerUUID())))
-                    {
-                        connected.add(other);
-                    }
+        ServerChunkEvents.CHUNK_UNLOAD.register((world, chunk) -> {
+            for (Map.Entry<BlockPos, BlockEntity> blockEntity : chunk.getBlockEntities().entrySet()) {
+                if(!(blockEntity.getValue() instanceof IPipeTeleportTileEntity pipe)) {
+                    continue;
                 }
+
+                unloadedPipes.add(pipe.getPipeUUID());
+            }
+        });
+
+        PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, blockEntity) -> {
+            if(!(world.getBlockEntity(pos) instanceof PipeItemsTeleportEntity pipeTile)) {
+                return true;
             }
 
-        }
-        return connected;
-    }
+            if (!pipeTile.canPlayerModifyPipe(player.getUuid())) {
+                return false;
+            }
 
+            //転送中に破壊されないようにロック
+            try {
+                pipeTile.getFlow().lock();
+
+                TeleportManager.instance.removePipe(pipeTile);
+
+                return true;
+            }
+            finally {
+                pipeTile.getFlow().unlock();
+            }
+        });
+    }
 }

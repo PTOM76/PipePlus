@@ -1,9 +1,9 @@
 package ml.pkom.pipeplus;
 
+import ml.pkom.mcpitanlibarch.api.network.ClientNetworking;
+import ml.pkom.mcpitanlibarch.api.network.PacketByteUtil;
+import ml.pkom.mcpitanlibarch.api.network.ServerNetworking;
 import ml.pkom.pipeplus.guis.TeleportPipeSettingHandler;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
@@ -15,34 +15,40 @@ public class ServerNetwork {
     public static Identifier id = PipePlus.id("network");
 
     public static void init() {
-        ServerPlayNetworking.registerGlobalReceiver(id, ((server, player, handler, buf, responseSender) -> {
-            NbtCompound tag = buf.readNbt();
-            String type = tag.getString("type");
-            if (tag.contains("teleportPipe.frequency")) {
-                if (!(player.currentScreenHandler instanceof TeleportPipeSettingHandler)) return;
-                TeleportPipeSettingHandler gui = (TeleportPipeSettingHandler) player.currentScreenHandler;
-                TeleportManager.instance.remove(gui.tile, gui.tile.frequency);
-                gui.tile.frequency = tag.getInt("teleportPipe.frequency");
-                TeleportManager.instance.add(gui.tile, gui.tile.frequency);
+        ServerNetworking.registerReceiver(id, ((server, player, buf) -> {
+            NbtCompound nbt = PacketByteUtil.readNbt(buf);
+
+            if(nbt.contains("teleport_pipe.frequency")) {
+                if(!(player.currentScreenHandler instanceof TeleportPipeSettingHandler gui)) {
+                    return;
+                }
+
+                gui.tile.frequency = nbt.getInt("teleport_pipe.frequency");
             }
-            if (tag.contains("teleportPipe.mode")) {
-                if (!(player.currentScreenHandler instanceof TeleportPipeSettingHandler)) return;
-                TeleportPipeSettingHandler gui = (TeleportPipeSettingHandler) player.currentScreenHandler;
-                gui.tile.pipeModeInt = tag.getInt("teleportPipe.mode");
+
+            if(nbt.contains("teleport_pipe.mode")) {
+                if(!(player.currentScreenHandler instanceof TeleportPipeSettingHandler gui)) {
+                    return;
+                }
+
+                gui.tile.pipeModeInt = nbt.getInt("teleport_pipe.mode");
             }
-            if (tag.contains("teleportPipe.isPublic")) {
-                if (!(player.currentScreenHandler instanceof TeleportPipeSettingHandler)) return;
-                TeleportPipeSettingHandler gui = (TeleportPipeSettingHandler) player.currentScreenHandler;
-                gui.tile.modeIsPublic = tag.getBoolean("teleportPipe.isPublic");
+
+            if(nbt.contains("teleport_pipe.is_public")) {
+                if(!(player.currentScreenHandler instanceof TeleportPipeSettingHandler gui)) {
+                    return;
+                }
+
+                gui.tile.modeIsPublic = nbt.getBoolean("teleport_pipe.is_public");
             }
         }));
     }
 
     // とりあえずTagで管理する
     public static void send(NbtCompound tag) {
-        PacketByteBuf buf = PacketByteBufs.create();
+        PacketByteBuf buf = PacketByteUtil.create();
         buf.writeNbt(tag);
-        ClientPlayNetworking.send(id, buf);
+        ClientNetworking.send(id, buf);
     }
 
     public static void send(String key, String string) {

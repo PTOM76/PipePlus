@@ -3,7 +3,6 @@ package ml.pkom.pipeplus.blocks;
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
 import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
-import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.parts.PipePlusParts;
@@ -38,28 +37,42 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity entity, ItemStack stack) {
         super.onPlaced(world, pos, state, entity, stack);
-        if (entity instanceof PlayerEntity) {
-            UUID owner = entity.getUuid();
-            if (PipeItemsTeleportEntity.getTilePipe(world, pos) == null) return;
-            PipeItemsTeleportEntity pipe = PipeItemsTeleportEntity.getTilePipe(world, pos);
-            TeleportManager.instance.remove(pipe, pipe.getFrequency());
-            pipe.setOwnerNameAndUUID(owner);
-            // なぜかサーバーまでもクライアント判定になるのでここで修正を入れる。
-            pipe.setWorld(world);
-            TeleportManager.instance.add(pipe, pipe.getFrequency());
+
+        if(!(world.getBlockEntity(pos) instanceof PipeItemsTeleportEntity pipeTile)) {
+            return;
         }
+
+        if(!(entity instanceof PlayerEntity player)) {
+            return;
+        }
+
+        UUID owner = player.getUuid();
+        pipeTile.setOwnerNameAndUUID(owner);
     }
 
     @Override
     public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        super.onBreak(world, pos, state, player);
-        if (!PipeItemsTeleportEntity.tileMap.containsKey(PipePlus.pos2str(pos))) return;
-        if (PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(pos)).canPlayerModifyPipe(player)) {
-            TeleportManager.instance.remove(PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(pos)), PipeItemsTeleportEntity.tileMap.get(PipePlus.pos2str(pos)).frequency);
-            PipeItemsTeleportEntity.tileMap.remove(PipePlus.pos2str(pos));
+        if(!(world.getBlockEntity(pos) instanceof PipeItemsTeleportEntity pipeTile)) {
+            super.onBreak(world, pos, state, player);
+
             return;
         }
-        world.setBlockState(pos, state);
+
+        if (!pipeTile.canPlayerModifyPipe(player.getUuid())) {
+            return;
+        }
+
+        //転送中に破壊されないようにロック
+        try {
+            pipeTile.getFlow().lock();
+
+            TeleportManager.instance.removePipe(pipeTile);
+
+            super.onBreak(world, pos, state, player);
+        }
+        finally {
+            pipeTile.getFlow().unlock();
+        }
     }
 
     @Override

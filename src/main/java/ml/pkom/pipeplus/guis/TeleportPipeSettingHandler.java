@@ -28,8 +28,10 @@ public class TeleportPipeSettingHandler extends ExtendedScreenHandler {
         PlayerEntity player = inv.player;
         BlockPos pos = buf.readBlockPos();
         BlockEntity be = player.world.getBlockEntity(pos);
-        if (be instanceof PipeItemsTeleportEntity)
+
+        if (be instanceof PipeItemsTeleportEntity) {
             this.tile = (PipeItemsTeleportEntity) be;
+        }
     }
 
     @Override
