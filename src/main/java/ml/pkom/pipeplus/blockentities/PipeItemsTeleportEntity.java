@@ -11,10 +11,7 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -122,32 +119,7 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
     public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
 
-        if(tag.contains("pipe_uuid")) {
-            pipeUUID = tag.getUuid("pipe_uuid");
-        }
-
-        if(tag.contains("owner")) {
-            owner = tag.getUuid("owner");
-        }
-
-        if(tag.contains("owner_name")) {
-            ownerName = tag.getString("owner_name");
-        }
-        else if(getWorld().getPlayerByUuid(owner) != null) {
-            ownerName = getWorld().getPlayerByUuid(owner).getName().getString();
-        }
-
-        if(tag.contains("is_public")) {
-            modeIsPublic = tag.getBoolean("is_public");
-        }
-
-        if(tag.contains("pipe_mode")) {
-            pipeModeInt = tag.getInt("pipe_mode");
-        }
-
-        if(tag.contains("frequency")) {
-            frequency = tag.getInt("frequency");
-        }
+        loadNBT(tag);
     }
 
 
@@ -163,15 +135,47 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
         super.writeNbt(tag);
     }
 
-    @Nullable
     @Override
-    public Packet<ClientPlayPacketListener> toUpdatePacket() {
-        return BlockEntityUpdateS2CPacket.create(this);
+    public void readPacket(NbtCompound tag) {
+        super.readPacket(tag);
+
+        loadNBT(tag);
     }
 
     @Override
-    public NbtCompound toInitialChunkDataNbt() {
-        return createNbt();
+    public NbtCompound toClientTag(NbtCompound tag) {
+        writeNbt(tag);
+
+        return super.toClientTag(tag);
+    }
+
+    private void loadNBT(NbtCompound nbt) {
+        if(nbt.contains("pipe_uuid")) {
+            pipeUUID = nbt.getUuid("pipe_uuid");
+        }
+
+        if(nbt.contains("owner")) {
+            owner = nbt.getUuid("owner");
+        }
+
+        if(nbt.contains("owner_name")) {
+            ownerName = nbt.getString("owner_name");
+        }
+        else if(getWorld().getPlayerByUuid(owner) != null) {
+            ownerName = getWorld().getPlayerByUuid(owner).getName().getString();
+        }
+
+        if(nbt.contains("is_public")) {
+            modeIsPublic = nbt.getBoolean("is_public");
+        }
+
+        if(nbt.contains("pipe_mode")) {
+            pipeModeInt = nbt.getInt("pipe_mode");
+        }
+
+        if(nbt.contains("frequency")) {
+            frequency = nbt.getInt("frequency");
+        }
     }
 
     public void debug() {
