@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTeleportTileEntity, ExtendedScreenHandlerFactory {
-    public UUID pipeUUID = UUID.randomUUID();;
+    public UUID pipeUUID = UUID.randomUUID();
     public UUID owner = UUID.fromString("00000000-0000-0000-0000-000000000000");
     public String ownerName = "";
     public Boolean modeIsPublic = false;

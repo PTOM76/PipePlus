@@ -1,7 +1,9 @@
 package ml.pkom.pipeplus;
 
 import ml.pkom.pipeplus.blockentities.IPipeTeleportTileEntity;
+import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 
@@ -55,6 +57,28 @@ public class TeleportManager {
                 }
 
                 unloadedPipes.add(pipe.getPipeUUID());
+            }
+        });
+
+        PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, blockEntity) -> {
+            if(!(blockEntity instanceof PipeItemsTeleportEntity pipeTile)) {
+                return true;
+            }
+
+            if (!pipeTile.canPlayerModifyPipe(player.getUuid())) {
+                return false;
+            }
+
+            //転送中に破壊されないようにロック
+            try {
+                pipeTile.getFlow().lock();
+
+                TeleportManager.instance.removePipe(pipeTile);
+
+                return true;
+            }
+            finally {
+                pipeTile.getFlow().unlock();
             }
         });
     }
