@@ -6,7 +6,6 @@ import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.IPipeTeleportTileEntity;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -30,9 +29,6 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
         if(this.world().isClient) {
             throw new IllegalStateException("Cannot inject items on the client side!");
         }
-
-        //なんらかの理由で転送途中にドロップしたアイテムのNBTを削除
-        stack.removeSubNbt("pipeplus-teleporting");
 
         List<IPipeTeleportTileEntity> pipes = TeleportManager.instance.getPipes(inputPipeTile.getFrequency());
 
@@ -72,7 +68,7 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
                 if (inputPipeTile.canSend() && outputPipeTile.canReceive()) {
                     ItemStack copy = stack.copy();
 
-                    copy.setSubNbt("pipeplus-teleporting", new NbtCompound());
+                    copy.setCount(0);
 
                     insertItemsForce(copy, from, colour, speed);
 
@@ -108,10 +104,5 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
 
     public void unlock() {
         mutex.unlock();
-    }
-
-    @Override
-    protected boolean canBounce() {
-        return TeleportManager.instance.getPipes(inputPipeTile.getFrequency()).size() < 2;
     }
 }
