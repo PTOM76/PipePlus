@@ -6,12 +6,15 @@ import ml.pkom.pipeplus.PipePlus;
 import ml.pkom.pipeplus.ServerNetwork;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.blocks.Blocks;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.apache.logging.log4j.Level;
 
 public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSettingHandler> {
     private static final Identifier GUI = PipePlus.id("textures/gui/background_generic.png");
@@ -51,39 +54,52 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         openModeBtnUpdate();
         ServerNetwork.send("teleport_pipe.is_public", tile.modeIsPublic);
     }));
-    public ButtonWidget numberAddー100 = ScreenUtil.createButtonWidget(12, 78, 34, 20, TextUtil.literal("-100"), (button -> {
+    public ButtonWidget numberAddー100 = ScreenUtil.createButtonWidget(12, 85, 34, 20, TextUtil.literal("-100"), (button -> {
         addFrequency(-100);
     }));
-    public ButtonWidget numberAddー10 = ScreenUtil.createButtonWidget(46, 78, 34, 20, TextUtil.literal("-10"), (button -> {
+    public ButtonWidget numberAddー10 = ScreenUtil.createButtonWidget(46, 85, 34, 20, TextUtil.literal("-10"), (button -> {
         addFrequency(-10);
     }));
-    public ButtonWidget numberAddー1 = ScreenUtil.createButtonWidget(80, 78, 34, 20, TextUtil.literal("-1"), (button -> {
+    public ButtonWidget numberAddー1 = ScreenUtil.createButtonWidget(80, 85, 34, 20, TextUtil.literal("-1"), (button -> {
         addFrequency(-1);
     }));
-    public ButtonWidget numberAdd十1 = ScreenUtil.createButtonWidget(114, 78, 34, 20, TextUtil.literal("+1"), (button -> {
+    public ButtonWidget numberAdd十1 = ScreenUtil.createButtonWidget(114, 85, 34, 20, TextUtil.literal("+1"), (button -> {
         addFrequency(1);
     }));
-    public ButtonWidget numberAdd十10 = ScreenUtil.createButtonWidget(148, 78, 34, 20, TextUtil.literal("+10"), (button -> {
+    public ButtonWidget numberAdd十10 = ScreenUtil.createButtonWidget(148, 85, 34, 20, TextUtil.literal("+10"), (button -> {
         addFrequency(10);
     }));
-    public ButtonWidget numberAdd十100 = ScreenUtil.createButtonWidget(182, 78, 34, 20, TextUtil.literal("+100"), (button -> {
+    public ButtonWidget numberAdd十100 = ScreenUtil.createButtonWidget(182, 85, 34, 20, TextUtil.literal("+100"), (button -> {
         addFrequency(100);
     }));
 
+    public TextFieldWidget frequencySetting = new TextFieldWidget(MinecraftClient.getInstance().textRenderer, 12, 60, 204, 20, TextUtil.literal("0")) {
+        @Override
+        public boolean charTyped(char chr, int modifiers) {
+            if(!Character.isDigit(chr)) {
+                return false;
+            }
+
+            return super.charTyped(chr, modifiers);
+        }
+    };
 
     public void addFrequency(int i) {
         int newFrequency = Math.max(tile.frequency + i, 0);
-        tile.frequency = newFrequency;
 
-        ServerNetwork.send("teleport_pipe.frequency", newFrequency);
+        setFrequency(newFrequency);
+    }
+
+    public void setFrequency(int value) {
+        tile.frequency = value;
+        frequencySetting.setText(String.valueOf(tile.frequency));
+
+        ServerNetwork.send("teleport_pipe.frequency", value);
     }
 
     public TeleportPipeSettingScreen(TeleportPipeSettingHandler container, PlayerInventory inv, Text title) {
         super(container, container.player.getInventory(), Blocks.PIPE_ITEMS_TELEPORT.getName());
         tile = container.tile;
-
-        pipeModeBtnUpdate();
-        openModeBtnUpdate();
     }
 
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
@@ -103,17 +119,20 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         openMode.x =(114 + x);
         openMode.y =(35 + y);
         numberAddー100.x =(12 + x);
-        numberAddー100.y =(78 + y);
+        numberAddー100.y =(85 + y);
         numberAddー10.x =(46 + x);
-        numberAddー10.y =(78 + y);
+        numberAddー10.y =(85 + y);
         numberAddー1.x =(80 + x);
-        numberAddー1.y =(78 + y);
+        numberAddー1.y =(85 + y);
         numberAdd十1.x =(114 + x);
-        numberAdd十1.y =(78 + y);
+        numberAdd十1.y =(85 + y);
         numberAdd十10.x =(148 + x);
-        numberAdd十10.y =(78 + y);
+        numberAdd十10.y =(85 + y);
         numberAdd十100.x =(182 + x);
-        numberAdd十100.y =(78 + y);
+        numberAdd十100.y =(85 + y);
+        frequencySetting.x = (12 + x);
+        frequencySetting.y = (60 + y);
+
         this.addDrawable(pipeMode);
         this.addDrawable(openMode);
         this.addDrawable(numberAddー100);
@@ -122,6 +141,7 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         this.addDrawable(numberAdd十1);
         this.addDrawable(numberAdd十10);
         this.addDrawable(numberAdd十100);
+        this.addDrawable(frequencySetting);
 
         this.addSelectableChild(pipeMode);
         this.addSelectableChild(openMode);
@@ -131,6 +151,7 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         this.addSelectableChild(numberAdd十1);
         this.addSelectableChild(numberAdd十10);
         this.addSelectableChild(numberAdd十100);
+        this.addSelectableChild(frequencySetting);
     }
 
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
@@ -143,7 +164,6 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         this.textRenderer.draw(matrices, this.title, 71, 7, 0x0a0c84);
         this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.owner", tile.ownerName), 12, 22, 4210752);
         this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.coords", posX, posY, posZ), 110, 22, 4210752);
-        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.frequency", tile.frequency), 16, 68, 4210752);
     }
 
     @Override
@@ -152,5 +172,21 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
 
         this.backgroundWidth = 227;
         this.backgroundHeight = 116;
+
+        pipeModeBtnUpdate();
+        openModeBtnUpdate();
+        frequencySetting.setText(String.valueOf(tile.frequency));
+    }
+
+    @Override
+    public void close() {
+        try {
+            int newFrequency = Math.max(Integer.parseInt(frequencySetting.getText()), 0);
+            setFrequency(newFrequency);
+        } catch (NumberFormatException e) {
+            PipePlus.log(Level.ERROR, "Failed to parse frequency: " + frequencySetting.getText());
+        }
+
+        super.close();
     }
 }
