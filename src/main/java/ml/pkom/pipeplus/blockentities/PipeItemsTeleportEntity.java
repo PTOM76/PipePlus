@@ -125,12 +125,7 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
 
     @Override
     public void writeNbt(NbtCompound tag) {
-        tag.putUuid("pipe_uuid", pipeUUID);
-        tag.putUuid("owner", owner);
-        tag.putString("owner_name", ownerName);
-        tag.putBoolean("is_public", modeIsPublic);
-        tag.putInt("pipe_mode", pipeModeInt);
-        tag.putInt("frequency", frequency);
+        putNBT(tag);
 
         super.writeNbt(tag);
     }
@@ -144,12 +139,21 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
 
     @Override
     public NbtCompound toClientTag(NbtCompound tag) {
-        writeNbt(tag);
+        putNBT(tag);
 
         return super.toClientTag(tag);
     }
 
-    private void loadNBT(NbtCompound nbt) {
+    private void putNBT(NbtCompound nbt) {
+        nbt.putUuid("pipe_uuid", pipeUUID);
+        nbt.putUuid("owner", owner);
+        nbt.putString("owner_name", ownerName);
+        nbt.putBoolean("is_public", modeIsPublic);
+        nbt.putInt("pipe_mode", pipeModeInt);
+        nbt.putInt("frequency", frequency);
+    }
+
+    public void loadNBT(NbtCompound nbt) {
         if(nbt.contains("pipe_uuid")) {
             pipeUUID = nbt.getUuid("pipe_uuid");
         }
@@ -189,7 +193,12 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
 
     @Override
     public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        NbtCompound nbt = new NbtCompound();
+
+        putNBT(nbt);
+
         buf.writeBlockPos(pos);
+        buf.writeNbt(nbt);
     }
 
     @Override
