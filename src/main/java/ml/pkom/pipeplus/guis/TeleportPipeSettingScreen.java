@@ -73,7 +73,7 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         addFrequency(100);
     }));
 
-    public TextFieldWidget frequencySetting = new TextFieldWidget(MinecraftClient.getInstance().textRenderer, 12, 60, 204, 20, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.frequency")) {
+    public TextFieldWidget frequencySetting = new TextFieldWidget(MinecraftClient.getInstance().textRenderer, 12, 60, 204, 20, TextUtil.literal("0")) {
         @Override
         public boolean charTyped(char chr, int modifiers) {
             if(!Character.isDigit(chr)) {
@@ -100,9 +100,6 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
     public TeleportPipeSettingScreen(TeleportPipeSettingHandler container, PlayerInventory inv, Text title) {
         super(container, container.player.getInventory(), Blocks.PIPE_ITEMS_TELEPORT.getName());
         tile = container.tile;
-
-        pipeModeBtnUpdate();
-        openModeBtnUpdate();
     }
 
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
@@ -167,7 +164,6 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         this.textRenderer.draw(matrices, this.title, 71, 7, 0x0a0c84);
         this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.owner", tile.ownerName), 12, 22, 4210752);
         this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.coords", posX, posY, posZ), 110, 22, 4210752);
-        //this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.frequency", tile.frequency), 16, 68, 4210752);
     }
 
     @Override
@@ -177,6 +173,8 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         this.backgroundWidth = 227;
         this.backgroundHeight = 116;
 
+        pipeModeBtnUpdate();
+        openModeBtnUpdate();
         frequencySetting.setText(String.valueOf(tile.frequency));
     }
 
