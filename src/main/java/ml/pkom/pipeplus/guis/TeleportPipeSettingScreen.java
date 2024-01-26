@@ -19,7 +19,6 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
     public PipeItemsTeleportEntity tile;
 
     public void pipeModeBtnUpdate() {
-        ServerNetwork.send("teleport_pipe.mode", tile.pipeModeInt);
         if (tile.pipeModeInt == 0) pipeMode.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.pipeMode.sendOnly"));
         if (tile.pipeModeInt == 1) pipeMode.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.pipeMode.receive_only"));
         if (tile.pipeModeInt == 2) pipeMode.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.pipeMode.send_and_receive"));
@@ -27,7 +26,6 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
     }
 
     public void openModeBtnUpdate() {
-        ServerNetwork.send("teleport_pipe.is_public", tile.modeIsPublic);
         if (tile.modeIsPublic) {
             openMode.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.openMode.public"));
         } else {
@@ -39,6 +37,7 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         tile.pipeModeInt++;
         if (tile.pipeModeInt >= 4) tile.pipeModeInt = 0;
         pipeModeBtnUpdate();
+        ServerNetwork.send("teleport_pipe.mode", tile.pipeModeInt);
     }));
 
     public ButtonWidget openMode = ScreenUtil.createButtonWidget(114, 35, 102, 20, TextUtil.translatable("button.pipeplus.teleport_pipe_setting.openMode.private"), (button -> {
@@ -50,6 +49,7 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
             button.setMessage(TextUtil.translatable("button.pipeplus.teleport_pipe_setting.openMode.public"));
         }
         openModeBtnUpdate();
+        ServerNetwork.send("teleport_pipe.is_public", tile.modeIsPublic);
     }));
     public ButtonWidget numberAddー100 = ScreenUtil.createButtonWidget(12, 78, 34, 20, TextUtil.literal("-100"), (button -> {
         addFrequency(-100);
@@ -134,16 +134,16 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
     }
 
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
-        int posX = handler.tile.getPos().getX();
-        int posY = handler.tile.getPos().getY();
-        int posZ = handler.tile.getPos().getZ();
+        int posX = tile.getPos().getX();
+        int posY = tile.getPos().getY();
+        int posZ = tile.getPos().getZ();
 
         x = (this.width - this.backgroundWidth) / 2;
         y = (this.height - this.backgroundHeight) / 2;
         this.textRenderer.draw(matrices, this.title, 71, 7, 0x0a0c84);
-        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.owner", handler.tile.ownerName), 12, 22, 4210752);
+        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.owner", tile.ownerName), 12, 22, 4210752);
         this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.coords", posX, posY, posZ), 110, 22, 4210752);
-        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.frequency", handler.tile.frequency), 16, 68, 4210752);
+        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.frequency", tile.frequency), 16, 68, 4210752);
     }
 
     @Override

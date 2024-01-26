@@ -11,7 +11,7 @@ import static ml.pkom.pipeplus.PipePlus.registry;
 public class PipePlusContainers {
     public static final Identifier TELEPORT_PIPE = PipePlus.id("teleport_pipe");
 
-    public static final ScreenHandlerType<TeleportPipeSettingHandler> TELEPORT_PIPE_SCREEN_HANDLER = new ExtendedScreenHandlerType<>(TeleportPipeSettingHandler::new);
+    public static final ExtendedScreenHandlerType<TeleportPipeSettingHandler> TELEPORT_PIPE_SCREEN_HANDLER = new ExtendedScreenHandlerType<>(TeleportPipeSettingHandler::new);
 
     public PipePlusContainers() {
 
@@ -22,6 +22,6 @@ public class PipePlusContainers {
     }
 
     private static void register(Identifier id, ScreenHandlerType<? extends ScreenHandler> type) {
-        registry.registerScreenHandlerType(id, () -> type);
+        registry.registerMenu(id, () -> type);
     }
 }

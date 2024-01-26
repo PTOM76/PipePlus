@@ -7,6 +7,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.math.BlockPos;
 
@@ -27,10 +28,15 @@ public class TeleportPipeSettingHandler extends ExtendedScreenHandler {
         this.player = new Player(inv.player);
         PlayerEntity player = inv.player;
         BlockPos pos = buf.readBlockPos();
+        NbtCompound nbt = buf.readNbt();
         BlockEntity be = player.world.getBlockEntity(pos);
 
         if (be instanceof PipeItemsTeleportEntity) {
             this.tile = (PipeItemsTeleportEntity) be;
+
+            if(nbt != null) {
+                this.tile.loadNBT(nbt);
+            }
         }
     }
 

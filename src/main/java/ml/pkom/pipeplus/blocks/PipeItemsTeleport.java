@@ -3,7 +3,6 @@ package ml.pkom.pipeplus.blocks;
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
 import ml.pkom.mcpitanlibarch.api.event.block.TileCreateEvent;
-import ml.pkom.pipeplus.TeleportManager;
 import ml.pkom.pipeplus.blockentities.PipeItemsTeleportEntity;
 import ml.pkom.pipeplus.parts.PipePlusParts;
 import ml.pkom.pipeplus.superClass.blocks.BlockPipeTeleport;
@@ -48,31 +47,6 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
 
         UUID owner = player.getUuid();
         pipeTile.setOwnerNameAndUUID(owner);
-    }
-
-    @Override
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if(!(world.getBlockEntity(pos) instanceof PipeItemsTeleportEntity pipeTile)) {
-            super.onBreak(world, pos, state, player);
-
-            return;
-        }
-
-        if (!pipeTile.canPlayerModifyPipe(player.getUuid())) {
-            return;
-        }
-
-        //転送中に破壊されないようにロック
-        try {
-            pipeTile.getFlow().lock();
-
-            TeleportManager.instance.removePipe(pipeTile);
-
-            super.onBreak(world, pos, state, player);
-        }
-        finally {
-            pipeTile.getFlow().unlock();
-        }
     }
 
     @Override

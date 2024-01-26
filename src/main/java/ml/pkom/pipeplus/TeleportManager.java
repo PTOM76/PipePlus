@@ -61,7 +61,7 @@ public class TeleportManager {
         });
 
         PlayerBlockBreakEvents.BEFORE.register((world, player, pos, state, blockEntity) -> {
-            if(!(world.getBlockEntity(pos) instanceof PipeItemsTeleportEntity pipeTile)) {
+            if(!(blockEntity instanceof PipeItemsTeleportEntity pipeTile)) {
                 return true;
             }
 
