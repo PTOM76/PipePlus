@@ -1,9 +1,9 @@
 package net.pitan76.pipeplus.guis;
 
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
+import net.pitan76.mcpitanlib.api.gui.ExtendedScreenHandlerTypeBuilder;
 import net.pitan76.pipeplus.PipePlus;
 
 import static net.pitan76.pipeplus.PipePlus.registry;
@@ -11,7 +11,7 @@ import static net.pitan76.pipeplus.PipePlus.registry;
 public class PipePlusContainers {
     public static final Identifier TELEPORT_PIPE = PipePlus.id("teleport_pipe");
 
-    public static final ExtendedScreenHandlerType<TeleportPipeSettingHandler> TELEPORT_PIPE_SCREEN_HANDLER = new ExtendedScreenHandlerType<>(TeleportPipeSettingHandler::new);
+    public static final ScreenHandlerType<TeleportPipeSettingHandler> TELEPORT_PIPE_SCREEN_HANDLER = new ExtendedScreenHandlerTypeBuilder<>(TeleportPipeSettingHandler::new).build();
 
     public PipePlusContainers() {
 
@@ -22,6 +22,6 @@ public class PipePlusContainers {
     }
 
     private static void register(Identifier id, ScreenHandlerType<? extends ScreenHandler> type) {
-        registry.registerMenu(id, () -> type);
+        registry.registerScreenHandlerType(id, () -> type);
     }
 }

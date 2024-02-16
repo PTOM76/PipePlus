@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
-import net.pitan76.mcpitanlib.api.item.ExtendSettings;
+import net.pitan76.mcpitanlib.api.item.CompatibleItemSettings;
 import net.pitan76.mcpitanlib.api.util.TextUtil;
 import net.pitan76.pipeplus.PipePlus;
 import net.pitan76.pipeplus.blocks.Blocks;
@@ -14,7 +14,7 @@ import net.pitan76.pipeplus.blocks.Blocks;
 import java.util.List;
 
 public class TinPipe extends Item {
-    public static Settings itemSettings = new ExtendSettings().addGroup(PipePlus.PIPEPLUS_GROUP, PipePlus.id("tin_pipe"));
+    public static CompatibleItemSettings itemSettings = new CompatibleItemSettings().addGroup(() -> PipePlus.PIPEPLUS_GROUP, PipePlus.id("tin_pipe"));
 
 
     @Override
@@ -27,7 +27,7 @@ public class TinPipe extends Item {
     }
 
     public static Settings getSettings() {
-        return itemSettings;
+        return itemSettings.build();
     }
 
     public static Item newItem() {

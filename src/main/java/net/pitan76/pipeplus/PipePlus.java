@@ -7,7 +7,6 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
 import net.pitan76.mcpitanlib.api.item.CreativeTabBuilder;
 import net.pitan76.mcpitanlib.api.registry.CompatRegistry;
 import net.pitan76.pipeplus.blockentities.BlockEntities;
@@ -58,10 +57,4 @@ public class PipePlus implements ModInitializer {
     public static Identifier id(String id) {
         return new Identifier(MOD_ID, id);
     }
-
-    public static String pos2str(BlockPos pos) {
-        return pos.getX() + "l" + pos.getY() + "l" + pos.getZ();
-
-    }
-
 }

@@ -54,22 +54,22 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         openModeBtnUpdate();
         ServerNetwork.send("teleport_pipe.is_public", tile.modeIsPublic);
     }));
-    public ButtonWidget numberAddー100 = ScreenUtil.createButtonWidget(12, 85, 34, 20, TextUtil.literal("-100"), (button -> {
+    public ButtonWidget numberPull_100 = ScreenUtil.createButtonWidget(12, 85, 34, 20, TextUtil.literal("-100"), (button -> {
         addFrequency(-100);
     }));
-    public ButtonWidget numberAddー10 = ScreenUtil.createButtonWidget(46, 85, 34, 20, TextUtil.literal("-10"), (button -> {
+    public ButtonWidget numberPull_10 = ScreenUtil.createButtonWidget(46, 85, 34, 20, TextUtil.literal("-10"), (button -> {
         addFrequency(-10);
     }));
-    public ButtonWidget numberAddー1 = ScreenUtil.createButtonWidget(80, 85, 34, 20, TextUtil.literal("-1"), (button -> {
+    public ButtonWidget numberPull_1 = ScreenUtil.createButtonWidget(80, 85, 34, 20, TextUtil.literal("-1"), (button -> {
         addFrequency(-1);
     }));
-    public ButtonWidget numberAdd十1 = ScreenUtil.createButtonWidget(114, 85, 34, 20, TextUtil.literal("+1"), (button -> {
+    public ButtonWidget numberAdd_1 = ScreenUtil.createButtonWidget(114, 85, 34, 20, TextUtil.literal("+1"), (button -> {
         addFrequency(1);
     }));
-    public ButtonWidget numberAdd十10 = ScreenUtil.createButtonWidget(148, 85, 34, 20, TextUtil.literal("+10"), (button -> {
+    public ButtonWidget numberAdd_10 = ScreenUtil.createButtonWidget(148, 85, 34, 20, TextUtil.literal("+10"), (button -> {
         addFrequency(10);
     }));
-    public ButtonWidget numberAdd十100 = ScreenUtil.createButtonWidget(182, 85, 34, 20, TextUtil.literal("+100"), (button -> {
+    public ButtonWidget numberAdd_100 = ScreenUtil.createButtonWidget(182, 85, 34, 20, TextUtil.literal("+100"), (button -> {
         addFrequency(100);
     }));
 
@@ -118,39 +118,39 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         pipeMode.y =(35 + y);
         openMode.x =(114 + x);
         openMode.y =(35 + y);
-        numberAddー100.x =(12 + x);
-        numberAddー100.y =(85 + y);
-        numberAddー10.x =(46 + x);
-        numberAddー10.y =(85 + y);
-        numberAddー1.x =(80 + x);
-        numberAddー1.y =(85 + y);
-        numberAdd十1.x =(114 + x);
-        numberAdd十1.y =(85 + y);
-        numberAdd十10.x =(148 + x);
-        numberAdd十10.y =(85 + y);
-        numberAdd十100.x =(182 + x);
-        numberAdd十100.y =(85 + y);
+        numberPull_100.x =(12 + x);
+        numberPull_100.y =(85 + y);
+        numberPull_10.x =(46 + x);
+        numberPull_10.y =(85 + y);
+        numberPull_1.x =(80 + x);
+        numberPull_1.y =(85 + y);
+        numberAdd_1.x =(114 + x);
+        numberAdd_1.y =(85 + y);
+        numberAdd_10.x =(148 + x);
+        numberAdd_10.y =(85 + y);
+        numberAdd_100.x =(182 + x);
+        numberAdd_100.y =(85 + y);
         frequencySetting.x = (12 + x);
         frequencySetting.y = (60 + y);
 
         this.addDrawable(pipeMode);
         this.addDrawable(openMode);
-        this.addDrawable(numberAddー100);
-        this.addDrawable(numberAddー10);
-        this.addDrawable(numberAddー1);
-        this.addDrawable(numberAdd十1);
-        this.addDrawable(numberAdd十10);
-        this.addDrawable(numberAdd十100);
+        this.addDrawable(numberPull_100);
+        this.addDrawable(numberPull_10);
+        this.addDrawable(numberPull_1);
+        this.addDrawable(numberAdd_1);
+        this.addDrawable(numberAdd_10);
+        this.addDrawable(numberAdd_100);
         this.addDrawable(frequencySetting);
 
         this.addSelectableChild(pipeMode);
         this.addSelectableChild(openMode);
-        this.addSelectableChild(numberAddー100);
-        this.addSelectableChild(numberAddー10);
-        this.addSelectableChild(numberAddー1);
-        this.addSelectableChild(numberAdd十1);
-        this.addSelectableChild(numberAdd十10);
-        this.addSelectableChild(numberAdd十100);
+        this.addSelectableChild(numberPull_100);
+        this.addSelectableChild(numberPull_10);
+        this.addSelectableChild(numberPull_1);
+        this.addSelectableChild(numberAdd_1);
+        this.addSelectableChild(numberAdd_10);
+        this.addSelectableChild(numberAdd_100);
         this.addSelectableChild(frequencySetting);
     }
 
