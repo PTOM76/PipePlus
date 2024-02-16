@@ -38,7 +38,8 @@ dependencies {
 
 	modImplementation "alexiil.mc.mod:simplepipes-all:0.7.2"
 
-	modImplementation "ml.pkom:mcpitanlibarch-fabric${rootProject.mcpitanlib_version}"
+	modImplementation "net.pitan76:mcpitanlib-fabric${rootProject.mcpitanlib_version}"
+	include "net.pitan76:mcpitanlib_checker-fabric:${rootProject.mcpitanlib_checker_version}"
 
 	// Mod Menu
 	// 1.16 => 1.16.19
@@ -65,7 +66,7 @@ processResources {
 	}
 }
 
-def targetJavaVersion = 17
+def targetJavaVersion = 8
 tasks.withType(JavaCompile).configureEach {
 	// ensure that the encoding is set to UTF-8, no matter what the system default is
 	// this fixes some edge cases with special characters not displaying correctly
