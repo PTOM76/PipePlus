@@ -1,15 +1,15 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "ml.pkom.pipeplus.mixin",
+  "package": "net.pitan76.pipeplus.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "AddPipeMixin"
+    "net.pitan76.pipeplus.mixin.AddPipeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "RegisterSpritesMixin"
+    "net.pitan76.pipeplus.mixin.RegisterSpritesMixin"
   ]
 }

@@ -41,20 +41,7 @@ dependencies {
 	modImplementation "net.pitan76:mcpitanlib-fabric${rootProject.mcpitanlib_version}"
 	include "net.pitan76:mcpitanlib_checker-fabric:${rootProject.mcpitanlib_checker_version}"
 
-	// Mod Menu
-	// 1.16 => 1.16.19
-	// 1.17 => 2.0.12
 	modImplementation "com.terraformersmc:modmenu:3.2.5"
-	// Cloth Config API
-	// 1.16 => 4.11.26
-	// 1.17 => 5.0.38
-	modApi("me.shedaniel.cloth:cloth-config-fabric:6.4.90") {
-		exclude(group: "net.fabricmc.fabric-api")
-	}
-	include "me.shedaniel.cloth:cloth-config-fabric:6.4.90"
-
-	modImplementation "me.sargunvohra.mcmods:autoconfig1u:3.4.0"
-	include "me.sargunvohra.mcmods:autoconfig1u:3.4.0"
 }
 
 processResources {

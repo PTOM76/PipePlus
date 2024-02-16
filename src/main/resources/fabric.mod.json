@@ -19,13 +19,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "ml.pkom.pipeplus.PipePlus"
+      "net.pitan76.pipeplus.PipePlus"
     ],
     "modmenu": [
-      "ml.pkom.pipeplus.addon.ModMenuAddon"
+      "net.pitan76.pipeplus.addon.ModMenuAddon"
     ],
     "client": [
-      "ml.pkom.pipeplus.PipePlusClient"
+      "net.pitan76.pipeplus.PipePlusClient"
     ]
   },
   "mixins": [
@@ -40,6 +40,6 @@
     "simple_pipes": "*",
     "fabric": "*",
     "minecraft": "*",
-    "mcpitanlibarch": ">1.8.3"
+    "mcpitanlib": ">2.0.0"
   }
 }
