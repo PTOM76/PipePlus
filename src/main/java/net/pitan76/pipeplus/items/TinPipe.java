@@ -1,36 +1,19 @@
 package net.pitan76.pipeplus.items;
 
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
-import net.minecraft.world.World;
+import net.pitan76.mcpitanlib.api.event.item.ItemAppendTooltipEvent;
 import net.pitan76.mcpitanlib.api.item.CompatibleItemSettings;
+import net.pitan76.mcpitanlib.api.item.ExtendBlockItem;
 import net.pitan76.mcpitanlib.api.util.TextUtil;
-import net.pitan76.pipeplus.PipePlus;
 import net.pitan76.pipeplus.blocks.Blocks;
 
-import java.util.List;
+public class TinPipe extends ExtendBlockItem {
 
-public class TinPipe extends Item {
-    public static CompatibleItemSettings itemSettings = new CompatibleItemSettings().addGroup(() -> PipePlus.PIPEPLUS_GROUP, PipePlus.id("tin_pipe"));
-
+    public TinPipe(CompatibleItemSettings settings) {
+        super(Blocks.TIN_PIPE, settings);
+    }
 
     @Override
-    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(TextUtil.translatable("tip.pipeplus.auto_extract_pipe"));
-    }
-
-    public TinPipe(Settings settings) {
-        super(settings);
-    }
-
-    public static Settings getSettings() {
-        return itemSettings.build();
-    }
-
-    public static Item newItem() {
-        return new BlockItem(Blocks.TIN_PIPE, getSettings());
+    public void appendTooltip(ItemAppendTooltipEvent e) {
+        e.tooltip.add(TextUtil.translatable("tip.pipeplus.auto_extract_pipe"));
     }
 }

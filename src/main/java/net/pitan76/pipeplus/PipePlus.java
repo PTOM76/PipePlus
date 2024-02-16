@@ -3,10 +3,10 @@ package net.pitan76.pipeplus;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+import net.pitan76.mcpitanlib.api.event.v0.EventRegistry;
 import net.pitan76.mcpitanlib.api.item.CreativeTabBuilder;
 import net.pitan76.mcpitanlib.api.registry.CompatRegistry;
 import net.pitan76.pipeplus.blockentities.BlockEntities;
@@ -45,9 +45,8 @@ public class PipePlus implements ModInitializer {
         PipePlusContainers.load();
         ServerNetwork.init();
         TeleportManager.register();
-        ServerLifecycleEvents.SERVER_STOPPED.register((server -> {
-            TeleportManager.instance.reset();
-        }));
+        
+        EventRegistry.ServerLifecycle.serverStopped((server -> TeleportManager.instance.reset()));
     }
 
     public static void log(Level level, String message){

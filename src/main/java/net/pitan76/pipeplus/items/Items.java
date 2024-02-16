@@ -10,25 +10,25 @@ import net.pitan76.pipeplus.blocks.Blocks;
 import static net.pitan76.pipeplus.PipePlus.registry;
 
 public class Items {
-    public static Item COPPER_PIPE = CopperPipe.newItem();
-    public static Item TIN_PIPE = TinPipe.newItem();
-    public static Item SILVER_PIPE = SilverPipe.newItem();
-    public static Item COPPER_FLUID_PIPE = CopperFluidPipe.newItem();
-    public static Item TIN_FLUID_PIPE = TinFluidPipe.newItem();
-    public static Item SILVER_FLUID_PIPE = SilverFluidPipe.newItem();
-    public static Item STACK_EXTRACT_PIPE = ItemUtil.ofBlock(Blocks.STACK_EXTRACT_PIPE, new CompatibleItemSettings().
-            addGroup(() -> PipePlus.PIPEPLUS_GROUP,
-                    PipePlus.id("stack_extract_pipe")));
-    public static Item EMERALD_PIPE = EmeraldPipe.newItem();
-    public static Item RUBY_PIPE = RubyPipe.newItem();
-    public static Item COBBLESTONE_PIPE = CobbleStonePipe.newItem();
-    public static Item OBSIDIAN_PIPE = ObsidianPipe.newItem();
-    public static Item ENDER_PIPE = EnderPipe.newItem();
-    public static Item REDSTONE_PIPE = RedStonePipe.newItem();
-    public static Item PIPE_ITEMS_TELEPORT = PipeItemsTeleport.newItem();
-    public static Item VOID_ITEM_PIPE = ItemUtil.ofBlock(Blocks.VOID_ITEM_PIPE, new CompatibleItemSettings().
-            addGroup(() -> PipePlus.PIPEPLUS_GROUP,
-                    PipePlus.id("void_item_pipe")));
+    public static CompatibleItemSettings createSettings(String id) {
+        return new CompatibleItemSettings().addGroup(() -> PipePlus.PIPEPLUS_GROUP, PipePlus.id(id));
+    }
+
+    public static Item COPPER_PIPE = new CopperPipe(createSettings("copper_pipe"));
+    public static Item TIN_PIPE = new TinPipe(createSettings("tin_pipe"));
+    public static Item SILVER_PIPE = new SilverPipe(createSettings("silver_pipe"));
+    public static Item COPPER_FLUID_PIPE = new CopperFluidPipe(createSettings("copper_fluid_pipe"));
+    public static Item TIN_FLUID_PIPE = new TinFluidPipe(createSettings("tin_fluid_pipe"));
+    public static Item SILVER_FLUID_PIPE = new SilverFluidPipe(createSettings("silver_fluid_pipe"));
+    public static Item STACK_EXTRACT_PIPE = ItemUtil.ofBlock(Blocks.STACK_EXTRACT_PIPE, createSettings("stack_extract_pipe"));
+    public static Item EMERALD_PIPE = ItemUtil.ofBlock(Blocks.EMERALD_PIPE, createSettings("emerald_pipe"));
+    public static Item RUBY_PIPE = ItemUtil.ofBlock(Blocks.RUBY_PIPE, createSettings("ruby_pipe"));
+    public static Item COBBLESTONE_PIPE = ItemUtil.ofBlock(Blocks.COBBLESTONE_PIPE, createSettings("cobblestone_pipe"));
+    public static Item OBSIDIAN_PIPE = new ObsidianPipe(createSettings("obsidian_pipe"));
+    public static Item ENDER_PIPE = new EnderPipe(createSettings("ender_pipe"));
+    public static Item REDSTONE_PIPE = ItemUtil.ofBlock(Blocks.REDSTONE_PIPE, createSettings("redstone_pipe"));
+    public static Item PIPE_ITEMS_TELEPORT = ItemUtil.ofBlock(Blocks.PIPE_ITEMS_TELEPORT, createSettings("pipe_items_teleport"));
+    public static Item VOID_ITEM_PIPE = ItemUtil.ofBlock(Blocks.VOID_ITEM_PIPE, createSettings("void_item_pipe"));
 
     public static void registerInit() {
         register(COPPER_PIPE, "copper_pipe");

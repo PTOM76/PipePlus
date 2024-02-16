@@ -8,12 +8,18 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
 import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
 import net.pitan76.pipeplus.blocks.ExtendBlockPipe;
 
 public abstract class BlockPipeTeleport extends ExtendBlockPipe {
 
+    @Deprecated
     public BlockPipeTeleport(Settings settings, PipeSpDef pipeSpDef) {
+        super(settings, pipeSpDef);
+    }
+
+    public BlockPipeTeleport(CompatibleBlockSettings settings, PipeSpDef pipeSpDef) {
         super(settings, pipeSpDef);
     }
 

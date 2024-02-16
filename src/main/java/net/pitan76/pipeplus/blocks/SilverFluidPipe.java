@@ -2,22 +2,22 @@ package net.pitan76.pipeplus.blocks;
 
 import alexiil.mc.mod.pipes.blocks.BlockPipeFluid;
 import alexiil.mc.mod.pipes.blocks.TilePipeSided;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
+import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
+import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blockentities.SilverFluidPipeEntity;
 import net.pitan76.pipeplus.parts.PipePlusParts;
 
 public class SilverFluidPipe extends ExtendBlockPipeSided implements BlockPipeFluid {
-    public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.DECORATION);
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
 
     static {
         blockSettings.strength(0.5F, 1.0F);
         blockSettings.sounds(BlockSoundGroup.GLASS);
     }
 
-    public SilverFluidPipe(Settings settings) {
+    public SilverFluidPipe(CompatibleBlockSettings settings) {
         super(settings, PipePlusParts.SILVER_FLUID_PIPE);
     }
 
@@ -25,12 +25,8 @@ public class SilverFluidPipe extends ExtendBlockPipeSided implements BlockPipeFl
     public TilePipeSided createBlockEntity(TileCreateEvent event) {
         return new SilverFluidPipeEntity(event);
     }
-
-    public static Settings getSettings() {
-        return blockSettings;
-    }
-
+    
     public static SilverFluidPipe newBlock() {
-        return new SilverFluidPipe(getSettings());
+        return new SilverFluidPipe(blockSettings);
     }
 }

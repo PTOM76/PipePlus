@@ -2,10 +2,8 @@ package net.pitan76.pipeplus.blocks;
 
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
@@ -16,6 +14,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
+import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.mcpitanlib.api.util.WorldUtil;
 import net.pitan76.pipeplus.blockentities.RedStonePipeEntity;
@@ -25,7 +25,7 @@ import java.util.Random;
 
 
 public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
-    public static FabricBlockSettings blockSettings = FabricBlockSettings.of(Material.DECORATION);
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
     public static BooleanProperty POWERED;
     public boolean isPowered = false;
 
@@ -35,7 +35,7 @@ public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
         POWERED = Properties.POWERED;
     }
 
-    public RedStonePipe(Settings settings) {
+    public RedStonePipe(CompatibleBlockSettings settings) {
         super(settings, PipePlusParts.REDSTONE_ITEM_PIPE);
         setDefaultState(stateManager.getDefaultState().with(POWERED, false));
     }
@@ -108,12 +108,8 @@ public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
         return new RedStonePipeEntity(event);
     }
 
-    public static Settings getSettings() {
-        return blockSettings;
-    }
-
     public static RedStonePipe newBlock() {
-        return new RedStonePipe(getSettings());
+        return new RedStonePipe(blockSettings);
     }
 
     @Override
