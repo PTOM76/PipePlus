@@ -1,10 +1,10 @@
 package net.pitan76.pipeplus.blockentities;
 
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.util.Identifier;
 import net.pitan76.mcpitanlib.api.tile.BlockEntityTypeBuilder;
 import net.pitan76.pipeplus.PipePlus;
 import net.pitan76.pipeplus.blocks.Blocks;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.util.Identifier;
 
 import static net.pitan76.pipeplus.PipePlus.registry;
 

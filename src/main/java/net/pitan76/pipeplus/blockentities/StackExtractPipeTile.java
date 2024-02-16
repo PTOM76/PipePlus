@@ -4,13 +4,13 @@ import alexiil.mc.lib.attributes.Simulation;
 import alexiil.mc.lib.attributes.item.ItemExtractable;
 import alexiil.mc.lib.attributes.item.impl.EmptyItemExtractable;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.DyeColor;
+import net.minecraft.util.math.Direction;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blocks.Blocks;
 import net.pitan76.pipeplus.config.PipePlusConfig;
 import net.pitan76.pipeplus.pipeflow.SilverPipeFlow;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DyeColor;
-import net.minecraft.util.math.Direction;
 
 public class StackExtractPipeTile extends ExtendTilePipeSided {
     private int needCooldown = 4;

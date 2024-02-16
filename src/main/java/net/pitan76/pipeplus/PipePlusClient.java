@@ -3,15 +3,15 @@ package net.pitan76.pipeplus;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
 import alexiil.mc.mod.pipes.client.render.PipeFluidTileRenderer;
 import alexiil.mc.mod.pipes.client.render.PipeItemTileRenderer;
-import net.pitan76.pipeplus.blockentities.BlockEntities;
-import net.pitan76.pipeplus.blocks.Blocks;
-import net.pitan76.pipeplus.guis.PipePlusScreens;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.RenderLayer;
+import net.pitan76.pipeplus.blockentities.BlockEntities;
+import net.pitan76.pipeplus.blocks.Blocks;
+import net.pitan76.pipeplus.guis.PipePlusScreens;
 
 public class PipePlusClient implements ClientModInitializer {
     @Override

@@ -2,10 +2,6 @@ package net.pitan76.pipeplus.blocks;
 
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
-import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
-import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
-import net.pitan76.pipeplus.parts.PipePlusParts;
-import net.pitan76.pipeplus.superClass.blocks.BlockPipeTeleport;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
@@ -15,6 +11,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
+import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
+import net.pitan76.pipeplus.parts.PipePlusParts;
+import net.pitan76.pipeplus.superClass.blocks.BlockPipeTeleport;
 
 import java.util.UUID;
 

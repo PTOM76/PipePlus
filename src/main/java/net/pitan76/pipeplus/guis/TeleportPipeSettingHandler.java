@@ -1,8 +1,5 @@
 package net.pitan76.pipeplus.guis;
 
-import net.pitan76.mcpitanlib.api.entity.Player;
-import net.pitan76.mcpitanlib.api.gui.ExtendedScreenHandler;
-import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -10,6 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.math.BlockPos;
+import net.pitan76.mcpitanlib.api.entity.Player;
+import net.pitan76.mcpitanlib.api.gui.ExtendedScreenHandler;
+import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
 
 public class TeleportPipeSettingHandler extends ExtendedScreenHandler {
 

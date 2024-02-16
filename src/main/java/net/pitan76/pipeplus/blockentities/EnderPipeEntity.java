@@ -2,9 +2,6 @@ package net.pitan76.pipeplus.blockentities;
 
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import alexiil.mc.mod.pipes.pipe.TravellingItem;
-import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
-import net.pitan76.pipeplus.blocks.Blocks;
-import net.pitan76.pipeplus.util.PipeUtil;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
@@ -12,6 +9,9 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.util.shape.VoxelShape;
+import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
+import net.pitan76.pipeplus.blocks.Blocks;
+import net.pitan76.pipeplus.util.PipeUtil;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,12 +1,5 @@
 package net.pitan76.pipeplus.blockentities;
 
-import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
-import net.pitan76.mcpitanlib.api.util.TextUtil;
-import net.pitan76.pipeplus.TeleportManager;
-import net.pitan76.pipeplus.TeleportPipeType;
-import net.pitan76.pipeplus.blocks.Blocks;
-import net.pitan76.pipeplus.guis.TeleportPipeSettingHandler;
-import net.pitan76.pipeplus.pipeflow.TeleportPipeFlow;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -16,6 +9,13 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
+import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
+import net.pitan76.mcpitanlib.api.util.TextUtil;
+import net.pitan76.pipeplus.TeleportManager;
+import net.pitan76.pipeplus.TeleportPipeType;
+import net.pitan76.pipeplus.blocks.Blocks;
+import net.pitan76.pipeplus.guis.TeleportPipeSettingHandler;
+import net.pitan76.pipeplus.pipeflow.TeleportPipeFlow;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;

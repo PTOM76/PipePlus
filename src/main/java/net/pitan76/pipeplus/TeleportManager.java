@@ -1,11 +1,11 @@
 package net.pitan76.pipeplus;
 
-import net.pitan76.pipeplus.blockentities.IPipeTeleportTileEntity;
-import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
+import net.pitan76.pipeplus.blockentities.IPipeTeleportTileEntity;
+import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
 
 import java.util.*;
 import java.util.stream.Collectors;

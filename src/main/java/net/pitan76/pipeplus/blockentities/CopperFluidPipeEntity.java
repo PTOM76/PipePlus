@@ -2,10 +2,10 @@ package net.pitan76.pipeplus.blockentities;
 
 import alexiil.mc.lib.attributes.fluid.impl.EmptyFluidExtractable;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowFluid;
+import net.minecraft.util.math.Direction;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blocks.Blocks;
 import net.pitan76.pipeplus.config.PipePlusConfig;
-import net.minecraft.util.math.Direction;
 
 public class CopperFluidPipeEntity extends ExtendTilePipeSided {
     private int needCooldown = 20;

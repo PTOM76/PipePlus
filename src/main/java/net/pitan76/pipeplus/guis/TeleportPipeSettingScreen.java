@@ -1,11 +1,5 @@
 package net.pitan76.pipeplus.guis;
 
-import net.pitan76.mcpitanlib.api.util.TextUtil;
-import net.pitan76.mcpitanlib.api.util.client.ScreenUtil;
-import net.pitan76.pipeplus.PipePlus;
-import net.pitan76.pipeplus.ServerNetwork;
-import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
-import net.pitan76.pipeplus.blocks.Blocks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -14,6 +8,12 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.pitan76.mcpitanlib.api.util.TextUtil;
+import net.pitan76.mcpitanlib.api.util.client.ScreenUtil;
+import net.pitan76.pipeplus.PipePlus;
+import net.pitan76.pipeplus.ServerNetwork;
+import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
+import net.pitan76.pipeplus.blocks.Blocks;
 import org.apache.logging.log4j.Level;
 
 public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSettingHandler> {

@@ -1,11 +1,11 @@
 package net.pitan76.pipeplus.mixin;
 
 import alexiil.mc.mod.pipes.SimplePipesClient;
-import net.pitan76.pipeplus.PipePlus;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.pitan76.pipeplus.PipePlus;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

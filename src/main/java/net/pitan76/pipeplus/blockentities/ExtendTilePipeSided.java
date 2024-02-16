@@ -4,10 +4,10 @@ import alexiil.mc.mod.pipes.blocks.BlockPipe;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
 import alexiil.mc.mod.pipes.blocks.TilePipeSided;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlow;
-import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
+import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 
 import java.util.function.Function;
 

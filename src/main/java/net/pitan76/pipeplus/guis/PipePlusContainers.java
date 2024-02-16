@@ -1,10 +1,10 @@
 package net.pitan76.pipeplus.guis;
 
-import net.pitan76.pipeplus.PipePlus;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
+import net.pitan76.pipeplus.PipePlus;
 
 import static net.pitan76.pipeplus.PipePlus.registry;
 

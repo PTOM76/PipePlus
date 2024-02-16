@@ -1,8 +1,6 @@
 package net.pitan76.pipeplus.superClass.blocks;
 
 import alexiil.mc.mod.pipes.pipe.PipeSpDef;
-import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
-import net.pitan76.pipeplus.blocks.ExtendBlockPipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
@@ -10,6 +8,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
+import net.pitan76.pipeplus.blocks.ExtendBlockPipe;
 
 public abstract class BlockPipeTeleport extends ExtendBlockPipe {
 

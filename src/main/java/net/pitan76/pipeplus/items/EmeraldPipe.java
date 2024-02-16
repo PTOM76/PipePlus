@@ -1,10 +1,10 @@
 package net.pitan76.pipeplus.items;
 
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.pitan76.mcpitanlib.api.item.ExtendSettings;
 import net.pitan76.pipeplus.PipePlus;
 import net.pitan76.pipeplus.blocks.Blocks;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 
 public class EmeraldPipe extends Item {
     public static Settings itemSettings = new ExtendSettings().

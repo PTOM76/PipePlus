@@ -3,10 +3,10 @@ package net.pitan76.pipeplus.blockentities;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
 import alexiil.mc.mod.pipes.blocks.TilePipeItemStone;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
-import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
-import net.pitan76.pipeplus.blocks.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.Direction;
+import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
+import net.pitan76.pipeplus.blocks.Blocks;
 
 public class CobbleStonePipeEntity extends ExtendTilePipe {
 

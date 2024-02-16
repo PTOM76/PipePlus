@@ -1,11 +1,11 @@
 package net.pitan76.pipeplus.items;
 
-import net.pitan76.mcpitanlib.api.item.ExtendSettings;
-import net.pitan76.pipeplus.PipePlus;
-import net.pitan76.pipeplus.blocks.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
+import net.pitan76.mcpitanlib.api.item.ExtendSettings;
+import net.pitan76.pipeplus.PipePlus;
+import net.pitan76.pipeplus.blocks.Blocks;
 
 import static net.pitan76.pipeplus.PipePlus.registry;
 

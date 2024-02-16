@@ -1,10 +1,10 @@
 package net.pitan76.pipeplus.blockentities;
 
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
+import net.minecraft.block.BlockState;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blocks.Blocks;
 import net.pitan76.pipeplus.blocks.RedStonePipe;
-import net.minecraft.block.BlockState;
 
 public class RedStonePipeEntity extends ExtendTilePipe {
 

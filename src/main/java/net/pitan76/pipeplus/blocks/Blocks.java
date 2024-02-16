@@ -1,8 +1,8 @@
 package net.pitan76.pipeplus.blocks;
 
-import net.pitan76.pipeplus.PipePlus;
 import net.minecraft.block.Block;
 import net.minecraft.util.Identifier;
+import net.pitan76.pipeplus.PipePlus;
 
 import static net.pitan76.pipeplus.PipePlus.registry;
 

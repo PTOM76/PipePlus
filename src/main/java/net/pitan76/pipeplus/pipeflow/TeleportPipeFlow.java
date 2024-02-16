@@ -2,13 +2,13 @@ package net.pitan76.pipeplus.pipeflow;
 
 import alexiil.mc.mod.pipes.blocks.TilePipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
-import net.pitan76.pipeplus.TeleportManager;
-import net.pitan76.pipeplus.blockentities.IPipeTeleportTileEntity;
-import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.pitan76.pipeplus.TeleportManager;
+import net.pitan76.pipeplus.blockentities.IPipeTeleportTileEntity;
+import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
 
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;

@@ -1,6 +1,6 @@
 package net.pitan76.pipeplus.pipeflow;
 
-import alexiil.mc.mod.pipes.blocks.*;
+import alexiil.mc.mod.pipes.blocks.TilePipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
