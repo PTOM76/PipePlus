@@ -7,7 +7,6 @@ import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blockentities.SilverPipeEntity;
-import net.pitan76.pipeplus.parts.PipePlusParts;
 
 public class SilverPipe extends ExtendBlockPipeSided implements BlockPipeItem {
     public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
@@ -18,7 +17,7 @@ public class SilverPipe extends ExtendBlockPipeSided implements BlockPipeItem {
     }
 
     public SilverPipe(CompatibleBlockSettings settings) {
-        super(settings, PipePlusParts.SILVER_ITEM_PIPE);
+        super(settings);
     }
 
     @Override

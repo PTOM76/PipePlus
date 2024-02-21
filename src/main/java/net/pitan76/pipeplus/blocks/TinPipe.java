@@ -7,7 +7,6 @@ import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blockentities.TinPipeEntity;
-import net.pitan76.pipeplus.parts.PipePlusParts;
 
 public class TinPipe extends ExtendBlockPipeSided implements BlockPipeItem {
     public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
@@ -18,7 +17,7 @@ public class TinPipe extends ExtendBlockPipeSided implements BlockPipeItem {
     }
 
     public TinPipe(CompatibleBlockSettings settings) {
-        super(settings, PipePlusParts.TIN_ITEM_PIPE);
+        super(settings);
     }
 
     @Override

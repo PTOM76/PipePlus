@@ -133,25 +133,15 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         frequencySetting.x = (12 + x);
         frequencySetting.y = (60 + y);
 
-        this.addDrawable(pipeMode);
-        this.addDrawable(openMode);
-        this.addDrawable(numberPull_100);
-        this.addDrawable(numberPull_10);
-        this.addDrawable(numberPull_1);
-        this.addDrawable(numberAdd_1);
-        this.addDrawable(numberAdd_10);
-        this.addDrawable(numberAdd_100);
-        this.addDrawable(frequencySetting);
-
-        this.addSelectableChild(pipeMode);
-        this.addSelectableChild(openMode);
-        this.addSelectableChild(numberPull_100);
-        this.addSelectableChild(numberPull_10);
-        this.addSelectableChild(numberPull_1);
-        this.addSelectableChild(numberAdd_1);
-        this.addSelectableChild(numberAdd_10);
-        this.addSelectableChild(numberAdd_100);
-        this.addSelectableChild(frequencySetting);
+        this.addButton(pipeMode);
+        this.addButton(openMode);
+        this.addButton(numberPull_100);
+        this.addButton(numberPull_10);
+        this.addButton(numberPull_1);
+        this.addButton(numberAdd_1);
+        this.addButton(numberAdd_10);
+        this.addButton(numberAdd_100);
+        this.addButton(frequencySetting);
     }
 
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
@@ -179,7 +169,7 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
     }
 
     @Override
-    public void close() {
+    public void onClose() {
         try {
             int newFrequency = Math.max(Integer.parseInt(frequencySetting.getText()), 0);
             setFrequency(newFrequency);
@@ -187,6 +177,6 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
             PipePlus.log(Level.ERROR, "Failed to parse frequency: " + frequencySetting.getText());
         }
 
-        super.close();
+        super.onClose();
     }
 }

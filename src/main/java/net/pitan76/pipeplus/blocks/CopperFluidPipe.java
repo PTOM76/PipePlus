@@ -7,7 +7,6 @@ import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blockentities.CopperFluidPipeEntity;
-import net.pitan76.pipeplus.parts.PipePlusParts;
 
 public class CopperFluidPipe extends ExtendBlockPipeSided implements BlockPipeFluid {
     public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
@@ -18,7 +17,7 @@ public class CopperFluidPipe extends ExtendBlockPipeSided implements BlockPipeFl
     }
 
     public CopperFluidPipe(CompatibleBlockSettings settings) {
-        super(settings, PipePlusParts.COPPER_FLUID_PIPE);
+        super(settings);
     }
 
     @Override

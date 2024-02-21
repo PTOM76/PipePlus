@@ -1,9 +1,8 @@
 package net.pitan76.pipeplus.blockentities;
 
-import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
-import alexiil.mc.mod.pipes.pipe.TravellingItem;
+import alexiil.mc.mod.pipes.blocks.PipeFlowItem;
+import alexiil.mc.mod.pipes.blocks.TravellingItem;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
@@ -21,7 +20,7 @@ public class EnderPipeEntity extends ExtendTilePipe {
     private static VoxelShape REDSTONE_SIGNAL_INPUT_AREA_SHAPE = Block.createCuboidShape(-80.0D, -80.0D, -80.0D, 96.0D, 96.0D, 96.0D);
 
     public EnderPipeEntity(TileCreateEvent event) {
-        super(BlockEntities.ENDER_PIPE_ENTITY, event, Blocks.ENDER_PIPE, PipeSpFlowItem::new);
+        super(BlockEntities.ENDER_PIPE_ENTITY, event, Blocks.ENDER_PIPE, PipeFlowItem::new);
     }
 
     public double getX() {
@@ -61,11 +60,11 @@ public class EnderPipeEntity extends ExtendTilePipe {
         for (ItemEntity itemEntity : itemsList) {
             TravellingItem item = new TravellingItem(itemEntity.getStack());
             tagList.add(item.writeToNbt(tickNow));
-            itemEntity.remove(Entity.RemovalReason.KILLED);
+            itemEntity.remove();
         }
 
         nbt.put("items", tagList);
-        entity.getFlow().fromTag(nbt);
+        entity.flow.fromTag(nbt);
         return true;
     }
 

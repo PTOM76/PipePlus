@@ -7,7 +7,6 @@ import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blockentities.ObsidianPipeEntity;
-import net.pitan76.pipeplus.parts.PipePlusParts;
 
 public class ObsidianPipe extends ExtendBlockPipe implements BlockPipeItem {
     public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
@@ -18,7 +17,7 @@ public class ObsidianPipe extends ExtendBlockPipe implements BlockPipeItem {
     }
 
     public ObsidianPipe(CompatibleBlockSettings settings) {
-        super(settings, PipePlusParts.OBSIDIAN_ITEM_PIPE);
+        super(settings);
     }
 
     @Override

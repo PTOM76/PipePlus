@@ -1,7 +1,7 @@
 package net.pitan76.pipeplus.blockentities;
 
 import alexiil.mc.lib.attributes.fluid.impl.EmptyFluidExtractable;
-import alexiil.mc.mod.pipes.pipe.PipeSpFlowFluid;
+import alexiil.mc.mod.pipes.blocks.PipeFlowFluid;
 import net.minecraft.util.math.Direction;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blocks.Blocks;
@@ -12,7 +12,7 @@ public class TinFluidPipeEntity extends ExtendTilePipeSided {
     private int cooldown = needCooldown;
 
     public TinFluidPipeEntity(TileCreateEvent event) {
-        super(BlockEntities.TIN_FLUID_PIPE_ENTITY, event, Blocks.TIN_FLUID_PIPE, PipeSpFlowFluid::new);
+        super(BlockEntities.TIN_FLUID_PIPE_ENTITY, event, Blocks.TIN_FLUID_PIPE, PipeFlowFluid::new);
         needCooldown = PipePlusConfig.getConfig().tinFluidExtractDelay;
     }
 
@@ -41,6 +41,6 @@ public class TinFluidPipeEntity extends ExtendTilePipeSided {
     }
 
     public void tryExtract(Direction dir, int pulses) {
-        ((PipeSpFlowFluid)this.getFlow()).tryExtract(dir);
+        ((PipeFlowFluid)this.flow).tryExtract(dir);
     }
 }

@@ -1,6 +1,5 @@
 package net.pitan76.pipeplus.superClass.blocks;
 
-import alexiil.mc.mod.pipes.pipe.PipeSpDef;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
@@ -15,12 +14,12 @@ import net.pitan76.pipeplus.blocks.ExtendBlockPipe;
 public abstract class BlockPipeTeleport extends ExtendBlockPipe {
 
     @Deprecated
-    public BlockPipeTeleport(Settings settings, PipeSpDef pipeSpDef) {
-        super(settings, pipeSpDef);
+    public BlockPipeTeleport(Settings settings) {
+        super(settings);
     }
 
-    public BlockPipeTeleport(CompatibleBlockSettings settings, PipeSpDef pipeSpDef) {
-        super(settings, pipeSpDef);
+    public BlockPipeTeleport(CompatibleBlockSettings settings) {
+        super(settings);
     }
 
     @Override

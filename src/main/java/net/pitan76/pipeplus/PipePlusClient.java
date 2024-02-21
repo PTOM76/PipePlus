@@ -5,7 +5,7 @@ import alexiil.mc.mod.pipes.client.render.PipeFluidTileRenderer;
 import alexiil.mc.mod.pipes.client.render.PipeItemTileRenderer;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.RenderLayer;
@@ -54,11 +54,11 @@ public class PipePlusClient implements ClientModInitializer {
     }
 
     private static <T extends TilePipe> void registerItemPipeRender(BlockEntityType<T> type) {
-        BlockEntityRendererRegistry.register(type, PipeItemTileRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(type, PipeItemTileRenderer::new);
     }
 
     private static <T extends TilePipe> void registerFluidPipeRender(BlockEntityType<T> type) {
-        BlockEntityRendererRegistry.register(type, PipeFluidTileRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(type, PipeFluidTileRenderer::new);
     }
 
 }

@@ -13,7 +13,6 @@ import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
-import net.pitan76.pipeplus.parts.PipePlusParts;
 import net.pitan76.pipeplus.superClass.blocks.BlockPipeTeleport;
 
 import java.util.UUID;
@@ -27,7 +26,7 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
     }
 
     public PipeItemsTeleport(CompatibleBlockSettings settings) {
-        super(settings, PipePlusParts.TELEPORT_ITEM_PIPE);
+        super(settings);
     }
 
     @Override

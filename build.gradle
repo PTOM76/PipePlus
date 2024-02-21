@@ -34,16 +34,12 @@ dependencies {
 	include "alexiil.mc.lib:libnetworkstack-base:$libnetworkstack_version"
 	include "alexiil.mc.lib:libmultipart-base:$libmultipart_version"
 
-	// REI
-	//modCompileOnly "me.shedaniel:RoughlyEnoughItems-api:$rei_version"
-	modImplementation "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
-
-	modImplementation "alexiil.mc.mod:simplepipes-all:0.7.2"
+	modImplementation "alexiil.mc.mod:simplepipes-all:0.5.0"
 
 	modImplementation "net.pitan76:mcpitanlib-fabric${rootProject.mcpitanlib_version}"
 	include "net.pitan76:mcpitanlib_checker-fabric:${rootProject.mcpitanlib_checker_version}"
 
-	modImplementation "com.terraformersmc:modmenu:3.2.5"
+	modImplementation "com.terraformersmc:modmenu:1.16.23"
 }
 
 processResources {
@@ -106,8 +102,8 @@ curseforge {
 			id = '514438'
 			changelog = "MCPitanLib version: " + mcpitanlib_version.split(":")[1]
 			releaseType = 'release'
-			addGameVersion '1.18.1'
-			addGameVersion '1.18.2'
+			addGameVersion '1.16.4'
+			addGameVersion '1.16.5'
 			addGameVersion "Fabric"
 			relations {
 				requiredDependency 'fabric-api'
@@ -131,7 +127,7 @@ modrinth {
 		projectId = 'zSS7GIKK'
 		versionNumber = project.mod_version + "-" + project.minecraft_version
 		uploadFile = remapJar
-		gameVersions = ['1.18.1', '1.18.2']
+		gameVersions = ['1.16.4', '1.16.5']
 		versionType = 'release'
 		loaders = ['fabric']
 		changelog = "MCPitanLib version: " + mcpitanlib_version.split(":")[1]

@@ -1,7 +1,7 @@
 package net.pitan76.pipeplus.pipeflow;
 
+import alexiil.mc.mod.pipes.blocks.PipeFlowItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
-import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
@@ -13,7 +13,7 @@ import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class TeleportPipeFlow extends PipeSpFlowItem {
+public class TeleportPipeFlow extends PipeFlowItem {
 
     public PipeItemsTeleportEntity inputPipeTile;
     private ReentrantLock mutex = new ReentrantLock();

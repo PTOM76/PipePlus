@@ -1,8 +1,8 @@
 package net.pitan76.pipeplus.blockentities;
 
+import alexiil.mc.mod.pipes.blocks.PipeFlowItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
 import alexiil.mc.mod.pipes.blocks.TilePipeItemStone;
-import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.Direction;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
@@ -11,7 +11,7 @@ import net.pitan76.pipeplus.blocks.Blocks;
 public class CobbleStonePipeEntity extends ExtendTilePipe {
 
     public CobbleStonePipeEntity(TileCreateEvent event) {
-        super(BlockEntities.COBBLESTONE_PIPE_ENTITY, event, Blocks.COBBLESTONE_PIPE, PipeSpFlowItem::new);
+        super(BlockEntities.COBBLESTONE_PIPE_ENTITY, event, Blocks.COBBLESTONE_PIPE, PipeFlowItem::new);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class CobbleStonePipeEntity extends ExtendTilePipe {
                 this.disconnect(dir);
                 ((TilePipeItemStone) oTile).disconnect(dir.getOpposite());
             } else if (oTile instanceof TilePipe) {
-                if (this.getFlow() instanceof PipeSpFlowItem == (((TilePipe) oTile).getFlow() instanceof PipeSpFlowItem)) {
+                if (this.flow instanceof PipeFlowItem == (((TilePipe) oTile).flow instanceof PipeFlowItem)) {
                     this.connect(dir);
                 } else {
                     this.disconnect(dir);

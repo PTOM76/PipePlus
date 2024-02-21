@@ -3,7 +3,7 @@ package net.pitan76.pipeplus.blockentities;
 import alexiil.mc.lib.attributes.Simulation;
 import alexiil.mc.lib.attributes.item.ItemExtractable;
 import alexiil.mc.lib.attributes.item.impl.EmptyItemExtractable;
-import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
+import alexiil.mc.mod.pipes.blocks.PipeFlowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
@@ -16,7 +16,7 @@ public class CopperPipeEntity extends ExtendTilePipeSided {
     private int cooldown = needCooldown;
 
     public CopperPipeEntity(TileCreateEvent event) {
-        super(BlockEntities.COPPER_PIPE_ENTITY, event, Blocks.COPPER_PIPE, PipeSpFlowItem::new);
+        super(BlockEntities.COPPER_PIPE_ENTITY, event, Blocks.COPPER_PIPE, PipeFlowItem::new);
         needCooldown = PipePlusConfig.getConfig().copperTransportExtractDelay;
     }
 
@@ -48,7 +48,7 @@ public class CopperPipeEntity extends ExtendTilePipeSided {
         ItemExtractable extractable = this.getItemExtractable(dir);
         ItemStack stack = extractable.attemptAnyExtraction(pulses, Simulation.ACTION);
         if (!stack.isEmpty()) {
-            ((PipeSpFlowItem)this.getFlow()).insertItemsForce(stack, dir, (DyeColor)null, 0.08D);
+            ((PipeFlowItem)this.flow).insertItemsForce(stack, dir, (DyeColor)null, 0.08D);
         }
 
     }

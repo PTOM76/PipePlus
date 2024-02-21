@@ -13,7 +13,6 @@ import net.pitan76.pipeplus.blocks.Blocks;
 import net.pitan76.pipeplus.config.PipePlusConfig;
 import net.pitan76.pipeplus.guis.PipePlusContainers;
 import net.pitan76.pipeplus.items.Items;
-import net.pitan76.pipeplus.parts.PipePlusParts;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,7 +37,6 @@ public class PipePlus implements ModInitializer {
         AutoConfig.register(PipePlusConfig.class, GsonConfigSerializer::new);
         registry.registerItemGroup(id("all"), PIPEPLUS_GROUP);
 
-        PipePlusParts.init();
         BlockEntities.registerInit();
         Blocks.registerInit();
         Items.registerInit();

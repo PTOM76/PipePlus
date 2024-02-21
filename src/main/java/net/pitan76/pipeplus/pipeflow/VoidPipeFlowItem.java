@@ -1,12 +1,12 @@
 package net.pitan76.pipeplus.pipeflow;
 
+import alexiil.mc.mod.pipes.blocks.PipeFlowItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
-import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
 
-public class VoidPipeFlowItem extends PipeSpFlowItem {
+public class VoidPipeFlowItem extends PipeFlowItem {
 
 
     public VoidPipeFlowItem(TilePipe pipe) {

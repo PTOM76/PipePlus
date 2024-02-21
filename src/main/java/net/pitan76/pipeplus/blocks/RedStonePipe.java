@@ -19,7 +19,6 @@ import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.mcpitanlib.api.util.WorldUtil;
 import net.pitan76.pipeplus.blockentities.RedStonePipeEntity;
-import net.pitan76.pipeplus.parts.PipePlusParts;
 
 import java.util.Random;
 
@@ -36,7 +35,7 @@ public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
     }
 
     public RedStonePipe(CompatibleBlockSettings settings) {
-        super(settings, PipePlusParts.REDSTONE_ITEM_PIPE);
+        super(settings);
         setDefaultState(stateManager.getDefaultState().with(POWERED, false));
     }
 

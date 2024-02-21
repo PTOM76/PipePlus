@@ -1,6 +1,7 @@
 package net.pitan76.pipeplus.blockentities;
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.nbt.NbtCompound;
@@ -8,6 +9,7 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.mcpitanlib.api.util.TextUtil;
@@ -33,8 +35,8 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
     }
 
     @Override
-    public void setWorld(World world) {
-        super.setWorld(world);
+    public void setLocation(World world, BlockPos pos) {
+        super.setLocation(world, pos);
 
         if(!world.isClient) {
             TeleportManager.instance.addPipe(this);
@@ -51,9 +53,8 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
         return owner;
     }
 
-    @Override
     public TeleportPipeFlow getFlow() {
-        return (TeleportPipeFlow) super.getFlow();
+        return (TeleportPipeFlow) super.flow;
     }
 
     @Override
@@ -103,7 +104,7 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
         if (world == null) return false;
 
         // クリエイティブモードの場合は操作可能
-        if (world.getPlayerByUuid(uuid) != null && world.getPlayerByUuid(uuid).getAbilities().creativeMode)
+        if (world.getPlayerByUuid(uuid) != null && world.getPlayerByUuid(uuid).abilities.creativeMode)
             return true;
 
         // オーナーが存在しない場合は操作可能
@@ -114,21 +115,22 @@ public class PipeItemsTeleportEntity extends ExtendTilePipe implements IPipeTele
     }
 
     @Override
-    public void readNbt(NbtCompound tag) {
-        super.readNbt(tag);
+    public void fromTag(BlockState state, NbtCompound tag) {
+        super.fromTag(state, tag);
         loadNBT(tag);
     }
 
 
     @Override
-    public void writeNbt(NbtCompound tag) {
+    public NbtCompound writeNbt(NbtCompound tag) {
         putNBT(tag);
         super.writeNbt(tag);
+        return tag;
     }
 
     @Override
-    public void readPacket(NbtCompound tag) {
-        super.readPacket(tag);
+    public void fromClientTag(NbtCompound tag) {
+        super.fromClientTag(tag);
         loadNBT(tag);
     }
 

@@ -7,7 +7,6 @@ import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blockentities.EmeraldPipeEntity;
-import net.pitan76.pipeplus.parts.PipePlusParts;
 
 public class EmeraldPipe extends ExtendBlockPipe implements BlockPipeItem {
     public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
@@ -19,7 +18,7 @@ public class EmeraldPipe extends ExtendBlockPipe implements BlockPipeItem {
     }
 
     public EmeraldPipe(CompatibleBlockSettings settings) {
-        super(settings, PipePlusParts.EMERALD_PIPE);
+        super(settings);
     }
 
     @Override
