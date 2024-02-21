@@ -16,12 +16,12 @@
     "block.pipeplus.void_item_pipe": "Void Transport Pipe",
     "block.pipeplus.cobblestone_pipe": "CobbleStone Transport Pipe",
 
-    "tip.pipeplus.auto_extract_pipe": "§rAuto extraction pipe",
-    "tip.pipeplus.obsidian_pipe": "§rInsertion pipe",
-    "tip.pipeplus.ender_pipe": "§rSucks up pipe",
-    "tip.pipeplus.base_pipe": "§rBase pipe",
-    "tip.pipeplus.void_pipe": "§rDestroy pipe",
-    "tip.pipeplus.redstone_pipe": "§rRedstone signal output pipe",
+    "tooltip.pipeplus.auto_extract_pipe": "§rAuto extraction pipe",
+    "tooltip.pipeplus.obsidian_pipe": "§rInsertion pipe",
+    "tooltip.pipeplus.ender_pipe": "§rSucks up pipe",
+    "tooltip.pipeplus.base_pipe": "§rBase pipe",
+    "tooltip.pipeplus.void_pipe": "§rDestroy pipe",
+    "tooltip.pipeplus.redstone_pipe": "§rRedstone signal output pipe",
 
     "button.pipeplus.teleport_pipe_setting.pipeMode.sendOnly": "Send Only",
     "button.pipeplus.teleport_pipe_setting.pipeMode.receive_only": "Receive Only",

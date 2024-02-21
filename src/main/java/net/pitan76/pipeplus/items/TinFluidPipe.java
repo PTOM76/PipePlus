@@ -13,6 +13,6 @@ public class TinFluidPipe extends ExtendBlockItem {
 
     @Override
     public void appendTooltip(ItemAppendTooltipEvent e) {
-        e.tooltip.add(TextUtil.translatable("tip.pipeplus.auto_extract_pipe"));
+        e.tooltip.add(TextUtil.translatable("tooltip.pipeplus.auto_extract_pipe"));
     }
 }
