@@ -1,10 +1,10 @@
 package net.pitan76.pipeplus.guis;
 
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -102,36 +102,36 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         behaviour = container.behaviour;
     }
 
-    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.renderBackground(matrices);
-        super.render(matrices, mouseX, mouseY, delta);
-        this.drawMouseoverTooltip(matrices, mouseX, mouseY);
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        this.renderBackground(context);
+        super.render(context, mouseX, mouseY, delta);
+        this.drawMouseoverTooltip(context, mouseX, mouseY);
     }
 
-    protected void drawBackground(MatrixStack matrices, float partialTicks, int mouseX, int mouseY) {
+    protected void drawBackground(DrawContext context, float partialTicks, int mouseX, int mouseY) {
         ScreenUtil.setBackground(GUI);
 
         int x = (this.width - this.backgroundWidth) / 2;
         int y = (this.height - this.backgroundHeight) / 2;
-        this.drawTexture(matrices, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
-        pipeMode.x = (12 + x);
-        pipeMode.y =(35 + y);
-        openMode.x =(114 + x);
-        openMode.y =(35 + y);
-        numberPull_100.x =(12 + x);
-        numberPull_100.y =(85 + y);
-        numberPull_10.x =(46 + x);
-        numberPull_10.y =(85 + y);
-        numberPull_1.x =(80 + x);
-        numberPull_1.y =(85 + y);
-        numberAdd_1.x =(114 + x);
-        numberAdd_1.y =(85 + y);
-        numberAdd_10.x =(148 + x);
-        numberAdd_10.y =(85 + y);
-        numberAdd_100.x =(182 + x);
-        numberAdd_100.y =(85 + y);
-        frequencySetting.x = (12 + x);
-        frequencySetting.y = (60 + y);
+        context.drawTexture(GUI, x, y, 0, 0, this.backgroundWidth, this.backgroundHeight);
+        pipeMode.setX(12 + x);
+        pipeMode.setY(35 + y);
+        openMode.setX(114 + x);
+        openMode.setY(35 + y);
+        numberPull_100.setX(12 + x);
+        numberPull_100.setY(85 + y);
+        numberPull_10.setX(46 + x);
+        numberPull_10.setY(85 + y);
+        numberPull_1.setX(80 + x);
+        numberPull_1.setY(85 + y);
+        numberAdd_1.setX(114 + x);
+        numberAdd_1.setY(85 + y);
+        numberAdd_10.setX(148 + x);
+        numberAdd_10.setY(85 + y);
+        numberAdd_100.setX(182 + x);
+        numberAdd_100.setY(85 + y);
+        frequencySetting.setX(12 + x);
+        frequencySetting.setY(60 + y);
 
         this.addDrawable(pipeMode);
         this.addDrawable(openMode);
@@ -154,16 +154,16 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
         this.addSelectableChild(frequencySetting);
     }
 
-    protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
+    protected void drawForeground(DrawContext context, int mouseX, int mouseY) {
         int posX = behaviour.getPos().getX();
         int posY = behaviour.getPos().getY();
         int posZ = behaviour.getPos().getZ();
 
         x = (this.width - this.backgroundWidth) / 2;
         y = (this.height - this.backgroundHeight) / 2;
-        this.textRenderer.draw(matrices, this.title, 71, 7, 0x0a0c84);
-        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.owner", behaviour.ownerName), 12, 22, 4210752);
-        this.textRenderer.draw(matrices, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.coords", posX, posY, posZ), 110, 22, 4210752);
+        context.drawText(this.textRenderer, this.title, 71, 7, 0x0a0c84, false);
+        context.drawText(this.textRenderer, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.owner", behaviour.ownerName), 12, 22, 4210752, false);
+        context.drawText(this.textRenderer, TextUtil.translatable("label.pipeplus.teleport_pipe_setting.coords", posX, posY, posZ), 110, 22, 4210752, false);
     }
 
     @Override

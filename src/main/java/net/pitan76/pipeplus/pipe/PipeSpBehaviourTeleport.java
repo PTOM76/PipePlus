@@ -45,7 +45,7 @@ public class PipeSpBehaviourTeleport extends PipeSpBehaviour implements IPipeTel
         if (!canPlayerModifyPipe(player.getUuid()))
             return ActionResult.FAIL;
 
-        if (!player.world.isClient) {
+        if (!player.getWorld().isClient) {
             player.openHandledScreen(new SimplePipeContainerFactory(
                     PipePlusItems.PIPE_ITEMS_TELEPORT.getName(),
                     (syncId, inv, player1) -> new TeleportPipeSettingHandler(syncId, inv, this),

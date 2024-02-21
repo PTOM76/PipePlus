@@ -2,12 +2,14 @@ package net.pitan76.pipeplus.pipe;
 
 import alexiil.mc.lib.multipart.api.property.MultipartProperties;
 import alexiil.mc.lib.multipart.api.property.MultipartPropertyContainer;
+import alexiil.mc.mod.pipes.client.model.part.PipeSpPartKey;
 import alexiil.mc.mod.pipes.pipe.PartSpPipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpBehaviour;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.pitan76.pipeplus.client.model.part.PipeSpPartKeyMutable;
 
 public class PipeSpBehaviourRedstone extends PipeSpBehaviour {
 
@@ -53,11 +55,8 @@ public class PipeSpBehaviourRedstone extends PipeSpBehaviour {
         return nbt;
     }
 
-    /*
     @Override
     public PipeSpPartKey createModelState() {
         return new PipeSpPartKeyMutable(pipe.definition, pipe.connections, isEmpty ? 0 : 1);
     }
-
-     */
 }

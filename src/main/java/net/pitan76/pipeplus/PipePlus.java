@@ -8,7 +8,6 @@ import net.minecraft.util.Identifier;
 import net.pitan76.mcpitanlib.api.event.v0.EventRegistry;
 import net.pitan76.mcpitanlib.api.item.CreativeTabBuilder;
 import net.pitan76.mcpitanlib.api.registry.CompatRegistry;
-import net.pitan76.pipeplus.blocks.Blocks;
 import net.pitan76.pipeplus.config.PipePlusConfig;
 import net.pitan76.pipeplus.guis.PipePlusContainers;
 import net.pitan76.pipeplus.items.PipePlusItems;
@@ -38,8 +37,6 @@ public class PipePlus implements ModInitializer {
         AutoConfig.register(PipePlusConfig.class, GsonConfigSerializer::new);
         PipePlusParts.init();
         PipePlusItems.init();
-
-        Blocks.registerInit();
 
         PipePlusContainers.load();
         ServerNetwork.init();

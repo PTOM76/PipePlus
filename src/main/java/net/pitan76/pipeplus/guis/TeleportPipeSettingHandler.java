@@ -29,7 +29,7 @@ public class TeleportPipeSettingHandler extends ExtendedScreenHandler {
         PlayerEntity player = inv.player;
         BlockPos pos = buf.readBlockPos();
 
-        MultipartContainer container = MultipartContainer.ATTRIBUTE.getFirstOrNull(player.world, pos);
+        MultipartContainer container = MultipartContainer.ATTRIBUTE.getFirstOrNull(player.getWorld(), pos);
 
         if (container == null)
             throw new IllegalStateException("Attempted to open a teleport pipe screen where there is no teleport pipe!");
