@@ -31,6 +31,8 @@ public class AddPipeMixin {
 			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/tin_pipe"));
 		if (block == Blocks.SILVER_PIPE)
 			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/silver_pipe"));
+		if (block == Blocks.STACK_EXTRACT_PIPE)
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/stack_extract_pipe"));
 		if (block == Blocks.COPPER_FLUID_PIPE)
 			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/copper_fluid_pipe"));
 		if (block == Blocks.TIN_FLUID_PIPE)
@@ -69,6 +71,12 @@ public class AddPipeMixin {
 			if (key instanceof TilePipeSided.PipeBlockModelStateSided) {
 				Direction mainDir = ((TilePipeSided.PipeBlockModelStateSided)key).mainSide;
 				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/silver_pipe_filled"));
+			}
+		}
+		if (key.block == Blocks.STACK_EXTRACT_PIPE) {
+			if (key instanceof TilePipeSided.PipeBlockModelStateSided) {
+				Direction mainDir = ((TilePipeSided.PipeBlockModelStateSided)key).mainSide;
+				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/stack_extract_pipe_filled"));
 			}
 		}
 		if (key.block == Blocks.COPPER_FLUID_PIPE) {
