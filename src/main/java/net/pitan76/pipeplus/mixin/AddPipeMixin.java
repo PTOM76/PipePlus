@@ -22,33 +22,33 @@ public class AddPipeMixin {
 	@Inject(method = "getCenterSprite", at = @At("TAIL"), cancellable = true, remap = false)
 	private static void getCenterSprite(SpriteSupplier sprites, BlockPipe block, CallbackInfoReturnable<Sprite> cir) {
 		if (block == Blocks.OBSIDIAN_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/obsidian_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/obsidian_pipe"));
 		if (block == Blocks.ENDER_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/ender_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/ender_pipe"));
 		if (block == Blocks.COPPER_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/copper_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/copper_pipe"));
 		if (block == Blocks.TIN_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/tin_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/tin_pipe"));
 		if (block == Blocks.SILVER_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/silver_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/silver_pipe"));
 		if (block == Blocks.COPPER_FLUID_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/copper_fluid_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/copper_fluid_pipe"));
 		if (block == Blocks.TIN_FLUID_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/tin_fluid_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/tin_fluid_pipe"));
 		if (block == Blocks.SILVER_FLUID_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/silver_fluid_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/silver_fluid_pipe"));
 		if (block == Blocks.EMERALD_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/emerald_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/emerald_pipe"));
 		if (block == Blocks.RUBY_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/ruby_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/ruby_pipe"));
 		if (block == Blocks.REDSTONE_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/redstone_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/redstone_pipe"));
 		if (block == Blocks.PIPE_ITEMS_TELEPORT)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/pipe_items_teleport"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/pipe_items_teleport"));
 		if (block == Blocks.COBBLESTONE_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/cobblestone_pipe"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/cobblestone_pipe"));
 		if (block == Blocks.VOID_ITEM_PIPE)
-			cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/void_item"));
+			cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/void_item"));
 	}
 
 	@Inject(method = "getSprite", at = @At("TAIL"), cancellable = true, remap = false)
@@ -56,42 +56,42 @@ public class AddPipeMixin {
 		if (key.block == Blocks.COPPER_PIPE) {
 			if (key instanceof TilePipeSided.PipeBlockModelStateSided) {
 				Direction mainDir = ((TilePipeSided.PipeBlockModelStateSided)key).mainSide;
-				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/copper_pipe_filled"));
+				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/copper_pipe_filled"));
 			}
 		}
 		if (key.block == Blocks.TIN_PIPE) {
 			if (key instanceof TilePipeSided.PipeBlockModelStateSided) {
 				Direction mainDir = ((TilePipeSided.PipeBlockModelStateSided)key).mainSide;
-				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/tin_pipe_filled"));
+				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/tin_pipe_filled"));
 			}
 		}
 		if (key.block == Blocks.SILVER_PIPE) {
 			if (key instanceof TilePipeSided.PipeBlockModelStateSided) {
 				Direction mainDir = ((TilePipeSided.PipeBlockModelStateSided)key).mainSide;
-				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/silver_pipe_filled"));
+				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/silver_pipe_filled"));
 			}
 		}
 		if (key.block == Blocks.COPPER_FLUID_PIPE) {
 			if (key instanceof TilePipeSided.PipeBlockModelStateSided) {
 				Direction mainDir = ((TilePipeSided.PipeBlockModelStateSided)key).mainSide;
-				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/copper_fluid_pipe_filled"));
+				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/copper_fluid_pipe_filled"));
 			}
 		}
 		if (key.block == Blocks.TIN_FLUID_PIPE) {
 			if (key instanceof TilePipeSided.PipeBlockModelStateSided) {
 				Direction mainDir = ((TilePipeSided.PipeBlockModelStateSided)key).mainSide;
-				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/tin_fluid_pipe_filled"));
+				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/tin_fluid_pipe_filled"));
 			}
 		}
 		if (key.block == Blocks.SILVER_FLUID_PIPE) {
 			if (key instanceof TilePipeSided.PipeBlockModelStateSided) {
 				Direction mainDir = ((TilePipeSided.PipeBlockModelStateSided)key).mainSide;
-				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/silver_fluid_pipe_filled"));
+				if (mainDir == face) cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/silver_fluid_pipe_filled"));
 			}
 		}
 		if (key.block == Blocks.REDSTONE_PIPE) {
 			if (((RedStonePipe) key.block).isPowered()) {
-				cir.setReturnValue(sprites.getBlockSprite("pipeplus:pipes/active_redstone_pipe"));
+				cir.setReturnValue(sprites.getBlockSprite("pipeplus:block/active_redstone_pipe"));
 			}
 		}
 	}
