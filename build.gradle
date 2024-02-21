@@ -1,6 +1,8 @@
 plugins {
 	id 'fabric-loom' version '1.0-SNAPSHOT'
 	id 'maven-publish'
+	id 'com.matthewprenger.cursegradle' version '1.+'
+	id "com.modrinth.minotaur" version "2.+"
 }
 
 //archivesBaseName = project.archives_base_name
@@ -98,4 +100,53 @@ publishing {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 	}
+}
+
+curseforge {
+	if (System.getenv("CURSEFORGE_TOKEN") != null) {
+		apiKey = System.getenv("CURSEFORGE_TOKEN")
+		project {
+			id = '514438'
+			changelog = "MCPitanLib version: " + mcpitanlib_version.split(":")[1]
+			releaseType = 'release'
+			addGameVersion '1.18.1'
+			addGameVersion '1.18.2'
+			addGameVersion "Fabric"
+			relations {
+				requiredDependency 'fabric-api'
+				requiredDependency 'mcpitanlibarch'
+				requiredDependency 'simplepipes'
+			}
+
+			mainArtifact(remapJar)
+		}
+		options {
+			forgeGradleIntegration = false
+		}
+	}
+}
+
+import com.modrinth.minotaur.dependencies.ModDependency
+
+modrinth {
+	if (System.getenv("MODRINTH_TOKEN") != null) {
+		token = System.getenv("MODRINTH_TOKEN")
+		projectId = 'zSS7GIKK'
+		versionNumber = project.mod_version
+		uploadFile = remapJar
+		gameVersions = ['1.18.1', '1.18.2']
+		versionType = 'release'
+		loaders = ['fabric']
+		changelog = "MCPitanLib version: " + mcpitanlib_version.split(":")[1]
+		dependencies = [
+				new ModDependency('P7dR8mSH', 'required'), // Fabric API
+				new ModDependency('uNRoUnGT', 'required'),  // MCPitanLibarch
+				new ModDependency('ls90k6B8', 'required')  // Simple Pipes
+		]
+	}
+}
+
+task publishToModSites {
+	publishToModSites.dependsOn modrinth
+	publishToModSites.dependsOn curseforge
 }
