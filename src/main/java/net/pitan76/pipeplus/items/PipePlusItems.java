@@ -33,10 +33,10 @@ public class PipePlusItems {
     public static ItemPipePart SILVER_FLUID_PIPE;
 
     static {
-        COPPER_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.COPPER_ITEM_PIPE, TextUtil.translatable("tip.pipeplus.auto_extract_pipe"));
-        TIN_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.TIN_ITEM_PIPE, TextUtil.translatable("tip.pipeplus.auto_extract_pipe"));
-        SILVER_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.SILVER_ITEM_PIPE, TextUtil.translatable("tip.pipeplus.auto_extract_pipe"));
-        STACK_EXTRACT_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.STACK_EXTRACT_ITEM_PIPE, TextUtil.translatable("tip.pipeplus.auto_extract_pipe"));
+        COPPER_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.COPPER_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_pipe"));
+        TIN_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.TIN_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_pipe"));
+        SILVER_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.SILVER_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_pipe"));
+        STACK_EXTRACT_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.STACK_EXTRACT_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_pipe"));
         EMERALD_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.EMERALD_PIPE);
         RUBY_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.RUBY_PIPE);
         COBBLESTONE_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.COBBLESTONE_ITEM_PIPE);
@@ -46,9 +46,9 @@ public class PipePlusItems {
         PIPE_ITEMS_TELEPORT = new ExtendItemPipePart(createSettings(), PipePlusParts.TELEPORT_ITEM_PIPE);
         VOID_ITEM_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.VOID_ITEM_PIPE);
 
-        COPPER_FLUID_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.COPPER_FLUID_PIPE, TextUtil.translatable("tip.pipeplus.auto_extract_fluid_pipe"));
-        TIN_FLUID_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.TIN_FLUID_PIPE, TextUtil.translatable("tip.pipeplus.auto_extract_fluid_pipe"));
-        SILVER_FLUID_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.SILVER_FLUID_PIPE, TextUtil.translatable("tip.pipeplus.auto_extract_fluid_pipe"));
+        COPPER_FLUID_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.COPPER_FLUID_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_fluid_pipe"));
+        TIN_FLUID_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.TIN_FLUID_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_fluid_pipe"));
+        SILVER_FLUID_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.SILVER_FLUID_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_fluid_pipe"));
     }
 
     public static void init() {

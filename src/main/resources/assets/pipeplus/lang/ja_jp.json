@@ -17,12 +17,12 @@
     "item.pipeplus.void_item_pipe": "虚無の輸送パイプ",
     "item.pipeplus.cobblestone_pipe": "丸石の輸送パイプ",
 
-    "tip.pipeplus.auto_extract_pipe": "§r自動搬出パイプ",
-    "tip.pipeplus.obsidian_pipe": "§r挿入パイプ",
-    "tip.pipeplus.ender_pipe": "§r回収パイプ",
-    "tip.pipeplus.base_pipe": "§r基本パイプ",
-    "tip.pipeplus.void_pipe": "§r消去パイプ",
-    "tip.pipeplus.redstone_pipe": "§rレッドストーン信号出力パイプ",
+    "tooltip.pipeplus.auto_extract_pipe": "§r自動搬出パイプ",
+    "tooltip.pipeplus.obsidian_pipe": "§r挿入パイプ",
+    "tooltip.pipeplus.ender_pipe": "§r回収パイプ",
+    "tooltip.pipeplus.base_pipe": "§r基本パイプ",
+    "tooltip.pipeplus.void_pipe": "§r消去パイプ",
+    "tooltip.pipeplus.redstone_pipe": "§rレッドストーン信号出力パイプ",
 
     "button.pipeplus.teleport_pipe_setting.pipeMode.sendOnly": "輸送のみ",
     "button.pipeplus.teleport_pipe_setting.pipeMode.receive_only": "受取のみ",
