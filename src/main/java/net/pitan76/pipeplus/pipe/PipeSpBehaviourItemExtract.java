@@ -1,23 +1,24 @@
-package net.pitan76.pipeplus.blockentities;
+package net.pitan76.pipeplus.pipe;
 
 import alexiil.mc.lib.attributes.Simulation;
 import alexiil.mc.lib.attributes.item.ItemExtractable;
 import alexiil.mc.lib.attributes.item.impl.EmptyItemExtractable;
+import alexiil.mc.mod.pipes.pipe.PartSpPipe;
+import alexiil.mc.mod.pipes.pipe.PipeSpBehaviourSided;
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
-import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
-import net.pitan76.pipeplus.blocks.Blocks;
-import net.pitan76.pipeplus.config.PipePlusConfig;
 
-public class CopperPipeEntity extends ExtendTilePipeSided {
+public class PipeSpBehaviourItemExtract extends PipeSpBehaviourSided {
     private int needCooldown = 20;
     private int cooldown = needCooldown;
 
-    public CopperPipeEntity(TileCreateEvent event) {
-        super(BlockEntities.COPPER_PIPE_ENTITY, event, Blocks.COPPER_PIPE, PipeSpFlowItem::new);
-        needCooldown = PipePlusConfig.getConfig().copperTransportExtractDelay;
+    private int pulses = 1;
+
+    public PipeSpBehaviourItemExtract(PartSpPipe pipe, int time, int pulses) {
+        super(pipe);
+        this.needCooldown = time;
+        this.pulses = pulses;
     }
 
     @Override
@@ -26,10 +27,10 @@ public class CopperPipeEntity extends ExtendTilePipeSided {
         cooldown--;
         if (cooldown <= 0) {
             cooldown = needCooldown;
-            if (!world.isClient) {
+            if (!pipe.getPipeWorld().isClient) {
                 Direction dir = currentDirection();
                 if (dir != null) {
-                    tryExtract(dir, 1);
+                    tryExtract(dir, pulses);
                 }
             }
         }
@@ -37,19 +38,18 @@ public class CopperPipeEntity extends ExtendTilePipeSided {
 
     @Override
     protected boolean canFaceDirection(Direction dir) {
-        if (this.getNeighbourPipe(dir) != null) {
+        if (pipe.getNeighbourPipe(dir) != null) {
             return false;
         } else {
-            return this.getItemExtractable(dir) != EmptyItemExtractable.NULL;
+            return pipe.getItemExtractable(dir) != EmptyItemExtractable.NULL;
         }
     }
 
     public void tryExtract(Direction dir, int pulses) {
-        ItemExtractable extractable = this.getItemExtractable(dir);
+        ItemExtractable extractable = pipe.getItemExtractable(dir);
         ItemStack stack = extractable.attemptAnyExtraction(pulses, Simulation.ACTION);
         if (!stack.isEmpty()) {
-            ((PipeSpFlowItem)this.getFlow()).insertItemsForce(stack, dir, (DyeColor)null, 0.08D);
+            ((PipeSpFlowItem)pipe.getFlow()).insertItemsForce(stack, dir, null, 0.08D);
         }
-
     }
 }

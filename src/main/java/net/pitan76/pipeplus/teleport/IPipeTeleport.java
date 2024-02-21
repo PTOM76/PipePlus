@@ -1,11 +1,11 @@
-package net.pitan76.pipeplus.blockentities;
+package net.pitan76.pipeplus.teleport;
 
 import alexiil.mc.mod.pipes.pipe.PipeSpFlowItem;
 import net.pitan76.pipeplus.TeleportPipeType;
 
 import java.util.UUID;
 
-public interface IPipeTeleportTileEntity {
+public interface IPipeTeleport {
 
     public UUID getPipeUUID();
 

@@ -1,7 +1,6 @@
 package net.pitan76.pipeplus.blocks;
 
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
-import alexiil.mc.mod.pipes.blocks.TilePipe;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -16,9 +15,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
-import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.mcpitanlib.api.util.WorldUtil;
-import net.pitan76.pipeplus.blockentities.RedStonePipeEntity;
 import net.pitan76.pipeplus.parts.PipePlusParts;
 
 import java.util.Random;
@@ -62,14 +59,6 @@ public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
 
     @SuppressWarnings("deprecation")
     @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if ((Boolean)state.get(POWERED)) {
-            this.updatePoweredStatus(world, pos, state);
-        }
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         if (!oldState.isOf(state.getBlock())) {
             this.updatePoweredStatus(world, pos, state);
@@ -101,11 +90,6 @@ public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
     public void updatePoweredStatus(World world, BlockPos pos, BlockState state) {
         WorldUtil.scheduleBlockTick(world, pos, this, 20);
         world.updateComparators(pos, this);
-    }
-
-    @Override
-    public TilePipe createBlockEntity(TileCreateEvent event) {
-        return new RedStonePipeEntity(event);
     }
 
     public static RedStonePipe newBlock() {

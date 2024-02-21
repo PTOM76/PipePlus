@@ -1,12 +1,9 @@
 package net.pitan76.pipeplus.blocks;
 
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
-import alexiil.mc.mod.pipes.blocks.TilePipeSided;
 import net.minecraft.sound.BlockSoundGroup;
 import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
-import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
-import net.pitan76.pipeplus.blockentities.CopperPipeEntity;
 import net.pitan76.pipeplus.parts.PipePlusParts;
 
 public class CopperPipe extends ExtendBlockPipeSided implements BlockPipeItem {
@@ -19,11 +16,6 @@ public class CopperPipe extends ExtendBlockPipeSided implements BlockPipeItem {
 
     public CopperPipe(CompatibleBlockSettings settings) {
         super(settings, PipePlusParts.COPPER_ITEM_PIPE);
-    }
-
-    @Override
-    public TilePipeSided createBlockEntity(TileCreateEvent event) {
-        return new CopperPipeEntity(event);
     }
 
     public static CopperPipe newBlock() {

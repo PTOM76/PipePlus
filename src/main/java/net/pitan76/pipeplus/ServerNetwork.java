@@ -22,13 +22,13 @@ public class ServerNetwork {
             TeleportPipeSettingHandler gui = (TeleportPipeSettingHandler) player.currentScreenHandler;
 
             if (nbt.contains("teleport_pipe.frequency"))
-                gui.tile.frequency = nbt.getInt("teleport_pipe.frequency");
+                gui.behaviour.frequency = nbt.getInt("teleport_pipe.frequency");
 
             if (nbt.contains("teleport_pipe.mode"))
-                gui.tile.pipeModeInt = nbt.getInt("teleport_pipe.mode");
+                gui.behaviour.pipeModeInt = nbt.getInt("teleport_pipe.mode");
 
             if (nbt.contains("teleport_pipe.is_public"))
-                gui.tile.modeIsPublic = nbt.getBoolean("teleport_pipe.is_public");
+                gui.behaviour.modeIsPublic = nbt.getBoolean("teleport_pipe.is_public");
 
         }));
     }

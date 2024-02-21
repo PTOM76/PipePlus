@@ -1,12 +1,9 @@
 package net.pitan76.pipeplus.blocks;
 
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
-import alexiil.mc.mod.pipes.blocks.TilePipe;
 import net.minecraft.sound.BlockSoundGroup;
 import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
-import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
-import net.pitan76.pipeplus.blockentities.CobbleStonePipeEntity;
 import net.pitan76.pipeplus.parts.PipePlusParts;
 
 public class CobbleStonePipe extends ExtendBlockPipe implements BlockPipeItem {
@@ -21,10 +18,6 @@ public class CobbleStonePipe extends ExtendBlockPipe implements BlockPipeItem {
         super(settings, PipePlusParts.COBBLESTONE_ITEM_PIPE);
     }
 
-    @Override
-    public TilePipe createBlockEntity(TileCreateEvent event) {
-        return new CobbleStonePipeEntity(event);
-    }
 
     public static CobbleStonePipe newBlock() {
         return new CobbleStonePipe(blockSettings);

@@ -8,11 +8,10 @@ import net.minecraft.util.Identifier;
 import net.pitan76.mcpitanlib.api.event.v0.EventRegistry;
 import net.pitan76.mcpitanlib.api.item.CreativeTabBuilder;
 import net.pitan76.mcpitanlib.api.registry.CompatRegistry;
-import net.pitan76.pipeplus.blockentities.BlockEntities;
 import net.pitan76.pipeplus.blocks.Blocks;
 import net.pitan76.pipeplus.config.PipePlusConfig;
 import net.pitan76.pipeplus.guis.PipePlusContainers;
-import net.pitan76.pipeplus.items.Items;
+import net.pitan76.pipeplus.items.PipePlusItems;
 import net.pitan76.pipeplus.parts.PipePlusParts;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -27,7 +26,7 @@ public class PipePlus implements ModInitializer {
 
     public static final CreativeTabBuilder PIPEPLUS_GROUP = CreativeTabBuilder.create(
             id("all")).
-            setIcon(() -> new ItemStack(Items.COPPER_PIPE));
+            setIcon(() -> new ItemStack(PipePlusItems.COPPER_PIPE));
 
     public static CompatRegistry registry = CompatRegistry.createRegistry(MOD_ID);
 
@@ -35,13 +34,13 @@ public class PipePlus implements ModInitializer {
         log(Level.INFO, "Initializing");
         instance = this;
 
-        AutoConfig.register(PipePlusConfig.class, GsonConfigSerializer::new);
         registry.registerItemGroup(id("all"), PIPEPLUS_GROUP);
-
+        AutoConfig.register(PipePlusConfig.class, GsonConfigSerializer::new);
         PipePlusParts.init();
-        BlockEntities.registerInit();
+        PipePlusItems.init();
+
         Blocks.registerInit();
-        Items.registerInit();
+
         PipePlusContainers.load();
         ServerNetwork.init();
         TeleportManager.register();

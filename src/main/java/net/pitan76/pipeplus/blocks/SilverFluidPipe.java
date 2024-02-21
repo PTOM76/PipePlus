@@ -1,12 +1,9 @@
 package net.pitan76.pipeplus.blocks;
 
 import alexiil.mc.mod.pipes.blocks.BlockPipeFluid;
-import alexiil.mc.mod.pipes.blocks.TilePipeSided;
 import net.minecraft.sound.BlockSoundGroup;
 import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
-import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
-import net.pitan76.pipeplus.blockentities.SilverFluidPipeEntity;
 import net.pitan76.pipeplus.parts.PipePlusParts;
 
 public class SilverFluidPipe extends ExtendBlockPipeSided implements BlockPipeFluid {
@@ -21,10 +18,6 @@ public class SilverFluidPipe extends ExtendBlockPipeSided implements BlockPipeFl
         super(settings, PipePlusParts.SILVER_FLUID_PIPE);
     }
 
-    @Override
-    public TilePipeSided createBlockEntity(TileCreateEvent event) {
-        return new SilverFluidPipeEntity(event);
-    }
     
     public static SilverFluidPipe newBlock() {
         return new SilverFluidPipe(blockSettings);
