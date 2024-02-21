@@ -4,12 +4,12 @@
   "package": "net.pitan76.pipeplus.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "net.pitan76.pipeplus.mixin.AddPipeMixin"
+    "AddPipeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "net.pitan76.pipeplus.mixin.RegisterSpritesMixin"
+    "RegisterSpritesMixin"
   ]
 }
