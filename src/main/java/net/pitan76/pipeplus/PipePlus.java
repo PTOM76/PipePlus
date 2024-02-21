@@ -45,6 +45,8 @@ public class PipePlus implements ModInitializer {
         TeleportManager.register();
         
         EventRegistry.ServerLifecycle.serverStopped((server -> TeleportManager.instance.reset()));
+
+        registry.allRegister();
     }
 
     public static void log(Level level, String message){
