@@ -129,7 +129,7 @@ modrinth {
 	if (System.getenv("MODRINTH_TOKEN") != null) {
 		token = System.getenv("MODRINTH_TOKEN")
 		projectId = 'zSS7GIKK'
-		versionNumber = project.mod_version
+		versionNumber = project.mod_version + "-" + project.minecraft_version
 		uploadFile = remapJar
 		gameVersions = ['1.18.1', '1.18.2']
 		versionType = 'release'
