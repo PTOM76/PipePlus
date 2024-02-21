@@ -3,7 +3,6 @@ package net.pitan76.pipeplus;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.pitan76.mcpitanlib.api.event.v0.EventRegistry;
@@ -26,10 +25,9 @@ public class PipePlus implements ModInitializer {
     public static PipePlus instance;
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static final ItemGroup PIPEPLUS_GROUP = CreativeTabBuilder.create(
+    public static final CreativeTabBuilder PIPEPLUS_GROUP = CreativeTabBuilder.create(
             id("all")).
-            setIcon(() -> new ItemStack(Items.COPPER_PIPE)).
-            build();
+            setIcon(() -> new ItemStack(Items.COPPER_PIPE));
 
     public static CompatRegistry registry = CompatRegistry.createRegistry(MOD_ID);
 
@@ -38,6 +36,8 @@ public class PipePlus implements ModInitializer {
         instance = this;
 
         AutoConfig.register(PipePlusConfig.class, GsonConfigSerializer::new);
+        registry.registerItemGroup(id("all"), PIPEPLUS_GROUP);
+
         PipePlusParts.init();
         BlockEntities.registerInit();
         Blocks.registerInit();
