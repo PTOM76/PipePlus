@@ -2,7 +2,7 @@ package net.pitan76.pipeplus.items;
 
 import alexiil.mc.mod.pipes.items.ItemPipePart;
 import net.minecraft.item.Item;
-import net.pitan76.mcpitanlib.api.item.CompatibleItemSettings;
+import net.pitan76.mcpitanlib.api.item.v2.CompatibleItemSettings;
 import net.pitan76.mcpitanlib.api.util.CompatIdentifier;
 import net.pitan76.mcpitanlib.api.util.TextUtil;
 import net.pitan76.pipeplus.PipePlus;
@@ -11,45 +11,26 @@ import net.pitan76.pipeplus.parts.PipePlusParts;
 import static net.pitan76.pipeplus.PipePlus.registry;
 
 public class PipePlusItems {
-    public static CompatibleItemSettings createSettings() {
-        return new CompatibleItemSettings().addGroup(PipePlus.PIPEPLUS_GROUP);
+    public static CompatibleItemSettings createSettings(String id) {
+        return CompatibleItemSettings.of(PipePlus._id(id)).addGroup(PipePlus.PIPEPLUS_GROUP);
     }
     
-    public static ItemPipePart COPPER_PIPE;
-    public static ItemPipePart TIN_PIPE;
-    public static ItemPipePart SILVER_PIPE;
-    public static ItemPipePart STACK_EXTRACT_PIPE;
-    public static ItemPipePart EMERALD_PIPE;
-    public static ItemPipePart RUBY_PIPE;
-    public static ItemPipePart COBBLESTONE_PIPE;
-    public static ItemPipePart OBSIDIAN_PIPE;
-    public static ItemPipePart ENDER_PIPE;
-    public static ItemPipePart REDSTONE_PIPE;
-    public static ItemPipePart PIPE_ITEMS_TELEPORT;
-    public static ItemPipePart VOID_ITEM_PIPE;
+    public static ItemPipePart COPPER_PIPE = new CompatItemPipePart(createSettings("copper_pipe"), PipePlusParts.COPPER_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_pipe"));;
+    public static ItemPipePart TIN_PIPE = new CompatItemPipePart(createSettings("tin_pipe"), PipePlusParts.TIN_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_pipe"));
+    public static ItemPipePart SILVER_PIPE = new CompatItemPipePart(createSettings("silver_pipe"), PipePlusParts.SILVER_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_pipe"));;
+    public static ItemPipePart STACK_EXTRACT_PIPE = new CompatItemPipePart(createSettings("stack_extract_pipe"), PipePlusParts.STACK_EXTRACT_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_pipe"));;
+    public static ItemPipePart EMERALD_PIPE = new CompatItemPipePart(createSettings("emerald_pipe"), PipePlusParts.EMERALD_PIPE);;
+    public static ItemPipePart RUBY_PIPE = new CompatItemPipePart(createSettings("ruby_pipe"), PipePlusParts.RUBY_PIPE);;
+    public static ItemPipePart COBBLESTONE_PIPE = new CompatItemPipePart(createSettings("cobblestone_pipe"), PipePlusParts.COBBLESTONE_ITEM_PIPE);;
+    public static ItemPipePart OBSIDIAN_PIPE = new CompatItemPipePart(createSettings("obsidian_pipe"), PipePlusParts.OBSIDIAN_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.obsidian_pipe"));;
+    public static ItemPipePart ENDER_PIPE = new CompatItemPipePart(createSettings("ender_pipe"), PipePlusParts.ENDER_PIPE, TextUtil.translatable("tooltip.pipeplus.ender_pipe"));;
+    public static ItemPipePart REDSTONE_PIPE = new CompatItemPipePart(createSettings("redstone_pipe"), PipePlusParts.REDSTONE_ITEM_PIPE);;
+    public static ItemPipePart PIPE_ITEMS_TELEPORT = new CompatItemPipePart(createSettings("pipe_items_teleport"), PipePlusParts.TELEPORT_ITEM_PIPE);;
+    public static ItemPipePart VOID_ITEM_PIPE = new CompatItemPipePart(createSettings("void_item_pipe"), PipePlusParts.VOID_ITEM_PIPE);;
 
-    public static ItemPipePart COPPER_FLUID_PIPE;
-    public static ItemPipePart TIN_FLUID_PIPE;
-    public static ItemPipePart SILVER_FLUID_PIPE;
-
-    static {
-        COPPER_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.COPPER_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_pipe"));
-        TIN_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.TIN_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_pipe"));
-        SILVER_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.SILVER_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_pipe"));
-        STACK_EXTRACT_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.STACK_EXTRACT_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_pipe"));
-        EMERALD_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.EMERALD_PIPE);
-        RUBY_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.RUBY_PIPE);
-        COBBLESTONE_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.COBBLESTONE_ITEM_PIPE);
-        OBSIDIAN_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.OBSIDIAN_ITEM_PIPE, TextUtil.translatable("tooltip.pipeplus.obsidian_pipe"));
-        ENDER_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.ENDER_PIPE, TextUtil.translatable("tooltip.pipeplus.ender_pipe"));
-        REDSTONE_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.REDSTONE_ITEM_PIPE);
-        PIPE_ITEMS_TELEPORT = new ExtendItemPipePart(createSettings(), PipePlusParts.TELEPORT_ITEM_PIPE);
-        VOID_ITEM_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.VOID_ITEM_PIPE);
-
-        COPPER_FLUID_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.COPPER_FLUID_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_fluid_pipe"));
-        TIN_FLUID_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.TIN_FLUID_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_fluid_pipe"));
-        SILVER_FLUID_PIPE = new ExtendItemPipePart(createSettings(), PipePlusParts.SILVER_FLUID_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_fluid_pipe"));
-    }
+    public static ItemPipePart COPPER_FLUID_PIPE = new CompatItemPipePart(createSettings("copper_fluid_pipe"), PipePlusParts.COPPER_FLUID_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_fluid_pipe"));;
+    public static ItemPipePart TIN_FLUID_PIPE = new CompatItemPipePart(createSettings("tin_fluid_pipe"), PipePlusParts.TIN_FLUID_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_fluid_pipe"));
+    public static ItemPipePart SILVER_FLUID_PIPE = new CompatItemPipePart(createSettings("silver_fluid_pipe"), PipePlusParts.SILVER_FLUID_PIPE, TextUtil.translatable("tooltip.pipeplus.auto_extract_fluid_pipe"));
 
     public static void init() {
         register(COPPER_PIPE, "copper_pipe");
@@ -72,6 +53,7 @@ public class PipePlusItems {
     public static void register(Item item, String id) {
         registry.registerItem(PipePlus._id(id), () -> item);
     }
+
     public static void register(Item item, CompatIdentifier id) {
         registry.registerItem(id, () -> item);
     }

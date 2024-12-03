@@ -2,11 +2,11 @@ package net.pitan76.pipeplus;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
-import net.minecraft.item.ItemStack;
 import net.pitan76.mcpitanlib.api.event.v0.EventRegistry;
 import net.pitan76.mcpitanlib.api.item.CreativeTabBuilder;
 import net.pitan76.mcpitanlib.api.registry.v2.CompatRegistryV2;
 import net.pitan76.mcpitanlib.api.util.CompatIdentifier;
+import net.pitan76.mcpitanlib.api.util.ItemStackUtil;
 import net.pitan76.mcpitanlib.fabric.ExtendModInitializer;
 import net.pitan76.pipeplus.config.PipePlusConfig;
 import net.pitan76.pipeplus.guis.PipePlusContainers;
@@ -21,7 +21,7 @@ public class PipePlus extends ExtendModInitializer {
 
     public static final CreativeTabBuilder PIPEPLUS_GROUP = CreativeTabBuilder.create(
             _id("all")).
-            setIcon(() -> new ItemStack(PipePlusItems.COPPER_PIPE));
+            setIcon(() -> ItemStackUtil.create(PipePlusItems.COPPER_PIPE));
 
     public static CompatRegistryV2 registry;
 
@@ -29,7 +29,7 @@ public class PipePlus extends ExtendModInitializer {
         instance = this;
         registry = super.registry;
 
-        registry.registerItemGroup(compatId("all"), PIPEPLUS_GROUP);
+        registry.registerItemGroup(_id("all"), PIPEPLUS_GROUP);
         AutoConfig.register(PipePlusConfig.class, GsonConfigSerializer::new);
         PipePlusParts.init();
         PipePlusItems.init();
