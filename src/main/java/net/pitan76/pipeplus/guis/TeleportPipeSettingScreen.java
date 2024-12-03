@@ -14,10 +14,9 @@ import net.pitan76.pipeplus.PipePlus;
 import net.pitan76.pipeplus.ServerNetwork;
 import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
 import net.pitan76.pipeplus.blocks.Blocks;
-import org.apache.logging.log4j.Level;
 
 public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSettingHandler> {
-    private static final Identifier GUI = PipePlus.id("textures/gui/background_generic.png");
+    private static final Identifier GUI = PipePlus._id("textures/gui/background_generic.png").toMinecraft();
 
     public PipeItemsTeleportEntity tile;
 
@@ -184,7 +183,7 @@ public class TeleportPipeSettingScreen extends HandledScreen<TeleportPipeSetting
             int newFrequency = Math.max(Integer.parseInt(frequencySetting.getText()), 0);
             setFrequency(newFrequency);
         } catch (NumberFormatException e) {
-            PipePlus.log(Level.ERROR, "Failed to parse frequency: " + frequencySetting.getText());
+            PipePlus.instance.logger.error("Failed to parse frequency: " + frequencySetting.getText());
         }
 
         super.close();

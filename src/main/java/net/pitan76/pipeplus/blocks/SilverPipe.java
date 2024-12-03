@@ -9,8 +9,10 @@ import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blockentities.SilverPipeEntity;
 import net.pitan76.pipeplus.parts.PipePlusParts;
 
-public class SilverPipe extends ExtendBlockPipeSided implements BlockPipeItem {
-    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
+import static net.pitan76.pipeplus.PipePlus._id;
+
+public class SilverPipe extends CompatBlockPipeSided implements BlockPipeItem {
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(_id("silver_pipe"), CompatibleMaterial.DECORATION);
 
     static {
         blockSettings.strength(0.5F, 1.0F);

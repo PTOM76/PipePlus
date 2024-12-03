@@ -10,9 +10,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pitan76.mcpitanlib.api.block.v2.CompatibleBlockSettings;
 import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
-import net.pitan76.pipeplus.blocks.ExtendBlockPipe;
+import net.pitan76.pipeplus.blocks.CompatBlockPipe;
 
-public abstract class BlockPipeTeleport extends ExtendBlockPipe {
+public abstract class BlockPipeTeleport extends CompatBlockPipe {
 
     @Deprecated
     public BlockPipeTeleport(Settings settings, PipeSpDef pipeSpDef) {

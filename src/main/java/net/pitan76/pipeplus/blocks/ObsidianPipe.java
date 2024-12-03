@@ -9,8 +9,10 @@ import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blockentities.ObsidianPipeEntity;
 import net.pitan76.pipeplus.parts.PipePlusParts;
 
-public class ObsidianPipe extends ExtendBlockPipe implements BlockPipeItem {
-    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
+import static net.pitan76.pipeplus.PipePlus._id;
+
+public class ObsidianPipe extends CompatBlockPipe implements BlockPipeItem {
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(_id("obsidian_pipe"), CompatibleMaterial.DECORATION);
 
     static {
         blockSettings.strength(0.5F, 1.0F);

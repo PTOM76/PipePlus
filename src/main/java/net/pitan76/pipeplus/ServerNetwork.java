@@ -2,24 +2,26 @@ package net.pitan76.pipeplus;
 
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.util.Identifier;
-import net.pitan76.mcpitanlib.api.network.ClientNetworking;
+import net.pitan76.mcpitanlib.api.entity.Player;
+import net.pitan76.mcpitanlib.api.network.v2.ClientNetworking;
 import net.pitan76.mcpitanlib.api.network.PacketByteUtil;
-import net.pitan76.mcpitanlib.api.network.ServerNetworking;
+import net.pitan76.mcpitanlib.api.network.v2.ServerNetworking;
+import net.pitan76.mcpitanlib.api.util.CompatIdentifier;
 import net.pitan76.pipeplus.guis.TeleportPipeSettingHandler;
 
 import java.util.UUID;
 
 public class ServerNetwork {
 
-    public static Identifier id = PipePlus.id("network");
+    public static CompatIdentifier id = PipePlus._id("network");
 
     public static void init() {
-        ServerNetworking.registerReceiver(id, ((server, player, buf) -> {
-            NbtCompound nbt = PacketByteUtil.readNbt(buf);
+        ServerNetworking.registerReceiver(id, (e -> {
+            NbtCompound nbt = PacketByteUtil.readNbt(e.getBuf());
+            Player player = e.getPlayer();
 
-            if (!(player.currentScreenHandler instanceof TeleportPipeSettingHandler)) return;
-            TeleportPipeSettingHandler gui = (TeleportPipeSettingHandler) player.currentScreenHandler;
+            if (!(player.getCurrentScreenHandler() instanceof TeleportPipeSettingHandler)) return;
+            TeleportPipeSettingHandler gui = (TeleportPipeSettingHandler) player.getCurrentScreenHandler();
 
             if (nbt.contains("teleport_pipe.frequency"))
                 gui.tile.frequency = nbt.getInt("teleport_pipe.frequency");

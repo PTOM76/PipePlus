@@ -23,9 +23,10 @@ import net.pitan76.pipeplus.parts.PipePlusParts;
 
 import java.util.Random;
 
+import static net.pitan76.pipeplus.PipePlus._id;
 
-public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
-    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
+public class RedStonePipe extends CompatBlockPipe implements BlockPipeItem {
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(_id("redstone_pipe"), CompatibleMaterial.DECORATION);
     public static BooleanProperty POWERED;
     public boolean isPowered = false;
 

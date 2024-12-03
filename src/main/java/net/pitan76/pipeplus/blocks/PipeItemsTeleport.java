@@ -18,8 +18,10 @@ import net.pitan76.pipeplus.superClass.blocks.BlockPipeTeleport;
 
 import java.util.UUID;
 
+import static net.pitan76.pipeplus.PipePlus._id;
+
 public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeItem {
-    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(_id("pipe_items_teleport"), CompatibleMaterial.DECORATION);
 
     static {
         blockSettings.strength(0.5F, 1.0F);

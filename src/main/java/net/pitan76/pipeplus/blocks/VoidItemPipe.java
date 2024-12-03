@@ -9,7 +9,9 @@ import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blockentities.VoidPipeEntity;
 import net.pitan76.pipeplus.parts.PipePlusParts;
 
-public class VoidItemPipe extends ExtendBlockPipe implements BlockPipeItem {
+import static net.pitan76.pipeplus.PipePlus._id;
+
+public class VoidItemPipe extends CompatBlockPipe implements BlockPipeItem {
 
     public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(_id("void_item_pipe"), CompatibleMaterial.DECORATION);
 

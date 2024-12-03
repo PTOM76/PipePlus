@@ -9,13 +9,14 @@ import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blockentities.EmeraldPipeEntity;
 import net.pitan76.pipeplus.parts.PipePlusParts;
 
-public class EmeraldPipe extends ExtendBlockPipe implements BlockPipeItem {
-    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
+import static net.pitan76.pipeplus.PipePlus._id;
+
+public class EmeraldPipe extends CompatBlockPipe implements BlockPipeItem {
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(_id("emerald_pipe"), CompatibleMaterial.DECORATION);
 
     static {
         blockSettings.strength(0.5F, 1.0F);
         blockSettings.sounds(CompatBlockSoundGroup.GLASS);
-
     }
 
     public EmeraldPipe(CompatibleBlockSettings settings) {

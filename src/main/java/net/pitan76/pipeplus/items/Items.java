@@ -1,14 +1,11 @@
 package net.pitan76.pipeplus.items;
 
-import alexiil.mc.mod.pipes.items.ItemPipePart;
 import net.minecraft.item.Item;
 import net.pitan76.mcpitanlib.api.item.v2.CompatibleItemSettings;
 import net.pitan76.mcpitanlib.api.util.CompatIdentifier;
 import net.pitan76.mcpitanlib.api.util.item.ItemUtil;
-import net.pitan76.mcpitanlib.api.util.TextUtil;
 import net.pitan76.pipeplus.PipePlus;
 import net.pitan76.pipeplus.blocks.Blocks;
-import net.pitan76.pipeplus.parts.PipePlusParts;
 
 import static net.pitan76.pipeplus.PipePlus.registry;
 

@@ -1,8 +1,8 @@
 package net.pitan76.pipeplus.blockentities;
 
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.util.Identifier;
 import net.pitan76.mcpitanlib.api.tile.BlockEntityTypeBuilder;
+import net.pitan76.mcpitanlib.api.util.CompatIdentifier;
 import net.pitan76.pipeplus.PipePlus;
 import net.pitan76.pipeplus.blocks.Blocks;
 
@@ -59,10 +59,10 @@ public class BlockEntities {
     }
 
     private static void registerTile(BlockEntityType<?> type, String name) {
-        registry.registerBlockEntityType(PipePlus.id(name), () -> type);
+        registry.registerBlockEntityType(PipePlus._id(name), () -> type);
     }
 
-    private static void registerTile(BlockEntityType<?> type, Identifier id) {
+    private static void registerTile(BlockEntityType<?> type, CompatIdentifier id) {
         registry.registerBlockEntityType(id, () -> type);
     }
 

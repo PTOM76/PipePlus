@@ -29,24 +29,24 @@ public class PipePlusParts {
 
     static {
 
-        COPPER_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("copper_item_pipe"), true, false, 1);
-        TIN_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("tin_item_pipe"), true, false, 3);
-        SILVER_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("silver_item_pipe"), true, true, 6);
-        STACK_EXTRACT_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("stack_extract_pipe"), true, true, 6);
+        COPPER_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.instance.id("copper_item_pipe"), true, false, 1);
+        TIN_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.instance.id("tin_item_pipe"), true, false, 3);
+        SILVER_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.instance.id("silver_item_pipe"), true, true, 6);
+        STACK_EXTRACT_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.instance.id("stack_extract_pipe"), true, true, 6);
 
-        COPPER_FLUID_PIPE = new PipeSpDef.PipeDefFluid(PipePlus.id("copper_fluid_pipe"), true);
-        TIN_FLUID_PIPE = new PipeSpDef.PipeDefFluid(PipePlus.id("tin_fluid_pipe"), true);
-        SILVER_FLUID_PIPE = new PipeSpDef.PipeDefFluid(PipePlus.id("silver_fluid_pipe"), true);
+        COPPER_FLUID_PIPE = new PipeSpDef.PipeDefFluid(PipePlus.instance.id("copper_fluid_pipe"), true);
+        TIN_FLUID_PIPE = new PipeSpDef.PipeDefFluid(PipePlus.instance.id("tin_fluid_pipe"), true);
+        SILVER_FLUID_PIPE = new PipeSpDef.PipeDefFluid(PipePlus.instance.id("silver_fluid_pipe"), true);
 
-        REDSTONE_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("redstone_item_pipe"), false, false, 1);
-        COBBLESTONE_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("cobblestone_item_pipe"), false, false, 1);
-        VOID_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("void_item_pipe"), false, false, 1);
-        OBSIDIAN_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("obsidian_item_pipe"), true, false, 1);
-        ENDER_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("ender_pipe"), true, true, 1);
-        TELEPORT_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("teleport_item_pipe"), true, true, 1);
+        REDSTONE_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.instance.id("redstone_item_pipe"), false, false, 1);
+        COBBLESTONE_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.instance.id("cobblestone_item_pipe"), false, false, 1);
+        VOID_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.instance.id("void_item_pipe"), false, false, 1);
+        OBSIDIAN_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.instance.id("obsidian_item_pipe"), true, false, 1);
+        ENDER_PIPE = new PipeSpDef.PipeDefItem(PipePlus.instance.id("ender_pipe"), true, true, 1);
+        TELEPORT_ITEM_PIPE = new PipeSpDef.PipeDefItem(PipePlus.instance.id("teleport_item_pipe"), true, true, 1);
 
-        RUBY_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("ruby_pipe"), false, false, 12);
-        EMERALD_PIPE = new PipeSpDef.PipeDefItem(PipePlus.id("emerald_pipe"), false, false, 6);
+        RUBY_PIPE = new PipeSpDef.PipeDefItem(PipePlus.instance.id("ruby_pipe"), false, false, 12);
+        EMERALD_PIPE = new PipeSpDef.PipeDefItem(PipePlus.instance.id("emerald_pipe"), false, false, 6);
     }
 
     public static void init() {

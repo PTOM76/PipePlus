@@ -8,14 +8,14 @@ import net.minecraft.util.math.BlockPos;
 import net.pitan76.mcpitanlib.api.block.v2.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 
-public abstract class ExtendBlockPipe extends BlockPipe {
+public abstract class CompatBlockPipe extends BlockPipe {
     @Deprecated
-    public ExtendBlockPipe(Settings settings, PipeSpDef pipeDef) {
+    public CompatBlockPipe(Settings settings, PipeSpDef pipeDef) {
         super(settings, pipeDef);
     }
 
-    public ExtendBlockPipe(CompatibleBlockSettings settings, PipeSpDef pipeDef) {
-        super(settings.build(), pipeDef);
+    public CompatBlockPipe(CompatibleBlockSettings settings, PipeSpDef pipeDef) {
+        this(settings.build(), pipeDef);
     }
 
     @Deprecated
