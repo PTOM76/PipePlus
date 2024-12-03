@@ -1,7 +1,7 @@
 package net.pitan76.pipeplus.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.util.Identifier;
+import net.pitan76.mcpitanlib.api.util.CompatIdentifier;
 import net.pitan76.pipeplus.PipePlus;
 
 import static net.pitan76.pipeplus.PipePlus.registry;
@@ -23,7 +23,7 @@ public class Blocks {
     public static TinFluidPipe TIN_FLUID_PIPE = TinFluidPipe.newBlock();
     public static SilverFluidPipe SILVER_FLUID_PIPE = SilverFluidPipe.newBlock();
 
-    public static void registerInit() {
+    public static void init() {
         register(VOID_ITEM_PIPE, "void_item_pipe");
         register(OBSIDIAN_PIPE, "obsidian_pipe");
         register(ENDER_PIPE, "ender_pipe");
@@ -42,9 +42,10 @@ public class Blocks {
     }
 
     public static void register(Block block, String id) {
-        registry.registerBlock(PipePlus.id(id), () -> block);
+        registry.registerBlock(PipePlus._id(id), () -> block);
     }
-    public static void register(Block block, Identifier id) {
+
+    public static void register(Block block, CompatIdentifier id) {
         registry.registerBlock(id, () -> block);
     }
 }

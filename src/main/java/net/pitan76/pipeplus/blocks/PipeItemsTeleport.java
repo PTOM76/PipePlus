@@ -6,10 +6,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.BlockSoundGroup;
+import net.pitan76.mcpitanlib.api.sound.CompatBlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
+import net.pitan76.mcpitanlib.api.block.v2.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blockentities.PipeItemsTeleportEntity;
@@ -23,7 +23,7 @@ public class PipeItemsTeleport extends BlockPipeTeleport implements BlockPipeIte
 
     static {
         blockSettings.strength(0.5F, 1.0F);
-        blockSettings.sounds(BlockSoundGroup.GLASS);
+        blockSettings.sounds(CompatBlockSoundGroup.GLASS);
     }
 
     public PipeItemsTeleport(CompatibleBlockSettings settings) {

@@ -2,19 +2,19 @@ package net.pitan76.pipeplus.blocks;
 
 import alexiil.mc.mod.pipes.blocks.BlockPipeItem;
 import alexiil.mc.mod.pipes.blocks.TilePipe;
-import net.minecraft.sound.BlockSoundGroup;
-import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
+import net.pitan76.mcpitanlib.api.sound.CompatBlockSoundGroup;
+import net.pitan76.mcpitanlib.api.block.v2.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.pipeplus.blockentities.CobbleStonePipeEntity;
 import net.pitan76.pipeplus.parts.PipePlusParts;
 
 public class CobbleStonePipe extends ExtendBlockPipe implements BlockPipeItem {
-    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(CompatibleMaterial.DECORATION);
+    public static CompatibleBlockSettings blockSettings = CompatibleBlockSettings.of(_id("cobblestone_pipe"), CompatibleMaterial.DECORATION);
 
     static {
         blockSettings.strength(0.5F, 1.0F);
-        blockSettings.sounds(BlockSoundGroup.GLASS);
+        blockSettings.sounds(CompatBlockSoundGroup.GLASS);
     }
 
     public CobbleStonePipe(CompatibleBlockSettings settings) {

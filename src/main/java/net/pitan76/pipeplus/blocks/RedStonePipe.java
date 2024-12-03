@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.BlockSoundGroup;
+import net.pitan76.mcpitanlib.api.sound.CompatBlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
@@ -14,7 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.pitan76.mcpitanlib.api.block.CompatibleBlockSettings;
+import net.pitan76.mcpitanlib.api.block.v2.CompatibleBlockSettings;
 import net.pitan76.mcpitanlib.api.block.CompatibleMaterial;
 import net.pitan76.mcpitanlib.api.event.block.TileCreateEvent;
 import net.pitan76.mcpitanlib.api.util.WorldUtil;
@@ -31,7 +31,7 @@ public class RedStonePipe extends ExtendBlockPipe implements BlockPipeItem {
 
     static {
         blockSettings.strength(0.5F, 1.0F);
-        blockSettings.sounds(BlockSoundGroup.GLASS);
+        blockSettings.sounds(CompatBlockSoundGroup.GLASS);
         POWERED = Properties.POWERED;
     }
 
