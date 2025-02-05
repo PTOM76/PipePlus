@@ -17,8 +17,15 @@ public class TeleportManager {
     public static final TeleportManager instance = new TeleportManager();
     private static final Map<UUID, IPipeTeleport> allPipes = new LinkedHashMap<>();
     private static final Set<UUID> unloadedPipes = new HashSet<>();
+
     public List<IPipeTeleport> getPipes(int frequency) {
-        return allPipes
+
+        Map<UUID, IPipeTeleport> allPipesCopy;
+        synchronized (allPipes) {
+            allPipesCopy = new LinkedHashMap<>(allPipes);
+        }
+
+        return allPipesCopy
                 .values()
                 .stream()
                 .filter(pipe -> pipe.getFrequency() == frequency)
