@@ -1,6 +1,5 @@
 package net.pitan76.pipeplus.pipe;
 
-import alexiil.mc.mod.pipes.container.SimplePipeContainerFactory;
 import alexiil.mc.mod.pipes.pipe.PartSpPipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpBehaviour;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,13 +15,13 @@ import net.minecraft.world.World;
 import net.pitan76.mcpitanlib.api.entity.Player;
 import net.pitan76.mcpitanlib.api.event.container.factory.DisplayNameArgs;
 import net.pitan76.mcpitanlib.api.event.container.factory.ExtraDataArgs;
-import net.pitan76.mcpitanlib.api.gui.ExtendedScreenHandlerFactory;
+import net.pitan76.mcpitanlib.api.gui.args.CreateMenuEvent;
+import net.pitan76.mcpitanlib.api.gui.v2.ExtendedScreenHandlerFactory;
 import net.pitan76.mcpitanlib.api.util.NbtUtil;
 import net.pitan76.mcpitanlib.api.util.TextUtil;
 import net.pitan76.pipeplus.TeleportManager;
 import net.pitan76.pipeplus.TeleportPipeType;
 import net.pitan76.pipeplus.guis.TeleportPipeSettingHandler;
-import net.pitan76.pipeplus.items.PipePlusItems;
 import net.pitan76.pipeplus.pipeflow.TeleportPipeFlow;
 import net.pitan76.pipeplus.teleport.IPipeTeleport;
 import org.jetbrains.annotations.Nullable;
@@ -215,8 +214,8 @@ public class PipeSpBehaviourTeleport extends PipeSpBehaviour implements IPipeTel
 
     @Nullable
     @Override
-    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new TeleportPipeSettingHandler(syncId, inv, this);
+    public ScreenHandler createMenu(CreateMenuEvent e) {
+        return new TeleportPipeSettingHandler(e.syncId, e.playerInventory, this);
     }
 
     public TeleportPipeFlow getFlow() {

@@ -4,9 +4,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
-import net.pitan76.mcpitanlib.api.client.CompatInventoryScreen;
+import net.pitan76.mcpitanlib.api.client.gui.screen.CompatInventoryScreen;
 import net.pitan76.mcpitanlib.api.client.render.handledscreen.DrawBackgroundArgs;
 import net.pitan76.mcpitanlib.api.client.render.handledscreen.DrawForegroundArgs;
 import net.pitan76.mcpitanlib.api.util.CompatIdentifier;
@@ -17,7 +16,7 @@ import net.pitan76.pipeplus.ServerNetwork;
 import net.pitan76.pipeplus.items.PipePlusItems;
 import net.pitan76.pipeplus.pipe.PipeSpBehaviourTeleport;
 
-public class TeleportPipeSettingScreen extends CompatInventoryScreen {
+public class TeleportPipeSettingScreen extends CompatInventoryScreen<TeleportPipeSettingHandler> {
     private static final CompatIdentifier GUI = PipePlus._id("textures/gui/background_generic.png");
 
     public PipeSpBehaviourTeleport behaviour;
@@ -94,10 +93,10 @@ public class TeleportPipeSettingScreen extends CompatInventoryScreen {
         ServerNetwork.send("teleport_pipe.frequency", value);
     }
 
-    public TeleportPipeSettingScreen(ScreenHandler container, PlayerInventory inv, Text title) {
+    public TeleportPipeSettingScreen(TeleportPipeSettingHandler container, PlayerInventory inv, Text title) {
         super(container, inv, PipePlusItems.PIPE_ITEMS_TELEPORT.getName());
         if (container instanceof TeleportPipeSettingHandler) {
-            this.behaviour = ((TeleportPipeSettingHandler) container).behaviour;
+            this.behaviour = container.behaviour;
         }
     }
 

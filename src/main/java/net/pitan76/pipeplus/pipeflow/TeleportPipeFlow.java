@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import net.pitan76.mcpitanlib.api.util.ItemStackUtil;
+import net.pitan76.mcpitanlib.api.util.WorldUtil;
 import net.pitan76.pipeplus.TeleportManager;
 import net.pitan76.pipeplus.pipe.PipeSpBehaviourTeleport;
 import net.pitan76.pipeplus.teleport.IPipeTeleport;
@@ -26,7 +28,7 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
 
     @Override
     public ItemStack injectItem(ItemStack stack, boolean doAdd, Direction from, DyeColor colour, double speed) {
-        if(this.world().isClient)
+        if (WorldUtil.isClient(world()))
             throw new IllegalStateException("Cannot inject items on the client side!");
 
         if (inputBehaviour == null && inputPipe.behaviour instanceof PipeSpBehaviourTeleport)
@@ -61,7 +63,7 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
                 }
 
                 //転送中にパイプが破壊された場合は中断
-                if (targetWorld.getBlockEntity(outputBehaviour.getPos()) == null || world().getBlockEntity(inputBehaviour.getPos()) == null) {
+                if (WorldUtil.getBlockEntity(targetWorld, outputBehaviour.getPos()) == null || WorldUtil.getBlockEntity(world(), inputBehaviour.getPos()) == null) {
                     return stack;
                 }
 
@@ -80,13 +82,13 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
 
                             outputBehaviour.getFlow().insertItemsForce(stack, value.getOpposite(), colour, speed);
 
-                            return ItemStack.EMPTY;
+                            return ItemStackUtil.empty();
                         }
                     }
 
                     outputBehaviour.getFlow().insertItemsForce(stack, from, colour, speed);
 
-                    return ItemStack.EMPTY;
+                    return ItemStackUtil.empty();
 
                 }
             } finally {
