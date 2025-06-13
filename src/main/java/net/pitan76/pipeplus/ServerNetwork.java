@@ -44,69 +44,69 @@ public class ServerNetwork {
     }
 
     public static void send(String key, String string) {
-        NbtCompound tag = newTag();
+        NbtCompound tag = createNbt();
         NbtUtil.putString(tag, "type", "string");
         NbtUtil.putString(tag, key, string);
         send(tag);
     }
 
     public static void send(String key, Integer integer) {
-        NbtCompound tag = newTag();
+        NbtCompound tag = createNbt();
         NbtUtil.putString(tag, "type", "integer");
         NbtUtil.putInt(tag, key, integer);
         send(tag);
     }
 
     public static void send(String key, Boolean bool) {
-        NbtCompound tag = newTag();
+        NbtCompound tag = createNbt();
         NbtUtil.putString(tag, "type", "bool");
         NbtUtil.putBoolean(tag, key, bool);
         send(tag);
     }
 
     public static void send(String key, UUID uuid) {
-        NbtCompound tag = newTag();
+        NbtCompound tag = createNbt();
         NbtUtil.putString(tag, "type", "uuid");
         NbtUtil.putUuid(tag, key, uuid);
         send(tag);
     }
 
     public static void send(String key, Byte b) {
-        NbtCompound tag = newTag();
+        NbtCompound tag = createNbt();
         NbtUtil.putString(tag, "type", "byte");
         NbtUtil.putByte(tag, key, b);
         send(tag);
     }
 
     public static void send(String key, Double d) {
-        NbtCompound tag = newTag();
+        NbtCompound tag = createNbt();
         NbtUtil.putString(tag, "type", "double");
         NbtUtil.putDouble(tag, key, d);
         send(tag);
     }
 
     public static void send(String key, Float f) {
-        NbtCompound tag = newTag();
+        NbtCompound tag = createNbt();
         NbtUtil.putString(tag, "type", "float");
         NbtUtil.putFloat(tag, key, f);
         send(tag);
     }
 
     public static void send(String key, Short s) {
-        NbtCompound tag = newTag();
+        NbtCompound tag = createNbt();
         NbtUtil.putString(tag, "type", "short");
         NbtUtil.putShort(tag, key, s);
         send(tag);
     }
 
     public static void send(String key, Long l) {
-        NbtCompound tag = newTag();
+        NbtCompound tag = createNbt();
         NbtUtil.putString(tag, "type", "long");
         NbtUtil.putLong(tag, key, l);
         send(tag);
     }
 
-    public static NbtCompound newTag() {
+    public static NbtCompound createNbt() {
         return NbtUtil.create();
     }
 
