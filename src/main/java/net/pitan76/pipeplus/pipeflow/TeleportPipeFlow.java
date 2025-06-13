@@ -56,7 +56,7 @@ public class TeleportPipeFlow extends PipeSpFlowItem {
 
                 World targetWorld = outputBehaviour.getWorld();
 
-                if (targetWorld == null) {
+                if (targetWorld == null || targetWorld.isClient) {
                     return stack;
                 }
 
