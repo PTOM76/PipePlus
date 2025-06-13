@@ -3,7 +3,6 @@ package net.pitan76.pipeplus.pipe;
 import alexiil.mc.mod.pipes.pipe.PartSpPipe;
 import alexiil.mc.mod.pipes.pipe.PipeSpBehaviour;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.ScreenHandler;
@@ -18,6 +17,7 @@ import net.pitan76.mcpitanlib.api.event.container.factory.ExtraDataArgs;
 import net.pitan76.mcpitanlib.api.gui.args.CreateMenuEvent;
 import net.pitan76.mcpitanlib.api.gui.v2.ExtendedScreenHandlerFactory;
 import net.pitan76.mcpitanlib.api.util.NbtUtil;
+import net.pitan76.mcpitanlib.api.util.PlayerManagerUtil;
 import net.pitan76.mcpitanlib.api.util.TextUtil;
 import net.pitan76.pipeplus.TeleportManager;
 import net.pitan76.pipeplus.TeleportPipeType;
@@ -46,16 +46,8 @@ public class PipeSpBehaviourTeleport extends PipeSpBehaviour implements IPipeTel
         if (!canPlayerModifyPipe(player.getUUID()))
             return ActionResult.FAIL;
 
-        if (!player.isClient()) {
+        if (!player.isClient())
             player.openExtendedMenu(this);
-            /*
-            player.openHandledScreen(new SimplePipeContainerFactory(
-                    PipePlusItems.PIPE_ITEMS_TELEPORT.getName(),
-                    (syncId, inv, player1) -> new TeleportPipeSettingHandler(syncId, inv, this),
-                    (player1) -> buf.writeBlockPos(pipe.getPipePos())
-            ));
-             */
-        }
 
         return ActionResult.SUCCESS;
     }
@@ -100,9 +92,8 @@ public class PipeSpBehaviourTeleport extends PipeSpBehaviour implements IPipeTel
 
         if (NbtUtil.has(nbt, "owner_name")) {
             ownerName = NbtUtil.getString(nbt, "owner_name");
-        }
-        else if(getWorld().getPlayerByUuid(owner) != null) {
-            ownerName = getWorld().getPlayerByUuid(owner).getName().getString();
+        } else if (PlayerManagerUtil.hasPlayerByUUID(getWorld(), owner)) {
+            ownerName = PlayerManagerUtil.getPlayerByUUID(getWorld(), owner).getName();
         }
 
         if (NbtUtil.has(nbt, "is_public")) {
@@ -142,8 +133,8 @@ public class PipeSpBehaviourTeleport extends PipeSpBehaviour implements IPipeTel
     public void setOwnerNameAndUUID(UUID uuid) {
         owner = uuid;
 
-        if (getWorld().getPlayerByUuid(uuid) != null){
-            ownerName = getWorld().getPlayerByUuid(uuid).getName().getString();
+        if (PlayerManagerUtil.hasPlayerByUUID(getWorld(), uuid)){
+            ownerName = PlayerManagerUtil.getPlayerByUUID(getWorld(), uuid).getName();
         }
 
         // markDirty();
@@ -184,7 +175,7 @@ public class PipeSpBehaviourTeleport extends PipeSpBehaviour implements IPipeTel
         if (getWorld() == null) return false;
 
         // クリエイティブモードの場合は操作可能
-        if (getWorld().getPlayerByUuid(uuid) != null && getWorld().getPlayerByUuid(uuid).getAbilities().creativeMode)
+        if (PlayerManagerUtil.hasPlayerByUUID(getWorld(), uuid) && PlayerManagerUtil.getPlayerByUUID(getWorld(), uuid).isCreative())
             return true;
 
         // オーナーが存在しない場合は操作可能
@@ -201,10 +192,7 @@ public class PipeSpBehaviourTeleport extends PipeSpBehaviour implements IPipeTel
 
     @Override
     public void writeExtraData(ExtraDataArgs args) {
-        //NbtCompound nbt = NbtUtil.create();
-        //putNbt(nbt);
         args.writeVar(pipe.getPipePos());
-        //buf.writeNbt(nbt);
     }
 
     @Override
